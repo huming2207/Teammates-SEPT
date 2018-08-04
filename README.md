@@ -1,11 +1,15 @@
 # TEAMMATES Developer Web Site
 
+<img src="src/main/webapp/images/teammateslogo-black.png" width="600">
+
 This is a TEAMMATES' fork for a RMIT University's course, Software Engineering Process & Tool in Semester 2, 2018.
 
 The maintainers are:
 
 - Ming Hu (s3554025)
-- 
+- Kenneth Ku ()
+- Yuchen Yao ()
+- Yangming An ()
 
 TEAMMATES is a free online tool for managing peer evaluations and other feedback paths of your students.
 It is provided as a cloud-based service for educators/students and is currently used by hundreds of universities across the world.
