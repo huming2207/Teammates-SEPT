@@ -31,6 +31,7 @@
                 event.preventDefault();
                 let roleName = $("#role-dropdown option:selected").text();
                 let redirectPage = "";
+                let email = $(this).find("input[name='userEmail']").val();
                 let isAdmin = false;
                 switch(roleName) {
                     case "Student": {
@@ -48,14 +49,18 @@
                     }
                 }
 
-                $.post("/_ah/login", {
-                    "email": $(this).find("input[name='userEmail']").val(),
-                    "continue": redirectPage,
-                    "isAdmin": isAdmin,
-                    "action": "Log In"
-                }).done(function () {
-                    window.location.href = redirectPage;
-                })
+                if(RegExp("^[^@\s]+@(student\.)?rmit\.edu\.au$").test(email)) {
+                    $.post("/_ah/login", {
+                        "email": email,
+                        "continue": redirectPage,
+                        "isAdmin": isAdmin,
+                        "action": "Log In"
+                    }).done(function () {
+                        window.location.href = redirectPage;
+                    });
+                } else {
+                    alert("The email is not RMIT email, please check again.");
+                }
             });
         });
     </script>
