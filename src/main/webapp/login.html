@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>DurianMates Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="stylesheets/login.css">
+</head>
+<body class="text-center">
+    <form class="form-signin" action="/_ah/login">
+        <img class="mb-4  img-fluid" src="images/teammateslogo-black.png" alt="">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="userEmail" class="sr-only">Email address</label>
+        <input type="email" id="userEmail" name="userEmail" class="form-control" placeholder="Email address" autofocus>
+        <div class="form-group">
+            <select id="role-dropdown" class="form-control" title="Select a role...">
+                <option selected>Student</option>
+                <option>Instructor</option>
+                <option>Administrator</option>
+            </select>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <script>
+        $(document).ready(function(){
+            $("form").submit(function(event){
+                event.preventDefault();
+                let roleName = $("#role-dropdown option:selected").text();
+                let redirectPage = "";
+                let email = $(this).find("input[name='userEmail']").val();
+                let isAdmin = false;
+                switch(roleName) {
+                    case "Student": {
+                        redirectPage = "/page/studentHomePage";
+                        break;
+                    }
+                    case "Instructor": {
+                        redirectPage = "/page/instructorHomePage";
+                        break;
+                    }
+                    case "Administrator": {
+                        redirectPage = "/admin/adminHomePage";
+                        isAdmin = true;
+                        break;
+                    }
+                }
+
+                if(RegExp("^[^@\s]+@(student\.)?rmit\.edu\.au$").test(email)) {
+                    $.post("/_ah/login", {
+                        "email": email,
+                        "continue": redirectPage,
+                        "isAdmin": isAdmin,
+                        "action": "Log In"
+                    }).done(function () {
+                        window.location.href = redirectPage;
+                    });
+                } else {
+                    alert("The email is not RMIT email, please check again.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
