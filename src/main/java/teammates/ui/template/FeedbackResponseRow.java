@@ -1,10 +1,5 @@
 package teammates.ui.template;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import teammates.common.datatransfer.FeedbackParticipantType;
 import teammates.common.datatransfer.FeedbackSessionResultsBundle;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
@@ -13,6 +8,11 @@ import teammates.common.datatransfer.attributes.FeedbackResponseCommentAttribute
 import teammates.common.datatransfer.questions.FeedbackQuestionDetails;
 import teammates.common.util.SanitizationHelper;
 import teammates.common.util.StringHelper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class FeedbackResponseRow {
 
@@ -57,6 +57,7 @@ public class FeedbackResponseRow {
                         giverEmail, giverName, recipientName, showCommentTo, showGiverNameToString, responseVisibilities,
                         instructorEmailNameTable, results.getTimeZone(), question);
                 responseRow.enableEditDelete();
+                responseRow.enablePraised();
                 this.responseComments.add(responseRow);
             }
         }

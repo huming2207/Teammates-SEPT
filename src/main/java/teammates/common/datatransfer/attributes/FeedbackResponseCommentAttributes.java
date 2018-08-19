@@ -31,6 +31,7 @@ public class FeedbackResponseCommentAttributes extends EntityAttributes<Feedback
     public String feedbackQuestionId;
     public List<FeedbackParticipantType> showCommentTo;
     public List<FeedbackParticipantType> showGiverNameTo;
+    public List<String> praiseTo;
     public boolean isVisibilityFollowingFeedbackQuestion;
     public Instant createdAt;
     public String lastEditorEmail;
@@ -44,13 +45,14 @@ public class FeedbackResponseCommentAttributes extends EntityAttributes<Feedback
         receiverSection = Const.DEFAULT_SECTION;
         showCommentTo = new ArrayList<>();
         showGiverNameTo = new ArrayList<>();
+        praiseTo = new ArrayList<>();
         isVisibilityFollowingFeedbackQuestion = true;
         createdAt = Instant.now();
     }
 
     public static FeedbackResponseCommentAttributes valueOf(FeedbackResponseComment comment) {
         return builder(comment.getCourseId(), comment.getFeedbackSessionName(),
-                    comment.getGiverEmail(), comment.getCommentText())
+                comment.getGiverEmail(), comment.getCommentText())
                 .withFeedbackResponseId(comment.getFeedbackResponseId())
                 .withFeedbackQuestionId(comment.getFeedbackQuestionId())
                 .withFeedbackResponseCommentId(comment.getFeedbackResponseCommentId())
@@ -62,6 +64,7 @@ public class FeedbackResponseCommentAttributes extends EntityAttributes<Feedback
                 .withVisibilityFollowingFeedbackQuestion(comment.getIsVisibilityFollowingFeedbackQuestion())
                 .withShowCommentTo(comment.getShowCommentTo())
                 .withShowGiverNameTo(comment.getShowGiverNameTo())
+                .withPraiseTo(comment.getPraiseTo())
                 .build();
     }
 
@@ -74,6 +77,7 @@ public class FeedbackResponseCommentAttributes extends EntityAttributes<Feedback
      * <li>{@code receiverSection = "None"}</li>
      * <li>{@code showCommentTo = new ArrayList<>()}</li>
      * <li>{@code showGiverNameTo = new ArrayList<>()}</li>
+     * <li>{@code praiseTo = new ArrayList<>()}</li>
      * <li>{@code isVisibilityFollowingFeedbackQuestion = true}</li>
      * </ul>
      */
@@ -116,7 +120,7 @@ public class FeedbackResponseCommentAttributes extends EntityAttributes<Feedback
     public FeedbackResponseComment toEntity() {
         return new FeedbackResponseComment(courseId, feedbackSessionName, feedbackQuestionId, giverEmail,
                 feedbackResponseId, createdAt, commentText, giverSection, receiverSection,
-                showCommentTo, showGiverNameTo, lastEditorEmail, lastEditedAt);
+                showCommentTo, showGiverNameTo,praiseTo, lastEditorEmail, lastEditedAt);
     }
 
     @Override
@@ -206,6 +210,10 @@ public class FeedbackResponseCommentAttributes extends EntityAttributes<Feedback
 
         public Builder withShowGiverNameTo(List<FeedbackParticipantType> showGiverNameTo) {
             frca.showGiverNameTo = showGiverNameTo == null ? new ArrayList<FeedbackParticipantType>() : showGiverNameTo;
+            return this;
+        }
+        public Builder withPraiseTo(List<String> praiseTo) {
+            frca.praiseTo = praiseTo == null ? new ArrayList<String>() : praiseTo;
             return this;
         }
 
