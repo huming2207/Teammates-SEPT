@@ -49,7 +49,7 @@
                     }
                 }
 
-                if(RegExp("^[^@\s]+@(student\.)?rmit\.edu\.au$").test(email)) {
+                if(RegExp(/^[^@\s]+@(student\.)?rmit\.edu\.au$/).test(email)) {
                     $.post("/_ah/login", {
                         "email": email,
                         "continue": redirectPage,
