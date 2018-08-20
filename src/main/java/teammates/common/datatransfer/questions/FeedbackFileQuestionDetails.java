@@ -5,6 +5,8 @@ import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.Const;
+import teammates.common.util.SanitizationHelper;
+import teammates.common.util.Templates;
 import teammates.ui.template.InstructorFeedbackResultsResponseRow;
 
 import java.util.Comparator;
@@ -27,13 +29,25 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
     @Override
     public String getQuestionWithExistingResponseSubmissionFormHtml(boolean sessionIsOpen, int qnIdx, int responseIdx, String courseId, int totalNumRecipients, FeedbackResponseDetails existingResponseDetails, StudentAttributes student)
     {
-        return null;
+        return Templates.populateTemplate(
+                Templates.FeedbackQuestion.FormTemplates.TEXT_SUBMISSION_FORM,
+                Templates.FeedbackQuestion.Slots.IS_SESSION_OPEN, Boolean.toString(sessionIsOpen),
+                Templates.FeedbackQuestion.Slots.FEEDBACK_RESPONSE_TEXT, Const.ParamsNames.FEEDBACK_RESPONSE_TEXT,
+                Templates.FeedbackQuestion.Slots.QUESTION_INDEX, Integer.toString(qnIdx),
+                Templates.FeedbackQuestion.Slots.RESPONSE_INDEX, Integer.toString(responseIdx),
+                Templates.FeedbackQuestion.Slots.TEXT_EXISTING_RESPONSE, existingResponseDetails.getAnswerString());
     }
 
     @Override
     public String getQuestionWithoutExistingResponseSubmissionFormHtml(boolean sessionIsOpen, int qnIdx, int responseIdx, String courseId, int totalNumRecipients, StudentAttributes student)
     {
-        return null;
+        return Templates.populateTemplate(
+                Templates.FeedbackQuestion.FormTemplates.TEXT_SUBMISSION_FORM,
+                Templates.FeedbackQuestion.Slots.IS_SESSION_OPEN, Boolean.toString(sessionIsOpen),
+                Templates.FeedbackQuestion.Slots.FEEDBACK_RESPONSE_TEXT, Const.ParamsNames.FEEDBACK_RESPONSE_TEXT,
+                Templates.FeedbackQuestion.Slots.QUESTION_INDEX, Integer.toString(qnIdx),
+                Templates.FeedbackQuestion.Slots.RESPONSE_INDEX, Integer.toString(responseIdx),
+                Templates.FeedbackQuestion.Slots.TEXT_EXISTING_RESPONSE, "");
     }
 
     @Override
@@ -63,7 +77,7 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
     @Override
     public String getQuestionResultStatisticsCsv(List<FeedbackResponseAttributes> responses, FeedbackQuestionAttributes question, FeedbackSessionResultsBundle bundle)
     {
-        return null;
+        return "";
     }
 
     @Override
@@ -75,7 +89,7 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
     @Override
     public String getCsvHeader()
     {
-        return null;
+        return "Feedback";
     }
 
     @Override
