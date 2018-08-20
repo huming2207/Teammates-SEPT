@@ -7,7 +7,7 @@ This is a TEAMMATES' fork for a RMIT University's course, Software Engineering P
 The maintainers are:
 
 - Ming Hu (s3554025)
-- Kenneth Ku ()
+- Khye Nyin Ku (s3649482)
 - Yuchen Yao ()
 - Yangming An ()
 
