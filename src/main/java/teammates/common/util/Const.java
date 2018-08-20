@@ -591,6 +591,7 @@ public final class Const {
         public static final String RANK_RECIPIENT = "Rank (recipients) question";
         public static final String CONTRIB = "Team contribution question";
         public static final String RUBRIC = "Rubric question";
+        public static final String FILE = "PDF file submission";
     }
 
     public static class FeedbackSessionResults {
@@ -796,6 +797,7 @@ public final class Const {
         public static final String FEEDBACK_RESPONSE_ID = "responseid";
         public static final String FEEDBACK_RESPONSE_RECIPIENT = "responserecipient";
         public static final String FEEDBACK_RESPONSE_TEXT = "responsetext";
+        public static final String FEEDBACK_RESPONSE_FILE = "responsefile";
 
         public static final String FEEDBACK_RESPONSE_COMMENT_ID = "responsecommentid";
         public static final String FEEDBACK_RESPONSE_COMMENT_TEXT = "responsecommenttext";

@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.google.appengine.api.datastore.Text;
 
+import teammates.common.datatransfer.questions.FeedbackFileResponseDetails;
 import teammates.common.datatransfer.questions.FeedbackQuestionType;
 import teammates.common.datatransfer.questions.FeedbackResponseDetails;
 import teammates.common.datatransfer.questions.FeedbackTextResponseDetails;
@@ -176,7 +177,8 @@ public class FeedbackResponseAttributes extends EntityAttributes<FeedbackRespons
         if (responseDetails == null) {
             // There was error extracting response data from http request
             responseMetaData = new Text("");
-        } else if (responseDetails.questionType == FeedbackQuestionType.TEXT) {
+        } else if (responseDetails.questionType == FeedbackQuestionType.TEXT
+                || responseDetails.questionType == FeedbackQuestionType.FILE) {
             // For Text questions, the answer simply contains the response text, not a JSON
             // This is due to legacy data in the data store before there were multiple question types
             responseMetaData = new Text(responseDetails.getAnswerString());
@@ -201,6 +203,9 @@ public class FeedbackResponseAttributes extends EntityAttributes<FeedbackRespons
             // For Text questions, the questionText simply contains the question, not a JSON
             // This is due to legacy data in the data store before there are multiple question types
             return new FeedbackTextResponseDetails(responseMetaData.getValue());
+        } else if(responseDetailsClass == FeedbackFileResponseDetails.class) {
+            // return a Base64-encoded string for converting to binary later
+            return new FeedbackFileResponseDetails(responseMetaData.getValue());
         }
         return JsonUtils.fromJson(responseMetaData.getValue(), responseDetailsClass);
     }
