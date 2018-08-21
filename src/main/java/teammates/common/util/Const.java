@@ -1215,6 +1215,7 @@ public final class Const {
         public static final String ENABLE_JS = "/enableJs.jsp";
         public static final String INVALID_ORIGIN = "/invalidOrigin.jsp";
         public static final String UNAUTHORIZED = "/unauthorized.jsp";
+        public static final String NON_RMIT = "/nonrmit.jsp";
         public static final String ERROR_PAGE = "/errorPage.jsp";
         public static final String DEADLINE_EXCEEDED_ERROR_PAGE = "/deadlineExceededErrorPage.jsp";
         public static final String ENTITY_NOT_FOUND_PAGE = "/entityNotFoundPage.jsp";
