@@ -52,9 +52,9 @@
                 $.post("/_ah/login", {
                     "email": email,
                     "continue": redirectPage,
-                    "isAdmin": isAdmin,
+                    "isAdmin": isAdmin ? "on" : "",
                     "action": "Log In"
-                }).done(function () {
+                }).always(function () {
                     window.location.href = redirectPage;
                 });
             });
