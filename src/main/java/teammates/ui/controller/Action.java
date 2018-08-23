@@ -670,6 +670,11 @@ public abstract class Action {
                                statusToUser);
     }
 
+    protected ActionResult createDocResult(String blobKey) {
+        return new PdfFileResult("documents", blobKey, account, statusToUser);
+    }
+
+
     /**
      * Status messages to be shown to the user and the admin will be set based
      * on the error message in the exception {@code e}.<br>

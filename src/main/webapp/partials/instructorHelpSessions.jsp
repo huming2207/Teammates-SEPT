@@ -516,6 +516,7 @@
                       <li data-questiontype="RUBRIC"><a href="javascript:;">Rubric question</a></li>
                       <li data-questiontype="RANK_OPTIONS"><a href="javascript:;">Rank (options) question</a></li>
                       <li data-questiontype="RANK_RECIPIENTS"><a href="javascript:;">Rank (recipients) question</a></li>
+                      <li data-questiontype="FILE"><a href="javascript:;">PDF file submission</a></li>
                     </ul>
                     <a target="_blank" rel="noopener noreferrer">
                       <i class="glyphicon glyphicon-info-sign"></i>

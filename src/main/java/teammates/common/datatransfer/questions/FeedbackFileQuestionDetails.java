@@ -9,6 +9,7 @@ import teammates.common.util.SanitizationHelper;
 import teammates.common.util.Templates;
 import teammates.ui.template.InstructorFeedbackResultsResponseRow;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -41,37 +42,33 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
     @Override
     public String getQuestionWithoutExistingResponseSubmissionFormHtml(boolean sessionIsOpen, int qnIdx, int responseIdx, String courseId, int totalNumRecipients, StudentAttributes student)
     {
-        return Templates.populateTemplate(
-                Templates.FeedbackQuestion.FormTemplates.TEXT_SUBMISSION_FORM,
-                Templates.FeedbackQuestion.Slots.IS_SESSION_OPEN, Boolean.toString(sessionIsOpen),
-                Templates.FeedbackQuestion.Slots.FEEDBACK_RESPONSE_TEXT, Const.ParamsNames.FEEDBACK_RESPONSE_TEXT,
-                Templates.FeedbackQuestion.Slots.QUESTION_INDEX, Integer.toString(qnIdx),
-                Templates.FeedbackQuestion.Slots.RESPONSE_INDEX, Integer.toString(responseIdx),
-                Templates.FeedbackQuestion.Slots.TEXT_EXISTING_RESPONSE, "");
+        return "";
     }
 
     @Override
     public String getQuestionSpecificEditFormHtml(int questionNumber)
     {
-        return null;
+        return "";
     }
 
     @Override
     public String getNewQuestionSpecificEditFormHtml()
     {
-        return null;
+        return "<div id=\"textForm\">"
+                + getQuestionSpecificEditFormHtml(-1)
+                + "</div>";
     }
 
     @Override
     public String getQuestionAdditionalInfoHtml(int questionNumber, String additionalInfoId)
     {
-        return null;
+        return "";
     }
 
     @Override
     public String getQuestionResultStatisticsHtml(List<FeedbackResponseAttributes> responses, FeedbackQuestionAttributes question, String studentEmail, FeedbackSessionResultsBundle bundle, String view)
     {
-        return null;
+        return "";
     }
 
     @Override
@@ -101,31 +98,32 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
     @Override
     public String getQuestionTypeChoiceOption()
     {
-        return null;
+        return "<li data-questiontype = \"TEXT\"><a href=\"javascript:;\">"
+                + Const.FeedbackQuestionTypeNames.FILE + "</a></li>";
     }
 
     @Override
     public List<String> validateQuestionDetails(String courseId)
     {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public List<String> validateResponseAttributes(List<FeedbackResponseAttributes> responses, int numRecipients)
     {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public String validateGiverRecipientVisibility(FeedbackQuestionAttributes feedbackQuestionAttributes)
     {
-        return null;
+        return "";
     }
 
     @Override
     public boolean extractQuestionDetails(Map<String, String[]> requestParameters, FeedbackQuestionType questionType)
     {
-        return false;
+        return true;
     }
 
     @Override

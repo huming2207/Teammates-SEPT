@@ -123,8 +123,11 @@ public final class Const {
          * Must be within the range of int */
         public static final int MAX_PROFILE_PIC_SIZE = 5000000;
 
+        /* Max.PDF size for feedback uploading handlers */
+        public static final int MAX_PDF_DOC_SIZE = 30000000;
+
         /** This is the limit given to Blobstore API, beyond which an ugly error page is shown. */
-        public static final long MAX_FILE_LIMIT_FOR_BLOBSTOREAPI = 11000000;
+        public static final long MAX_FILE_LIMIT_FOR_BLOBSTOREAPI = 31600000;
 
         /** e.g. "2014-04-01 11:59 PM UTC" */
         public static final String DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd h:mm a Z";
@@ -155,7 +158,9 @@ public final class Const {
                         ActionURIs.ADMIN_INSTRUCTORACCOUNT_ADD,
                         ActionURIs.ADMIN_STUDENT_GOOGLE_ID_RESET,
                         ActionURIs.CREATE_IMAGE_UPLOAD_URL,
+                        ActionURIs.CREATE_DOC_UPLOAD_URL,
                         ActionURIs.IMAGE_UPLOAD,
+                        ActionURIs.DOC_UPLOAD,
                         ActionURIs.INSTRUCTOR_COURSE_ADD,
                         ActionURIs.INSTRUCTOR_COURSE_ARCHIVE,
                         ActionURIs.INSTRUCTOR_COURSE_DELETE,
@@ -666,6 +671,7 @@ public final class Const {
         public static final String COURSE_ARCHIVE_STATUS = "archive";
 
         public static final String IMAGE_TO_UPLOAD = "imagetoupload";
+        public static final String DOC_TO_UPLOAD = "doctoupload";
 
         public static final String ADMIN_SEARCH_KEY = "searchkey";
         public static final String ADMIN_SEARCH_BUTTON_HIT = "searchbuttonhit";
@@ -1016,7 +1022,9 @@ public final class Const {
         public static final String INSTRUCTOR_FEEDBACK_SUBMISSION_EDIT_SAVE = "/page/instructorFeedbackSubmissionEditSave";
 
         public static final String CREATE_IMAGE_UPLOAD_URL = "/page/createImageUploadUrl";
+        public static final String CREATE_DOC_UPLOAD_URL = "/page/createDocUploadUrl";
         public static final String IMAGE_UPLOAD = "/page/imageUpload";
+        public static final String DOC_UPLOAD = "/page/docUpload";
 
         public static final String STUDENT_HOME_PAGE = "/page/studentHomePage";
         public static final String STUDENT_COURSE_JOIN = "/page/studentCourseJoin";
@@ -1062,6 +1070,7 @@ public final class Const {
                 "/admin/adminEmailCreateGroupReceiverListUploadUrl";
 
         public static final String PUBLIC_IMAGE_SERVE = "/public/publicImageServe";
+        public static final String PUBLIC_DOC_SERVE = "/public/getDoc";
         public static final String PUBLIC_EMAIL_FILE_SERVE = "/public/publicEmailImageServe";
         public static final String ADMIN_STUDENT_GOOGLE_ID_RESET = "/admin/adminStudentGoogleIdReset";
 
@@ -1232,8 +1241,11 @@ public final class Const {
     public static class StatusMessages {
 
         public static final String IMAGE_TOO_LARGE = "The uploaded image was too large. ";
+        public static final String DOC_TOO_LARGE = "The document was too large. ";
         public static final String FILE_NOT_A_PICTURE = "The file that you have uploaded is not a picture. ";
+        public static final String FILE_NOT_A_DOC = "The document that you have uploaded is not a PDF file. ";
         public static final String NO_IMAGE_GIVEN = "Please specify a image to be uploaded.";
+        public static final String NO_DOC_GIVEN = "Please specify a PDF document to upload.";
         public static final String EMAIL_NOT_FOUND = "The requested email was not found";
         public static final String DUPLICATE_EMAIL_INFO = "Same email address as the student in line";
         public static final String EMAIL_DRAFT_SAVED = "Email draft has been saved";
@@ -1362,6 +1374,7 @@ public final class Const {
         public static final String STUDENTS_DELETED = "All the students have been removed from the course";
         public static final String STUDENT_PROFILE_EDITED = "Your profile has been edited successfully";
         public static final String STUDENT_PROFILE_PICTURE_SAVED = "Your profile picture has been saved successfully";
+        public static final String STUDENT_FEEDBACK_UPLOADED = "Your document has been uploaded.";
         public static final String STUDENT_PROFILE_PIC_TOO_LARGE = "The uploaded profile picture was too large. "
                 + "Please try again with a smaller picture.";
         public static final String STUDENT_PROFILE_PIC_SERVICE_DOWN = "We were unable to upload your picture at this time. "
