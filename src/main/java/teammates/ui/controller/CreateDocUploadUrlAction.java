@@ -1,28 +1,27 @@
 package teammates.ui.controller;
 
 import com.google.appengine.api.blobstore.BlobstoreFailureException;
-
 import teammates.common.util.Const;
 import teammates.common.util.GoogleCloudStorageHelper;
 import teammates.common.util.Url;
 import teammates.ui.pagedata.CreateDocUploadUrlAjaxPageData;
 
 /**
- * Action: creates a URL for uploading an image.
+ * Action: creates a URL for uploading a PDF document.
  */
-public class CreateImageUploadUrlAction extends Action {
+public class CreateDocUploadUrlAction extends Action {
 
     @Override
     protected ActionResult execute() {
-        return createAjaxResult(getCreateImageUploadUrlPageData());
+        return createAjaxResult(getCreateDocUploadUrlPageData());
     }
 
-    protected final CreateDocUploadUrlAjaxPageData getCreateImageUploadUrlPageData() {
+    protected final CreateDocUploadUrlAjaxPageData getCreateDocUploadUrlPageData() {
         CreateDocUploadUrlAjaxPageData data = new CreateDocUploadUrlAjaxPageData(account, sessionToken);
 
         try {
             data.nextUploadUrl = getUploadUrl();
-            data.ajaxStatus = "Image upload url created, proceed to uploading";
+            data.ajaxStatus = "Document upload url created, proceed to uploading";
         } catch (BlobstoreFailureException | IllegalArgumentException e) {
             data.nextUploadUrl = null;
             isError = true;
@@ -34,7 +33,7 @@ public class CreateImageUploadUrlAction extends Action {
 
     protected String getUploadUrl() {
         String callbackUrl =
-                Url.addParamToUrl(Const.ActionURIs.IMAGE_UPLOAD, Const.ParamsNames.SESSION_TOKEN, sessionToken);
+                Url.addParamToUrl(Const.ActionURIs.DOC_UPLOAD, Const.ParamsNames.SESSION_TOKEN, sessionToken);
         return GoogleCloudStorageHelper.getNewUploadUrl(callbackUrl);
     }
 

@@ -31,7 +31,7 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
     public String getQuestionWithExistingResponseSubmissionFormHtml(boolean sessionIsOpen, int qnIdx, int responseIdx, String courseId, int totalNumRecipients, FeedbackResponseDetails existingResponseDetails, StudentAttributes student)
     {
         return Templates.populateTemplate(
-                Templates.FeedbackQuestion.FormTemplates.TEXT_SUBMISSION_FORM,
+                Templates.FeedbackQuestion.FormTemplates.FILE_SUBMISSION_FORM,
                 Templates.FeedbackQuestion.Slots.IS_SESSION_OPEN, Boolean.toString(sessionIsOpen),
                 Templates.FeedbackQuestion.Slots.FEEDBACK_RESPONSE_TEXT, Const.ParamsNames.FEEDBACK_RESPONSE_TEXT,
                 Templates.FeedbackQuestion.Slots.QUESTION_INDEX, Integer.toString(qnIdx),
@@ -42,7 +42,13 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
     @Override
     public String getQuestionWithoutExistingResponseSubmissionFormHtml(boolean sessionIsOpen, int qnIdx, int responseIdx, String courseId, int totalNumRecipients, StudentAttributes student)
     {
-        return "";
+        return Templates.populateTemplate(
+                Templates.FeedbackQuestion.FormTemplates.FILE_SUBMISSION_FORM,
+                Templates.FeedbackQuestion.Slots.IS_SESSION_OPEN, Boolean.toString(sessionIsOpen),
+                Templates.FeedbackQuestion.Slots.FEEDBACK_RESPONSE_TEXT, Const.ParamsNames.FEEDBACK_RESPONSE_TEXT,
+                Templates.FeedbackQuestion.Slots.QUESTION_INDEX, Integer.toString(qnIdx),
+                Templates.FeedbackQuestion.Slots.RESPONSE_INDEX, Integer.toString(responseIdx),
+                Templates.FeedbackQuestion.Slots.TEXT_EXISTING_RESPONSE, "");
     }
 
     @Override
