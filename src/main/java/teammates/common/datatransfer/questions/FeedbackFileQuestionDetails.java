@@ -16,9 +16,18 @@ import java.util.Map;
 
 public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
 {
+    private String submissionFile;
+
     public FeedbackFileQuestionDetails()
     {
         super(FeedbackQuestionType.FILE);
+        this.submissionFile = "";
+    }
+
+    public FeedbackFileQuestionDetails(String submissionFile)
+    {
+        super(FeedbackQuestionType.FILE);
+        this.submissionFile = submissionFile;
     }
 
     @Override
@@ -33,7 +42,6 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
         return Templates.populateTemplate(
                 Templates.FeedbackQuestion.FormTemplates.FILE_SUBMISSION_FORM,
                 Templates.FeedbackQuestion.Slots.IS_SESSION_OPEN, Boolean.toString(sessionIsOpen),
-                Templates.FeedbackQuestion.Slots.FEEDBACK_RESPONSE_TEXT, Const.ParamsNames.FEEDBACK_RESPONSE_TEXT,
                 Templates.FeedbackQuestion.Slots.QUESTION_INDEX, Integer.toString(qnIdx),
                 Templates.FeedbackQuestion.Slots.RESPONSE_INDEX, Integer.toString(responseIdx),
                 Templates.FeedbackQuestion.Slots.TEXT_EXISTING_RESPONSE, existingResponseDetails.getAnswerString());
@@ -45,7 +53,6 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
         return Templates.populateTemplate(
                 Templates.FeedbackQuestion.FormTemplates.FILE_SUBMISSION_FORM,
                 Templates.FeedbackQuestion.Slots.IS_SESSION_OPEN, Boolean.toString(sessionIsOpen),
-                Templates.FeedbackQuestion.Slots.FEEDBACK_RESPONSE_TEXT, Const.ParamsNames.FEEDBACK_RESPONSE_TEXT,
                 Templates.FeedbackQuestion.Slots.QUESTION_INDEX, Integer.toString(qnIdx),
                 Templates.FeedbackQuestion.Slots.RESPONSE_INDEX, Integer.toString(responseIdx),
                 Templates.FeedbackQuestion.Slots.TEXT_EXISTING_RESPONSE, "");
@@ -60,9 +67,7 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
     @Override
     public String getNewQuestionSpecificEditFormHtml()
     {
-        return "<div id=\"textForm\">"
-                + getQuestionSpecificEditFormHtml(-1)
-                + "</div>";
+        return "";
     }
 
     @Override
@@ -104,7 +109,7 @@ public class FeedbackFileQuestionDetails extends FeedbackQuestionDetails
     @Override
     public String getQuestionTypeChoiceOption()
     {
-        return "<li data-questiontype = \"TEXT\"><a href=\"javascript:;\">"
+        return "<li data-questiontype = \"FILE\"><a href=\"javascript:;\">"
                 + Const.FeedbackQuestionTypeNames.FILE + "</a></li>";
     }
 

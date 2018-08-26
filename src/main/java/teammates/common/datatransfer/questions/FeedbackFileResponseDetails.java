@@ -27,14 +27,14 @@ public class FeedbackFileResponseDetails extends FeedbackResponseDetails
     @Override
     public String getAnswerString()
     {
-        return String.format("<a download=\"submission.pdf\" href=\"data:application/pdf;base64,%s\">" +
+        return String.format("<a download=\"submission.pdf\" href=\"%s\">" +
                 "Download PDF submission</a>", this.encodedBlob);
     }
 
     @Override
     public String getAnswerHtmlInstructorView(FeedbackQuestionDetails questionDetails)
     {
-        return String.format("<a download=\"submission.pdf\" href=\"data:application/pdf;base64,%s\">" +
+        return String.format("<a download=\"submission.pdf\" href=\"%s\">" +
                 "Download PDF submission</a>", this.encodedBlob);
     }
 

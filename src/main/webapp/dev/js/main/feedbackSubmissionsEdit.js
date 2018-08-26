@@ -37,6 +37,7 @@ import {
     addLoadingIndicator,
     disallowNonNumericEntries,
 } from '../common/ui';
+import {makeCsrfTokenParam} from "../common/crypto";
 
 const FEEDBACK_RESPONSE_RECIPIENT = 'responserecipient';
 const FEEDBACK_RESPONSE_TEXT = 'responsetext';
@@ -54,6 +55,8 @@ const SESSION_CLOSING_MESSAGE = 'Warning: you have less than 15 minutes before t
 const RESPONSES_SUCCESSFULLY_SUBMITTED = '<p>All your responses have been successfully recorded! '
         + 'You may now leave this page.</p>'
         + '<p>Note that you can change your responses and submit them again any time before the session closes.</p>';
+
+let callbackFunction;
 
 function isPreview() {
     return $(document).find('.navbar').text().indexOf('Preview') !== -1;
@@ -1291,6 +1294,80 @@ function updateTextQuestionWordsCount(textAreaId, wordsCountId, recommendedLengt
     }
 }
 
+function clearUploadFileInfo() {
+    $('#adminEmailFileInput').html('<input type="file" name="emailimagetoupload" id="adminEmailFile">');
+    $('#adminEmailFile').on('change paste keyup', () => {
+        createImageUploadUrl(); // eslint-disable-line no-use-before-define
+    });
+}
+
+function submitImageUploadFormAjax() {
+    const formData = new FormData($('#feedbackFileForm')[0]);
+
+    $.ajax({
+        type: 'POST',
+        enctype: 'multipart/form-data',
+        url: $('#feedbackFileForm').attr('action'),
+        data: formData,
+        // Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false,
+
+        beforeSend() {
+            showUploadingGif();
+        },
+        error() {
+            alert('Image upload failed, please try again.');
+            clearUploadFileInfo();
+        },
+        success(data) {
+            setTimeout(() => {
+                if (data.isError) {
+                    alert(data.ajaxStatus);
+                } else if (data.isFileUploaded) {
+                    const url = data.fileSrcUrl;
+                    callbackFunction(url, { alt: "Please enter an alt text for the document" });
+                    setStatusMessage(data.ajaxStatus, BootstrapContextualColors.SUCCESS);
+                } else {
+                    alert(data.ajaxStatus);
+                }
+            }, 500);
+        },
+
+    });
+    clearUploadFileInfo();
+}
+
+function createImageUploadUrl() {
+    $.ajax({
+        type: 'POST',
+        url: `/page/createDocUploadUrl`,
+        beforeSend() {
+            showUploadingGif();
+        },
+        error() {
+            alert('URL request failed, please try again.');
+        },
+        success(data) {
+            setTimeout(() => {
+                if (data.isError) {
+                    alert(data.ajaxStatus);
+                } else {
+                    $('#feedbackFileSelection').attr('action', data.nextUploadUrl);
+                    setStatusMessage(data.ajaxStatus);
+                    submitImageUploadFormAjax();
+                }
+            }, 500);
+        },
+
+    });
+}
+
+function showUploadingGif() {
+    setStatusMessage("Uploading...<span><img src='/images/ajax-loader.gif'/></span>", BootstrapContextualColors.WARNING);
+}
+
 $(document).ready(() => {
     const textFields = $('div[id^="responsetext-"]');
 
@@ -1318,10 +1395,19 @@ $(document).ready(() => {
                         updateTextQuestionWordsCount(id, $(textField).data('lengthTextId'), $(this).data('recommendedText'));
                     });
                 },
+                file_picker_callback(callback, value, meta) {
+                    // Provide image and alt text for the image dialog
+                    $('#feedbackFileSelection').click();
+                    callbackFunction = callback;
+                },
             });
             /* eslint-enable camelcase */
         });
     }
+
+    $('#feedbackFileSelection').on('change paste keyup', () => {
+        createImageUploadUrl();
+    });
 
     $('form[name="form_submit_response"]').submit((e) => {
         formatRubricQuestions();

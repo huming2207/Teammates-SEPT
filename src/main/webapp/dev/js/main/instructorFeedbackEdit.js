@@ -156,6 +156,7 @@ const CONFIRM_EDIT_DELETE_RESPONSES =
         + '<p>Are you sure you want to continue?</p>';
 
 const FEEDBACK_QUESTION_TYPENAME_TEXT = 'Essay question';
+const FEEDBACK_QUESTION_TYPENAME_FILE = 'PDF file submission';
 const FEEDBACK_QUESTION_TYPENAME_MCQ = 'Multiple-choice (single answer)';
 const FEEDBACK_QUESTION_TYPENAME_MSQ = 'Multiple-choice (multiple answers)';
 const FEEDBACK_QUESTION_TYPENAME_NUMSCALE = 'Numerical-scale question';
@@ -764,6 +765,9 @@ function prepareQuestionForm(type) {
         $('#questionTypeHeader').html(FEEDBACK_QUESTION_TYPENAME_TEXT);
 
         $('#textForm').show();
+        break;
+    case 'FILE':
+        $('#questionTypeHeader').html(FEEDBACK_QUESTION_TYPENAME_FILE);
         break;
     case 'MCQ':
         $(`#${ParamsNames.FEEDBACK_QUESTION_NUMBEROFCHOICECREATED}-${NEW_QUESTION}`).val(2);
