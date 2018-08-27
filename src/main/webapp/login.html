@@ -49,18 +49,14 @@
                     }
                 }
 
-                if(RegExp("^[^@\s]+@(student\.)?rmit\.edu\.au$").test(email)) {
-                    $.post("/_ah/login", {
-                        "email": email,
-                        "continue": redirectPage,
-                        "isAdmin": isAdmin,
-                        "action": "Log In"
-                    }).done(function () {
-                        window.location.href = redirectPage;
-                    });
-                } else {
-                    alert("The email is not RMIT email, please check again.");
-                }
+                $.post("/_ah/login", {
+                    "email": email,
+                    "continue": redirectPage,
+                    "isAdmin": isAdmin ? "on" : "",
+                    "action": "Log In"
+                }).always(function () {
+                    window.location.href = redirectPage;
+                });
             });
         });
     </script>

@@ -3,6 +3,7 @@ package teammates.ui.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,10 +11,7 @@ import javax.servlet.http.HttpSession;
 import teammates.common.datatransfer.UserType;
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
-import teammates.common.exception.EntityDoesNotExistException;
-import teammates.common.exception.EntityNotFoundException;
-import teammates.common.exception.InvalidOriginException;
-import teammates.common.exception.UnauthorizedAccessException;
+import teammates.common.exception.*;
 import teammates.common.util.Assumption;
 import teammates.common.util.Config;
 import teammates.common.util.Const;
@@ -239,6 +237,16 @@ public abstract class Action {
         loggedInUser = authenticateAndGetActualUser(currentUser);
         if (isValidUser()) {
             account = authenticateAndGetNominalUser(currentUser);
+        }
+        blockNonRmitDomain(currentUser);
+    }
+
+    private void blockNonRmitDomain(UserType userType) {
+        if(userType == null) return;
+        Pattern pattern = Pattern.compile("^[^@\\s]+@(student\\.)?rmit\\.edu\\.au$");
+        if(!pattern.matcher(userType.id).matches() && !userType.isAdmin) {
+            throw new NonRmitLoginException(
+                    String.format("Looks like the user \"%s\" is not a RMIT staff/student", userType.id));
         }
     }
 
@@ -661,6 +669,11 @@ public abstract class Action {
                                account,
                                statusToUser);
     }
+
+    protected ActionResult createDocResult(String blobKey) {
+        return new PdfFileResult("documents", blobKey, account, statusToUser);
+    }
+
 
     /**
      * Status messages to be shown to the user and the admin will be set based

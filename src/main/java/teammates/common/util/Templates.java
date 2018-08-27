@@ -72,7 +72,6 @@ public final class Templates {
                     FileHelper.readResourceFile("feedbackQuestionTextResultStatsTemplate.html");
             public static final String TEXT_EDIT_FORM =
                     FileHelper.readResourceFile("feedbackQuestionTextEditFormTemplate.html");
-
             public static final String MCQ_SUBMISSION_FORM =
                     FileHelper.readResourceFile("feedbackQuestionMcqSubmissionFormTemplate.html");
             public static final String MCQ_SUBMISSION_FORM_OPTIONFRAGMENT =

@@ -3,6 +3,7 @@ package teammates.ui.controller;
 import com.google.apphosting.api.DeadlineExceededException;
 
 import teammates.common.exception.EntityDoesNotExistException;
+import teammates.common.exception.NonRmitLoginException;
 import teammates.common.exception.NullPostParameterException;
 import teammates.common.exception.UnauthorizedAccessException;
 import teammates.common.util.Const;
@@ -31,6 +32,8 @@ public class AdminExceptionTestAction extends Action {
             throw new NullPointerException("NullPointerException Testing");
         } else if (error.equals(DeadlineExceededException.class.getSimpleName())) {
             throw new DeadlineExceededException("DeadlineExceededException Testing");
+        } else if (error.equals(NonRmitLoginException.class.getSimpleName())) {
+            throw new NonRmitLoginException("NonRmitLoginException Testing");
         } else if (error.equals(NullPostParameterException.class.getSimpleName())) {
             throw new NullPostParameterException("NullPostParameterException Testing");
         }

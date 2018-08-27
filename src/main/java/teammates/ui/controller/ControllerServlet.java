@@ -13,13 +13,7 @@ import com.google.appengine.api.datastore.DatastoreTimeoutException;
 import com.google.apphosting.api.DeadlineExceededException;
 
 import teammates.common.datatransfer.UserType;
-import teammates.common.exception.EntityNotFoundException;
-import teammates.common.exception.FeedbackSessionNotVisibleException;
-import teammates.common.exception.InvalidOriginException;
-import teammates.common.exception.InvalidPostParametersException;
-import teammates.common.exception.PageNotFoundException;
-import teammates.common.exception.TeammatesException;
-import teammates.common.exception.UnauthorizedAccessException;
+import teammates.common.exception.*;
 import teammates.common.util.Const;
 import teammates.common.util.HttpRequestHelper;
 import teammates.common.util.LogMessageGenerator;
@@ -107,6 +101,12 @@ public class ControllerServlet extends HttpServlet {
                                 .generateActionFailureLogMessage(url, params, e, userType));
             cleanUpStatusMessageInSession(req);
             resp.sendRedirect(appendParamsToErrorPageUrl(Const.ViewURIs.INVALID_ORIGIN, params, url));
+
+        } catch (NonRmitLoginException e) {
+            log.warning(new LogMessageGenerator()
+                    .generateActionFailureLogMessage(url, params, e, userType));
+            cleanUpStatusMessageInSession(req);
+            resp.sendRedirect(appendParamsToErrorPageUrl(Const.ViewURIs.NON_RMIT, params, url));
 
         } catch (UnauthorizedAccessException e) {
             log.warning(new LogMessageGenerator()
