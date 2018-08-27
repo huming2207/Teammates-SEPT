@@ -24,7 +24,7 @@ public class PdfFileUploadAction extends Action {
 
     @Override
     protected ActionResult execute() {
-        data = prepareData();
+        prepareData();
 
         return createAjaxResult(data);
     }
@@ -33,8 +33,8 @@ public class PdfFileUploadAction extends Action {
         return Const.ParamsNames.DOC_TO_UPLOAD;
     }
 
-    protected FileUploadPageData prepareData() {
-        FileUploadPageData data = new FileUploadPageData(account, sessionToken);
+    protected void prepareData() {
+        this.data = new FileUploadPageData(account, sessionToken);
         BlobInfo blobInfo = extractDocumentKey(getDocKeyParam());
 
         if (blobInfo == null) {
@@ -42,7 +42,7 @@ public class PdfFileUploadAction extends Action {
             data.fileSrcUrl = null;
             log.warning("Failed to upload the document");
             statusToAdmin = "Failed to upload the document";
-            return data;
+            return;
         }
 
         BlobKey blobKey = blobInfo.getBlobKey();
@@ -58,7 +58,6 @@ public class PdfFileUploadAction extends Action {
                 + absoluteFileSrcUrl + "</a>";
         data.ajaxStatus = "Document Successfully Uploaded to Google Cloud Storage";
 
-        return data;
     }
 
     /**
