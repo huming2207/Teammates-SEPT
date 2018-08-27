@@ -10,7 +10,6 @@ import org.json.JSONObject;
 import com.google.appengine.api.datastore.Text;
 
 import teammates.common.datatransfer.FeedbackParticipantType;
-import teammates.common.datatransfer.questions.FeedbackFileQuestionDetails;
 import teammates.common.datatransfer.questions.FeedbackQuestionDetails;
 import teammates.common.datatransfer.questions.FeedbackQuestionType;
 import teammates.common.datatransfer.questions.FeedbackTextQuestionDetails;
@@ -689,8 +688,6 @@ public class FeedbackQuestionAttributes extends EntityAttributes<FeedbackQuestio
         // For old Text questions, the questionText simply contains the question, not a JSON
         if (questionType == FeedbackQuestionType.TEXT && !isValidJsonString(questionMetaDataValue)) {
             return new FeedbackTextQuestionDetails(questionMetaDataValue);
-        } else if(questionType == FeedbackQuestionType.FILE && !isValidJsonString(questionMetaDataValue)) {
-            return new FeedbackFileQuestionDetails(questionMetaDataValue);
         }
         return JsonUtils.fromJson(questionMetaDataValue, getFeedbackQuestionDetailsClass());
     }

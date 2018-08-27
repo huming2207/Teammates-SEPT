@@ -17,8 +17,7 @@ public enum FeedbackQuestionType {
     CONTRIB(FeedbackContributionQuestionDetails.class, FeedbackContributionResponseDetails.class),
     RUBRIC(FeedbackRubricQuestionDetails.class, FeedbackRubricResponseDetails.class),
     RANK_OPTIONS(FeedbackRankOptionsQuestionDetails.class, FeedbackRankOptionsResponseDetails.class),
-    RANK_RECIPIENTS(FeedbackRankRecipientsQuestionDetails.class, FeedbackRankRecipientsResponseDetails.class),
-    FILE(FeedbackFileQuestionDetails.class, FeedbackFileResponseDetails.class);
+    RANK_RECIPIENTS(FeedbackRankRecipientsQuestionDetails.class, FeedbackRankRecipientsResponseDetails.class);
 
     private static final Logger log = Logger.getLogger();
 
@@ -76,9 +75,6 @@ public enum FeedbackQuestionType {
         case RANK_RECIPIENTS:
             feedbackQuestionDetails = new FeedbackRankRecipientsQuestionDetails();
             break;
-        case FILE:
-            feedbackQuestionDetails = new FeedbackFileQuestionDetails();
-            break;
         default:
             Assumption.fail("Failed to instantiate Feedback*QuestionDetails instance for "
                             + this.toString() + " question type.");
@@ -130,9 +126,6 @@ public enum FeedbackQuestionType {
             break;
         case RANK_RECIPIENTS:
             feedbackResponseDetails = new FeedbackRankRecipientsResponseDetails();
-            break;
-        case FILE:
-            feedbackResponseDetails = new FeedbackFileResponseDetails();
             break;
         default:
             Assumption.fail("Failed to instantiate Feedback*ResponseDetails instance for "

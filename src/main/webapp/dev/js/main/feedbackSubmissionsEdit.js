@@ -1296,7 +1296,7 @@ function updateTextQuestionWordsCount(textAreaId, wordsCountId, recommendedLengt
     }
 }
 
-function submitImageUploadFormAjax() {
+function submitDocToCloud() {
     let formData = new FormData(fileForm);
     console.log(fileDialog.files);
     console.log(fileForm.getAttribute("action"));
@@ -1336,7 +1336,7 @@ function submitImageUploadFormAjax() {
     });
 }
 
-function createImageUploadUrl() {
+function createPdfDocUploadUrl() {
     $.ajax({
         type: 'POST',
         url: `/page/createDocUploadUrl`,
@@ -1344,7 +1344,6 @@ function createImageUploadUrl() {
             showUploadingGif();
         },
         error() {
-            console.log("createImageUploadUrl: client failed!");
             alert('URL request failed, please try again.');
         },
         success(data) {
@@ -1359,7 +1358,7 @@ function createImageUploadUrl() {
                     fileForm.appendChild(fileDialog);
                     console.log("Document upload URL: " + data.nextUploadUrl);
                     setStatusMessage(data.ajaxStatus);
-                    submitImageUploadFormAjax();
+                    submitDocToCloud();
                 }
             }, 500);
         },
@@ -1406,7 +1405,7 @@ $(document).ready(() => {
                     fileDialog.click();
                     fileDialog.onchange = function() {
                         console.log(fileDialog.files);
-                        createImageUploadUrl();
+                        createPdfDocUploadUrl();
                     };
                     callbackFunction = callback;
                 },

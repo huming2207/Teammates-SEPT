@@ -592,7 +592,6 @@ public final class Const {
         public static final String RANK_RECIPIENT = "Rank (recipients) question";
         public static final String CONTRIB = "Team contribution question";
         public static final String RUBRIC = "Rubric question";
-        public static final String FILE = "PDF file submission";
     }
 
     public static class FeedbackSessionResults {
