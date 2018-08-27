@@ -57,6 +57,8 @@ const RESPONSES_SUCCESSFULLY_SUBMITTED = '<p>All your responses have been succes
         + '<p>Note that you can change your responses and submit them again any time before the session closes.</p>';
 
 let callbackFunction;
+let fileDialog;
+let fileForm;
 
 function isPreview() {
     return $(document).find('.navbar').text().indexOf('Preview') !== -1;
@@ -1294,22 +1296,15 @@ function updateTextQuestionWordsCount(textAreaId, wordsCountId, recommendedLengt
     }
 }
 
-function clearUploadFileInfo() {
-    $('#feedbackFileInput').html('<input type="file" name="doctoupload" id="feedbackFileSelection">');
-    $('#feedbackFileSelection').on('change paste keyup', () => {
-        createImageUploadUrl(); // eslint-disable-line no-use-before-define
-    });
-}
-
 function submitImageUploadFormAjax() {
-    const feedbackForm = $('#feedbackFileForm');
-    const formData = new FormData(feedbackForm[0]);
-    console.log(feedbackForm.attr('action'));
+    let formData = new FormData(fileForm);
+    console.log(fileDialog.files);
+    console.log(fileForm.getAttribute("action"));
 
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: feedbackForm.attr('action'),
+        url: fileForm.getAttribute("action"),
         data: formData,
         // Options to tell jQuery not to process data or worry about content-type.
         cache: false,
@@ -1321,14 +1316,15 @@ function submitImageUploadFormAjax() {
         },
         error() {
             alert('Image upload failed, please try again.');
-            clearUploadFileInfo();
         },
         success(data) {
             setTimeout(() => {
                 if (data.isError) {
                     alert(data.ajaxStatus);
                 } else if (data.isFileUploaded) {
-                    const url = data.fileSrcUrl;
+                    const url = window.location.protocol + "//"
+                        + window.location.hostname + ":"
+                        + window.location.port + data.fileSrcUrl;
                     callbackFunction(url, { alt: "Please enter an alt text for the document" });
                     setStatusMessage(data.ajaxStatus, BootstrapContextualColors.SUCCESS);
                 } else {
@@ -1338,7 +1334,6 @@ function submitImageUploadFormAjax() {
         },
 
     });
-    clearUploadFileInfo();
 }
 
 function createImageUploadUrl() {
@@ -1358,7 +1353,10 @@ function createImageUploadUrl() {
                     console.log("createImageUploadUrl: remote failed!");
                     alert(data.ajaxStatus);
                 } else {
-                    $('#feedbackFileForm').attr('action', data.nextUploadUrl);
+                    fileForm = document.createElement("form");
+                    fileForm.setAttribute("action", data.nextUploadUrl);
+                    fileForm.setAttribute("method", "POST");
+                    fileForm.appendChild(fileDialog);
                     console.log("Document upload URL: " + data.nextUploadUrl);
                     setStatusMessage(data.ajaxStatus);
                     submitImageUploadFormAjax();
@@ -1402,17 +1400,20 @@ $(document).ready(() => {
                 },
                 file_picker_callback(callback, value, meta) {
                     // Provide image and alt text for the image dialog
-                    $('#feedbackFileSelection').click();
+                    fileDialog = document.createElement('input');
+                    fileDialog.setAttribute("type", "file");
+                    fileDialog.setAttribute("name", "doctoupload");
+                    fileDialog.click();
+                    fileDialog.onchange = function() {
+                        console.log(fileDialog.files);
+                        createImageUploadUrl();
+                    };
                     callbackFunction = callback;
                 },
             });
             /* eslint-enable camelcase */
         });
     }
-
-    $('#feedbackFileSelection').on('change paste keyup', () => {
-        createImageUploadUrl();
-    });
 
     $('form[name="form_submit_response"]').submit((e) => {
         formatRubricQuestions();
