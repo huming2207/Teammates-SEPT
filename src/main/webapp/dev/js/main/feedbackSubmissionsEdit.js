@@ -1295,19 +1295,21 @@ function updateTextQuestionWordsCount(textAreaId, wordsCountId, recommendedLengt
 }
 
 function clearUploadFileInfo() {
-    $('#adminEmailFileInput').html('<input type="file" name="emailimagetoupload" id="adminEmailFile">');
-    $('#adminEmailFile').on('change paste keyup', () => {
+    $('#feedbackFileInput').html('<input type="file" name="doctoupload" id="feedbackFileSelection">');
+    $('#feedbackFileSelection').on('change paste keyup', () => {
         createImageUploadUrl(); // eslint-disable-line no-use-before-define
     });
 }
 
 function submitImageUploadFormAjax() {
-    const formData = new FormData($('#feedbackFileForm')[0]);
+    const feedbackForm = $('#feedbackFileForm');
+    const formData = new FormData(feedbackForm[0]);
+    console.log(feedbackForm.attr('action'));
 
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: $('#feedbackFileForm').attr('action'),
+        url: feedbackForm.attr('action'),
         data: formData,
         // Options to tell jQuery not to process data or worry about content-type.
         cache: false,
@@ -1347,14 +1349,17 @@ function createImageUploadUrl() {
             showUploadingGif();
         },
         error() {
+            console.log("createImageUploadUrl: client failed!");
             alert('URL request failed, please try again.');
         },
         success(data) {
             setTimeout(() => {
                 if (data.isError) {
+                    console.log("createImageUploadUrl: remote failed!");
                     alert(data.ajaxStatus);
                 } else {
-                    $('#feedbackFileSelection').attr('action', data.nextUploadUrl);
+                    $('#feedbackFileForm').attr('action', data.nextUploadUrl);
+                    console.log("Document upload URL: " + data.nextUploadUrl);
                     setStatusMessage(data.ajaxStatus);
                     submitImageUploadFormAjax();
                 }
