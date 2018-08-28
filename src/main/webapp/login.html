@@ -23,12 +23,18 @@
                 <option>Administrator</option>
             </select>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="signin-button">Sign in</button>
     </form>
     <script>
         $(document).ready(function(){
             $("form").submit(function(event){
                 event.preventDefault();
+
+                const signInButton = $("#signin-button");
+                signInButton.attr("disabled", true);
+                signInButton.text("Please wait...");
+
+                // Set the different redirect page based on the roles
                 let roleName = $("#role-dropdown option:selected").text();
                 let redirectPage = "";
                 let email = $(this).find("input[name='userEmail']").val();
@@ -56,7 +62,7 @@
                     "action": "Log In"
                 }).always(function () {
                     window.location.href = redirectPage;
-                });
+                })
             });
         });
     </script>
