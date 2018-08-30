@@ -14,20 +14,21 @@
       Remind Students to Join
     </button>
 
+    <button type="submit" value="Delete All Students" ${courseDeleteAllButton.attributesToString}>
+      <span class="glyphicon glyphicon-trash"></span>
+      Delete All Students
+    </button>
+
     <form method="post" action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_LIST_DOWNLOAD%>" style="display:inline;">
       <button id="button_download" type="submit" class="btn btn-primary" value="Delete All Students"
-          name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
+              name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
         <span class="glyphicon glyphicon-download-alt"></span>
-        Download Student List
+        Download Information as csv
       </button>
       <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
       <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
     </form>
 
-    <button type="submit" value="Delete All Students" ${courseDeleteAllButton.attributesToString}>
-      <span class="glyphicon glyphicon-trash"></span>
-      Delete All Students
-    </button>
     <div>
       <span class="help-block">
         Non-English characters not displayed properly in the downloaded file?
