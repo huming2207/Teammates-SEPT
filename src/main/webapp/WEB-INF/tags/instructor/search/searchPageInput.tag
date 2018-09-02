@@ -36,9 +36,18 @@
           <li>
             <input id="students-check" type="checkbox"
                 name="<%=Const.ParamsNames.SEARCH_STUDENTS%>" value="true"
-                <c:if test="${data.searchForStudents || !data.searchFeedbackSessionData}">checked=""</c:if>>
+                <c:if test="${data.searchForStudents || data.searchForTeams || !data.searchFeedbackSessionData }">checked=""</c:if>>
             <label for="students-check">
               Students
+            </label>
+          </li>
+          <li>
+            <input id="teams-check" type="checkbox"
+                   name="<%=Const.ParamsNames.SEARCH_TEAMS%>" value="true"
+                   <c:if test="${data.searchForTeams}">checked=""</c:if>>
+
+            <label for="teams-check">
+              Teams
             </label>
           </li>
           <li>

@@ -114,6 +114,12 @@ public final class StudentsLogic {
         return studentsDb.search(queryString, instructors);
     }
 
+
+    public StudentSearchResultBundle searchTeams(String queryString, List<InstructorAttributes> instructors) {
+        return studentsDb.search(queryString, instructors);
+    }
+
+
     /**
      * This method should be used by admin only since the searching does not restrict the
      * visibility according to the logged-in user's google ID. This is used by admin to
