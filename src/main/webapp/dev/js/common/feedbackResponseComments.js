@@ -455,9 +455,69 @@ function showDeleteCommentButtonModal($deleteCommentButton, $parentCommentModal)
             null, null, null, BootstrapContextualColors.WARNING, onHiddenCallback);
 }
 
+
+
+function showPraiseCommentButtonModal($praiseCommentButton, $parentCommentModal) {
+    const onHiddenCallback = $parentCommentModal === undefined ? null : () => $parentCommentModal.modal('show');
+
+    const okCallback = () => {
+        const $form = $praiseCommentButton.parent();
+        const formData = $form.serialize();
+        const displayIcon = $(this).children('.glyphicon-heart');
+
+        $.ajax({
+            type: 'POST',
+            url: `${$praiseCommentButton.attr('href')}?${formData}`,
+            beforeSend() {
+                // $praiseCommentButton.html("<img src='/images/ajax-loader.gif'/>");
+            },
+            error() {
+                showErrorMessage('Failed to delete comment. Please try again.', $praiseCommentButton);
+            },
+            success(data) {
+
+                if (data.isError) {
+                    showErrorMessage(data.errorMessage, $praiseCommentButton);
+                }else
+                {
+
+                    var addUrl = "/page/instructorFeedbackResponseCommentPraiseAdd";
+                    var delUrl = "/page/instructorFeedbackResponseCommentPraiseDelete";
+                    if(data.isLiked == true)
+                    {
+                        $praiseCommentButton.closest("a").attr("href",delUrl);
+                    }else
+                    {
+                        $praiseCommentButton.closest("a").attr("href",addUrl);
+                    }
+
+                    const praiseButtonContent = `<span class="glyphicon glyphicon-heart  ${data.isLiked == true ? 'glyphicon-primary' : ''}"></span>`;
+                    $praiseCommentButton.html(praiseButtonContent);
+
+
+
+
+                }
+
+
+            },
+        });
+    };
+    showModalConfirmation('Confirm like?', 'Are you sure you want to like this comment?', okCallback,
+        null, null, null, BootstrapContextualColors.WARNING, onHiddenCallback);
+}
+
+
+
 function onHideShowDeleteCommentButtonModal($deleteCommentButton, $parentCommentModal) {
     $parentCommentModal.on('hidden.bs.modal', function handler() {
         showDeleteCommentButtonModal($deleteCommentButton, $parentCommentModal);
+        $parentCommentModal.off('hidden.bs.modal', handler);
+    });
+}
+function onHideShowPraiseCommentButtonModal($praiseCommentButton, $parentCommentModal) {
+    $parentCommentModal.on('hidden.bs.modal', function handler() {
+        showDeleteCommentButtonModal($praiseCommentButton, $parentCommentModal);
         $parentCommentModal.off('hidden.bs.modal', handler);
     });
 }
@@ -483,6 +543,27 @@ const deleteCommentHandler = (e) => {
     }
 };
 
+const praiseCommentHandler = (e) => {
+    e.preventDefault();
+
+    const $praiseCommentButton = $(e.currentTarget);
+
+    const praiseCommentButtonIdSuffix = extractIdSuffixFromId({
+        idPrefix: e.data.praiseCommentButtonPrefix,
+        id: $praiseCommentButton.attr('id'),
+    });
+
+    const $parentCommentModal = findParentCommentModal(praiseCommentButtonIdSuffix);
+
+    if ($parentCommentModal.length > 0) {
+        onHideShowPraiseCommentButtonModal($praiseCommentButton, $parentCommentModal);
+
+        $parentCommentModal.modal('hide');
+    } else {
+         showPraiseCommentButtonModal($praiseCommentButton);
+    }
+};
+
 function registerResponseCommentsEvent() {
     const $body = $('body');
     $body.on('click', 'form[class*="responseCommentAddForm"] > div > a[id^="button_save_comment_for_add"]',
@@ -493,6 +574,12 @@ function registerResponseCommentsEvent() {
     const deleteCommentButtonPrefix = 'commentdelete';
     $body.on('click', `form[class*="responseCommentDeleteForm"] > a[id^="${deleteCommentButtonPrefix}"]`,
             { deleteCommentButtonPrefix }, deleteCommentHandler);
+
+    const praiseCommentButtonPrefix = 'commentpraise';
+    $body.on('click', `form[class*="responseCommentPraiseForm"] > a[id^="${praiseCommentButtonPrefix}"]`,
+        {  praiseCommentButtonPrefix }, praiseCommentHandler);
+
+
 
     const clickHandlerMap = new Map();
     clickHandlerMap.set(
