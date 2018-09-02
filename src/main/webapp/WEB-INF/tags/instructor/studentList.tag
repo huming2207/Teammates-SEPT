@@ -193,18 +193,6 @@
       </thead>
     </c:otherwise>
   </c:choose>
-  <c:if test="${paginationProducts.totalPages > 1}">
-    <div class="page-navigator">
-      <c:forEach items="${paginationProducts.navigationPages}" var = "page">
-        <c:if test="${page != -1 }">
-          <a href="productList?page=${page}" class="nav-item">${page}</a>
-        </c:if>
-        <c:if test="${page == -1 }">
-          <span class="nav-item"> ... </span>
-        </c:if>
-      </c:forEach>
-    </div>
-  </c:if>
 </table>
 <style>
   .paging{
@@ -232,11 +220,11 @@
 
 </style>
 <div class="paging">
-  <a href="">&laquo;</a>
-  <a class="active" href="">1</a>
-  <a href="">2</a>
-  <a href="">3</a>
-  <a href="">4</a>
-  <a href="">5</a>
-  <a href="">&raquo;</a>
+<a href="">&laquo;</a>
+<a class="active" href="">1</a>
+<a href="">2</a>
+<a href="">3</a>
+<a href="">4</a>
+<a href="">5</a>
+<a href="">&raquo;</a>
 </div>
