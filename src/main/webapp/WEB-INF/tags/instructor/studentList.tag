@@ -194,3 +194,37 @@
     </c:otherwise>
   </c:choose>
 </table>
+<style>
+  .paging{
+    display: inline-block;
+  }
+  .paging a{
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    transtion: backgroung-color .5s;
+    position: relative;
+    left: 500px;
+  }
+  .paging a:hover:not(.active)
+  {
+    background-color: #00FF00;
+    border-radius: 5px;
+  }
+
+  .paging a.active
+  {
+    background-color: #E46D0B;
+    color: whitesmoke;
+  }
+
+</style>
+<div class="paging">
+<a href="">&laquo;</a>
+<a class="active" href="">1</a>
+<a href="">2</a>
+<a href="">3</a>
+<a href="">4</a>
+<a href="">5</a>
+<a href="">&raquo;</a>
+</div>
