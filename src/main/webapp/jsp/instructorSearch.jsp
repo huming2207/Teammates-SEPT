@@ -24,6 +24,15 @@
     </search:feedbackSessionDataSearchResults>
   </c:if>
 
+
+  <c:if test="${not data.teamsEmpty}">
+    <search:studentsSearchResults searchStudentsTables="${data.searchTeamsTables}">
+      Teams
+    </search:studentsSearchResults>
+  </c:if>
+
+
+
   <c:if test="${not data.studentsEmpty}">
     <search:studentsSearchResults searchStudentsTables="${data.searchStudentsTables}">
       Students

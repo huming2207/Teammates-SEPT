@@ -36,14 +36,17 @@ public class InstructorSearchPageData extends PageData {
     /* Whether checkbox is checked for search input */
     private boolean isSearchFeedbackSessionData;
     private boolean isSearchForStudents;
+    private boolean isSearchForTeams;
 
     /* Whether search results are empty */
     private boolean isFeedbackSessionDataEmpty;
     private boolean isStudentsEmpty;
+    private boolean isTeamsEmpty;
 
     /* Tables containing search results */
     private List<SearchFeedbackSessionDataTable> searchFeedbackSessionDataTables;
     private List<SearchStudentsTable> searchStudentsTables;
+    private List<SearchStudentsTable> searchTeamsTables;
 
     public InstructorSearchPageData(AccountAttributes account, String sessionToken) {
         super(account, sessionToken);
@@ -51,18 +54,23 @@ public class InstructorSearchPageData extends PageData {
 
     public void init(FeedbackResponseCommentSearchResultBundle frcSearchResultBundle,
                      StudentSearchResultBundle studentSearchResultBundle,
-                     String searchKey, boolean isSearchFeedbackSessionData, boolean isSearchForStudents) {
+                     StudentSearchResultBundle teamsSearchResultBundle,
+
+                     String searchKey, boolean isSearchFeedbackSessionData, boolean isSearchForStudents,boolean isSearchForTeams) {
 
         this.searchKey = searchKey;
 
         this.isSearchFeedbackSessionData = isSearchFeedbackSessionData;
         this.isSearchForStudents = isSearchForStudents;
+        this.isSearchForTeams = isSearchForTeams;
 
         this.isFeedbackSessionDataEmpty = frcSearchResultBundle.numberOfResults == 0;
         this.isStudentsEmpty = studentSearchResultBundle.numberOfResults == 0;
+        this.isTeamsEmpty = teamsSearchResultBundle.numberOfResults == 0;
 
         setSearchFeedbackSessionDataTables(frcSearchResultBundle);
         setSearchStudentsTables(studentSearchResultBundle);
+        setTeamStudentsTables(teamsSearchResultBundle);
     }
 
     public String getSearchKey() {
@@ -85,12 +93,30 @@ public class InstructorSearchPageData extends PageData {
         return isSearchForStudents;
     }
 
+
+    public boolean isSearchForTeams() {
+        return isSearchForTeams;
+    }
+
+
+
+    public boolean isTeamsEmpty() {
+        return isTeamsEmpty;
+    }
+
+    public void setTeamsEmpty(boolean teamsEmpty) {
+        isTeamsEmpty = teamsEmpty;
+    }
+
     public List<SearchFeedbackSessionDataTable> getSearchFeedbackSessionDataTables() {
         return searchFeedbackSessionDataTables;
     }
 
     public List<SearchStudentsTable> getSearchStudentsTables() {
         return searchStudentsTables;
+    }
+    public List<SearchStudentsTable> getSearchTeamsTables() {
+        return searchTeamsTables;
     }
 
     private void setSearchFeedbackSessionDataTables(
@@ -109,6 +135,17 @@ public class InstructorSearchPageData extends PageData {
         for (String courseId : courseIdList) {
             searchStudentsTables.add(new SearchStudentsTable(
                                        courseId, createStudentRows(courseId, studentSearchResultBundle)));
+        }
+    }
+
+    private void setTeamStudentsTables(StudentSearchResultBundle studentSearchResultBundle) {
+
+        searchTeamsTables = new ArrayList<>(); // 1 table for each course
+        List<String> courseIdList = getCourseIdsFromStudentSearchResultBundle(studentSearchResultBundle);
+
+        for (String courseId : courseIdList) {
+            searchTeamsTables.add(new SearchStudentsTable(
+                    courseId, createStudentRows(courseId, studentSearchResultBundle)));
         }
     }
 

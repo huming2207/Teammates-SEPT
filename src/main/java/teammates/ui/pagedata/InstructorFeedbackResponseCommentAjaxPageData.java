@@ -23,6 +23,7 @@ public class InstructorFeedbackResponseCommentAjaxPageData extends PageData {
     public String recipientName;
     public String showCommentToString;
     public String showGiverNameToString;
+    public boolean isLiked;
     public String errorMessage;
     public String editedCommentDetails;
     public Map<String, String> instructorEmailNameTable;
@@ -40,6 +41,7 @@ public class InstructorFeedbackResponseCommentAjaxPageData extends PageData {
                         showCommentToString, showGiverNameToString, getResponseVisibilities(),
                         instructorEmailNameTable, sessionTimeZone, question);
         frc.enableEditDelete();
+        frc.enablePraised();
         return frc;
     }
 

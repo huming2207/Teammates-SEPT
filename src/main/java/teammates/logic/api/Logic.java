@@ -751,6 +751,20 @@ public class Logic {
     }
 
     /**
+     * Search for teams. Preconditions: all parameters are non-null.
+     * @param instructors   a list of InstructorAttributes associated to a googleId,
+     *                      used for filtering of search result
+     * @return Null if no match found
+     */
+    public StudentSearchResultBundle searchTeams(String queryString, List<InstructorAttributes> instructors) {
+        Assumption.assertNotNull(queryString);
+        Assumption.assertNotNull(instructors);
+        queryString = "Team:"+queryString;
+        return studentsLogic.searchTeams(queryString, instructors);
+    }
+
+
+    /**
      * This method should be used by admin only since the searching does not restrict the
      * visibility according to the logged-in user's google ID. This is used by admin to
      * search students in the whole system.

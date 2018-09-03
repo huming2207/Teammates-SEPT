@@ -37,8 +37,22 @@ public class InstructorSearchPageAction extends Action {
             numberOfSearchOptions++;
         }
 
+        boolean isSearchForTeams = getRequestParamAsBoolean(Const.ParamsNames.SEARCH_TEAMS);
+        if (isSearchForTeams) {
+            numberOfSearchOptions++;
+        }
+
+
+
+
         FeedbackResponseCommentSearchResultBundle frCommentSearchResults = new FeedbackResponseCommentSearchResultBundle();
         StudentSearchResultBundle studentSearchResults = new StudentSearchResultBundle();
+
+        StudentSearchResultBundle teamsSearchResults = new StudentSearchResultBundle();
+
+
+
+
         int totalResultsSize = 0;
 
         if (searchKey.isEmpty() || numberOfSearchOptions == 0) {
@@ -54,7 +68,12 @@ public class InstructorSearchPageAction extends Action {
                 studentSearchResults = logic.searchStudents(searchKey, instructors);
             }
 
-            totalResultsSize = frCommentSearchResults.numberOfResults + studentSearchResults.numberOfResults;
+            if (isSearchForTeams) {
+                teamsSearchResults = logic.searchTeams(searchKey, instructors);
+            }
+
+
+            totalResultsSize = frCommentSearchResults.numberOfResults + studentSearchResults.numberOfResults + teamsSearchResults.numberOfResults;
 
             Set<String> instructorEmails = new HashSet<>();
 
@@ -69,7 +88,9 @@ public class InstructorSearchPageAction extends Action {
         }
 
         InstructorSearchPageData data = new InstructorSearchPageData(account, sessionToken);
-        data.init(frCommentSearchResults, studentSearchResults, searchKey, isSearchFeedbackSessionData, isSearchForStudents);
+
+        /* 04.这里加上team初始化的数据*/
+        data.init(frCommentSearchResults, studentSearchResults, teamsSearchResults, searchKey, isSearchFeedbackSessionData, isSearchForStudents,isSearchForTeams);
 
         return createShowPageResult(Const.ViewURIs.INSTRUCTOR_SEARCH, data);
     }
