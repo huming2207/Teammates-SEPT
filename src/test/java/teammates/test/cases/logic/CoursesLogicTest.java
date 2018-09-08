@@ -608,9 +608,41 @@ public class CoursesLogicTest extends BaseLogicTest {
 
     }
 
-    // test csv function
+    private void testGetCoursesSummaryWithoutStatsForInstructor() throws Exception {
+
+        ______TS("Typical case");
+
+        Map<String, CourseSummaryBundle> courseListForInstructor = coursesLogic
+                .getCoursesSummaryWithoutStatsForInstructor("idOfInstructor3", false);
+        assertEquals(2, courseListForInstructor.size());
+
+        ______TS("Instructor has an archived course");
+
+        InstructorsLogic.inst().setArchiveStatusOfInstructor("idOfInstructor4", "idOfCourseNoEvals", true);
+        courseListForInstructor = coursesLogic
+                .getCoursesSummaryWithoutStatsForInstructor("idOfInstructor4", true);
+        assertEquals(0, courseListForInstructor.size());
+        InstructorsLogic.inst().setArchiveStatusOfInstructor("idOfInstructor4", "idOfCourseNoEvals", true);
+
+        ______TS("Instructor with 0 courses");
+
+        courseListForInstructor = coursesLogic.getCoursesSummaryWithoutStatsForInstructor("instructorWithoutCourses", false);
+        assertEquals(0, courseListForInstructor.size());
+
+        ______TS("Null parameter");
+
+        try {
+            coursesLogic.getCoursesSummaryWithoutStatsForInstructor(null, false);
+            signalFailureToDetectException();
+        } catch (AssertionError e) {
+            assertEquals(Const.StatusCodes.DBLEVEL_NULL_INPUT, e.getMessage());
+        }
+    }
+
+   // test csv function
     private void testGetCourseStudentListAsCsv() throws Exception {
-       // successful case
+  // Successful case
+
         ______TS("Typical case: course with section");
 
         InstructorAttributes instructor1OfCourse1 = dataBundle.instructors.get("instructor1OfCourse1");
@@ -683,7 +715,7 @@ public class CoursesLogicTest extends BaseLogicTest {
 
         assertEquals(StringUtils.join(expectedCsvString, System.lineSeparator()), csvString);
 
-         //failure case
+        // failure case
         ______TS("Failure case: non existent instructor");
 
         try {
@@ -691,7 +723,7 @@ public class CoursesLogicTest extends BaseLogicTest {
             signalFailureToDetectException();
         } catch (EntityDoesNotExistException e) {
             AssertHelper.assertContains("does not exist",
-                    e.getMessage());
+                                         e.getMessage());
         }
 
         ______TS("Failure case: non existent course in the list of courses of the instructor");
@@ -701,7 +733,7 @@ public class CoursesLogicTest extends BaseLogicTest {
             signalFailureToDetectException();
         } catch (EntityDoesNotExistException e) {
             AssertHelper.assertContains("does not exist",
-                    e.getMessage());
+                                         e.getMessage());
         }
 
         ______TS("Failure case: null parameter");
@@ -713,37 +745,6 @@ public class CoursesLogicTest extends BaseLogicTest {
             assertEquals(Const.StatusCodes.DBLEVEL_NULL_INPUT, e.getMessage());
         }
     }
-    private void testGetCoursesSummaryWithoutStatsForInstructor() throws Exception {
-
-        ______TS("Typical case");
-
-        Map<String, CourseSummaryBundle> courseListForInstructor = coursesLogic
-                .getCoursesSummaryWithoutStatsForInstructor("idOfInstructor3", false);
-        assertEquals(2, courseListForInstructor.size());
-
-        ______TS("Instructor has an archived course");
-
-        InstructorsLogic.inst().setArchiveStatusOfInstructor("idOfInstructor4", "idOfCourseNoEvals", true);
-        courseListForInstructor = coursesLogic
-                .getCoursesSummaryWithoutStatsForInstructor("idOfInstructor4", true);
-        assertEquals(0, courseListForInstructor.size());
-        InstructorsLogic.inst().setArchiveStatusOfInstructor("idOfInstructor4", "idOfCourseNoEvals", true);
-
-        ______TS("Instructor with 0 courses");
-
-        courseListForInstructor = coursesLogic.getCoursesSummaryWithoutStatsForInstructor("instructorWithoutCourses", false);
-        assertEquals(0, courseListForInstructor.size());
-
-        ______TS("Null parameter");
-
-        try {
-            coursesLogic.getCoursesSummaryWithoutStatsForInstructor(null, false);
-            signalFailureToDetectException();
-        } catch (AssertionError e) {
-            assertEquals(Const.StatusCodes.DBLEVEL_NULL_INPUT, e.getMessage());
-        }
-    }
-
 
     private void testHasIndicatedSections() throws Exception {
 
