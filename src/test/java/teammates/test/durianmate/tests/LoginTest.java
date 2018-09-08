@@ -15,6 +15,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.Assertion;
 import teammates.test.driver.TestProperties;
+import teammates.test.durianmate.SeleniumService;
 import teammates.test.durianmate.pages.IndexPage;
 import teammates.test.durianmate.pages.LoginPage;
 
@@ -26,14 +27,7 @@ public class LoginTest
     @BeforeMethod
     private void prepareBrowser()
     {
-        if(TestProperties.BROWSER.equals("chrome")) {
-            System.setProperty("webdriver.chrome.driver", TestProperties.CHROMEDRIVER_PATH);
-            this.webDriver = new ChromeDriver();
-        } else {
-            System.setProperty("webdriver.gecko.driver", TestProperties.FIREFOX_PATH);
-            this.webDriver = new FirefoxDriver();
-        }
-
+        webDriver = SeleniumService.getWebDriver();
         webDriver.get(TestProperties.TEAMMATES_URL + "/login.html");
     }
 
