@@ -607,9 +607,10 @@ public class CoursesLogicTest extends BaseLogicTest {
         }
 
     }
+
     // test csv function
     private void testGetCourseStudentListAsCsv() throws Exception {
-// successful case
+       // successful case
         ______TS("Typical case: course with section");
 
         InstructorAttributes instructor1OfCourse1 = dataBundle.instructors.get("instructor1OfCourse1");
@@ -681,7 +682,8 @@ public class CoursesLogicTest extends BaseLogicTest {
         };
 
         assertEquals(StringUtils.join(expectedCsvString, System.lineSeparator()), csvString);
-//failure case
+
+         //failure case
         ______TS("Failure case: non existent instructor");
 
         try {
