@@ -95,4 +95,24 @@ public class LoginTest
         // Now do some test...
         Assert.assertEquals(webDriver.getCurrentUrl(), TestProperties.TEAMMATES_URL + "/page/studentHomePage");
     }
+
+    @Test
+    private void testBlockNonRmitAccount()
+    {
+        // Fill in the student info and login
+        LoginPage loginPage = PageFactory.initElements(webDriver, LoginPage.class);
+        loginPage.inputUserEmail(TestProperties.TEST_ADMIN_ACCOUNT);
+        loginPage.selectRole("Student");
+        loginPage.login();
+
+        // Wait until the page is fully loaded
+        WebDriverWait wait = new WebDriverWait(webDriver, 10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.className("navbar-brand")));
+
+
+        // Now do some test...
+        Assert.assertTrue(webDriver.getCurrentUrl().contains("nonrmit.jsp"));
+        Assert.assertTrue(webDriver.getPageSource().contains("You are not a RMIT user, " +
+                "please contact the ITS to retrieve an account."));
+    }
 }
