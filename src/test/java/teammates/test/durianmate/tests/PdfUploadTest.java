@@ -1,17 +1,11 @@
 package teammates.test.durianmate.tests;
 
-import com.google.common.base.Function;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -21,9 +15,9 @@ import teammates.test.driver.Priority;
 import teammates.test.driver.TestProperties;
 import teammates.test.durianmate.SeleniumService;
 import teammates.test.durianmate.pages.LoginPage;
-import teammates.test.durianmate.pages.StudentFeedbackPage;
+import teammates.test.durianmate.pages.PdfUploadTestPage;
 
-import java.util.concurrent.TimeUnit;
+import java.io.File;
 
 @Test(singleThreaded = true)
 public class PdfUploadTest
@@ -31,7 +25,7 @@ public class PdfUploadTest
     private WebDriver webDriver;
 
     @BeforeMethod
-    private void prepareBrowser()
+    private void startBrowser()
     {
         webDriver = SeleniumService.getWebDriver();
         webDriver.get(TestProperties.TEAMMATES_URL + "/login.html");
@@ -46,62 +40,99 @@ public class PdfUploadTest
         WebDriverWait waitHomePage = new WebDriverWait(webDriver, 10);
         waitHomePage.until(ExpectedConditions.elementToBeClickable(By.className("navbar-brand")));
 
-        // Click the submission button at the student home page
-        WebElement startSubmission = webDriver.findElement(By.linkText("Start Submission"));
-        startSubmission.click();
-
-        // Wait for a while before the page is fully loaded
-        // Ref: https://stackoverflow.com/questions/5868439/wait-for-page-load-in-selenium
-        Wait<WebDriver> waitFeedbackPage = new WebDriverWait(webDriver, 30);
-        waitFeedbackPage.until(driver -> {
-            assert driver != null;
-            return String
-                    .valueOf(((JavascriptExecutor) driver).executeScript("return document.readyState"))
-                    .equals("complete");
-        });
+        // Now get into the PDF upload test page
+        webDriver.get(TestProperties.TEAMMATES_URL + "/pdfupload-test.html");
     }
 
     @AfterMethod
     private void killBrowser()
     {
-        //webDriver.close();
+        webDriver.close();
     }
 
     @Test
-    public void testTinyMCE()
+    @Priority(1)
+    private void testCreateUploadLink()
     {
-        // Click the input box and see what's happen next
-        StudentFeedbackPage studentFeedbackPage = PageFactory.initElements(webDriver, StudentFeedbackPage.class);
-        studentFeedbackPage.clickTextBox();
-        Assert.assertTrue(studentFeedbackPage.getAnswerTextBox().getAttribute("class").contains("mce-edit-focus"));
+        PdfUploadTestPage pdfUploadTestPage = PageFactory.initElements(webDriver, PdfUploadTestPage.class);
+        pdfUploadTestPage.clickCreateUrlButton();
+
+        // Wait until the page is fully loaded
+        WebDriverWait waitUploadEndpoint = new WebDriverWait(webDriver, 10);
+        waitUploadEndpoint.until(ExpectedConditions.visibilityOfElementLocated(By.id("step1-result")));
+
+        try {
+            Assert.assertTrue(webDriver.findElement(new By.ById("step1-result")).getText().contains("/_ah/upload/"));
+        } catch (NoSuchElementException exception) {
+            System.out.println("It's gonna fail...");
+            Assert.fail("Element not found");
+        }
     }
 
     @Test
-    public void testPdfUpload()
+    @Priority(2)
+    private void testPdfUpload()
     {
-        //TODO: Too hard to test something with complex, webpack transcompiled JavaScript
-        // As a result, a human is necessary to select the file and click "Open" to upload it
-        StudentFeedbackPage studentFeedbackPage = PageFactory.initElements(webDriver, StudentFeedbackPage.class);
-        studentFeedbackPage.clickTextBox();
-        studentFeedbackPage.clickInsertAttachmentLinkButton();
+        // Get the upload endpoint URL first
+        PdfUploadTestPage pdfUploadTestPage = PageFactory.initElements(webDriver, PdfUploadTestPage.class);
+        pdfUploadTestPage.clickCreateUrlButton();
 
+        // Wait until the page is fully loaded
+        WebDriverWait waitUploadEndpoint = new WebDriverWait(webDriver, 10);
+        waitUploadEndpoint.until(ExpectedConditions.visibilityOfElementLocated(By.id("step1-result")));
 
-        // The code below doesn't work for auto selection, so we have to do it by real human
-        /*
+        // Now try to upload a file
+        pdfUploadTestPage.addFileToFileInput(getFullFilePath("/TestPdf.pdf"));
+        pdfUploadTestPage.clickUploadButton();
 
-        // The upload button itself is not clickable, so we need to move the selenium's cursor to there and click it.
-        Actions uploadButtonAction = new Actions(webDriver);
-        uploadButtonAction.moveToElement(studentFeedbackPage.getUploadButton()).click().perform();
+        // Wait until the upload result is fully loaded
+        WebDriverWait waitUploadResult = new WebDriverWait(webDriver, 10);
+        waitUploadResult.until(ExpectedConditions.visibilityOfElementLocated(By.id("step2-result")));
 
-        // Same for the "Ok" button
-        Actions okayButtonAction = new Actions(webDriver);
-        okayButtonAction.moveToElement(studentFeedbackPage.getOkayButtonDiv()).click().perform(); */
+        // Now have a look at the result
+        try {
+            WebElement element = webDriver.findElement(new By.ById("step2-result"));
+            Assert.assertTrue(element.getText().contains("File uploaded successfully"));
+            Assert.assertEquals("a", element.getTagName().toLowerCase());
+        } catch (NoSuchElementException exception) {
+            System.out.println("It's gonna fail...");
+            Assert.fail("Element not found");
+        }
+    }
 
-        // Now wait for 15 seconds for a real human to complete a file selection
-        webDriver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    @Test
+    @Priority(3)
+    private void testInvalidFile()
+    {
+        // Get the upload endpoint URL first
+        PdfUploadTestPage pdfUploadTestPage = PageFactory.initElements(webDriver, PdfUploadTestPage.class);
+        pdfUploadTestPage.clickCreateUrlButton();
 
-        // Now probe and see how's going on there
-        Assert.assertTrue(
-                webDriver.findElements(By.partialLinkText("http://localhost:8080/public/getDoc")).size() > 1);
+        // Wait until the page is fully loaded
+        WebDriverWait waitUploadEndpoint = new WebDriverWait(webDriver, 10);
+        waitUploadEndpoint.until(ExpectedConditions.visibilityOfElementLocated(By.id("step1-result")));
+
+        // Now try to upload a file
+        pdfUploadTestPage.addFileToFileInput(getFullFilePath("/FeedbackSessionsLogicTest.json"));
+        pdfUploadTestPage.clickUploadButton();
+
+        // Wait until the upload result is fully loaded
+        WebDriverWait waitUploadResult = new WebDriverWait(webDriver, 10);
+        waitUploadResult.until(ExpectedConditions.visibilityOfElementLocated(By.id("step2-result")));
+
+        // Now have a look at the result
+        try {
+            WebElement element = webDriver.findElement(new By.ById("step2-result"));
+            Assert.assertTrue(element.getText().contains("The document that you have uploaded is not a PDF file"));
+            Assert.assertEquals("p", element.getTagName().toLowerCase());
+        } catch (NoSuchElementException exception) {
+            System.out.println("It's gonna fail...");
+            Assert.fail("Element not found");
+        }
+    }
+
+    private static String getFullFilePath(String testFile)
+    {
+        return new File(TestProperties.TEST_DATA_FOLDER + testFile).getAbsolutePath();
     }
 }

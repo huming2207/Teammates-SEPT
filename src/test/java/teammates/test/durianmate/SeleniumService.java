@@ -7,19 +7,17 @@ import teammates.test.driver.TestProperties;
 
 public class SeleniumService
 {
-    private static WebDriver webDriver = null;
-
+    // This is NOT a singleton as it needs to close the browser every time.
     public static WebDriver getWebDriver()
     {
-        if(webDriver == null) {
-            if(TestProperties.BROWSER.equals("chrome")) {
-                System.setProperty("webdriver.chrome.driver", TestProperties.CHROMEDRIVER_PATH);
-                webDriver = new ChromeDriver();
-            } else {
-                System.setProperty("webdriver.gecko.driver", TestProperties.FIREFOX_PATH);
-                webDriver = new FirefoxDriver();
-            }
+        WebDriver webDriver;
 
+        if(TestProperties.BROWSER.equals("chrome")) {
+            System.setProperty("webdriver.chrome.driver", TestProperties.CHROMEDRIVER_PATH);
+            webDriver = new ChromeDriver();
+        } else {
+            System.setProperty("webdriver.gecko.driver", TestProperties.FIREFOX_PATH);
+            webDriver = new FirefoxDriver();
         }
 
         return webDriver;
