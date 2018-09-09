@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Upload Test</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<p>
+    This web page is used for explaining how we implemented the PDF document upload function.<br>
+    Also it will be used in the PDF upload unit test.
+</p>
+<p>
+    The original upload page is integrated into TinyMCE editor, which is too hard to write any tests with selenium.<br>
+    Meanwhile we don't know how to call the servlet methods directly and perform a mock request for the unit tests.<br>
+    Also it is also too hard to write a mock request directly with a Java HTTP client (e.g. OkHttp)
+    with JSoup and Google Gson in a short time (less than 10 hours).<br>
+    As a result, here we reserved a standalone HTML file and it will work with Selenium for testing purposes.
+</p>
+<p>
+    Step 1: Create a new upload endpoint (with token) to upload a file
+</p>
+<form id="url-retrieve-form">
+    <input type="submit" id="get-url-button" value="Step 1. Get upload URL">
+</form>
+<p>
+    Step 2: Upload the file
+</p>
+<form id="file-upload-form">
+    <input type="file" id="file-selection" name="doctoupload">
+    <input type="submit" id="upload-file-button" value="Step 2. Upload PDF file">
+</form>
+<script>
+    const urlRerieveForm = $("#url-retrieve-form");
+    const fileUploadForm = $("#file-upload-form");
+
+    urlRerieveForm.submit(function (event) {
+        event.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: `/page/createDocUploadUrl`,
+            error() {
+                fileUploadForm.after("<p id='step1-result'>Failed to retrieve the URL!</p>");
+            },
+            success(data) {
+                fileUploadForm.after("<p id='step1-result'>Got URL: " + data.nextUploadUrl + "</p>");
+                fileUploadForm.attr("action", data.nextUploadUrl);
+            },
+        })
+    });
+
+    fileUploadForm.submit(function (event) {
+        event.preventDefault();
+
+        // Remember the fileUploadForm itself is not the native DOM element
+        // Ref: https://learn.jquery.com/using-jquery-core/faq/how-do-i-pull-a-native-dom-element-from-a-jquery-object
+        let formData = new FormData(fileUploadForm[0]);
+        console.log(fileUploadForm.attr("action"));
+
+        $.ajax({
+            type: 'POST',
+            enctype: 'multipart/form-data',
+            url: fileUploadForm.attr("action"),
+            data: formData,
+            // Options to tell jQuery not to process data or worry about content-type.
+            cache: false,
+            contentType: false,
+            processData: false,
+
+            error() {
+                fileUploadForm.after("<p id='step2-result'>File upload failed</p>");
+            },
+            success(data) {
+                setTimeout(() => {
+                    if (data.isError) {
+                        fileUploadForm.after("<p id='step2-result'>File upload failed:  " + data.ajaxStatus + " </p>");
+                    } else if (data.isFileUploaded) {
+                        const url = window.location.protocol + "//"
+                            + window.location.hostname + ":"
+                            + window.location.port + data.fileSrcUrl;
+                        fileUploadForm.after("<a id='step2-result' href='" + url + "'>File uploaded successfully</a>");
+                    } else {
+                        fileUploadForm.after("<p id='step2-result'>File upload failed:  " + data.ajaxStatus + " </p>");
+                    }
+                }, 500);
+            },
+
+        });
+    });
+</script>
+</body>
+</html>
