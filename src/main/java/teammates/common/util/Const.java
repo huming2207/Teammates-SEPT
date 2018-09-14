@@ -1,15 +1,10 @@
 package teammates.common.util;
 
+import teammates.common.datatransfer.FeedbackParticipantType;
+
 import java.time.Instant;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import teammates.common.datatransfer.FeedbackParticipantType;
+import java.util.*;
 
 /**
  * Stores constants that are widely used across classes.
@@ -962,6 +957,7 @@ public final class Const {
         public static final String INSTRUCTOR_COURSE_STUDENT_DELETE = "/page/instructorCourseStudentDelete";
         public static final String INSTRUCTOR_COURSE_STUDENT_DELETE_ALL = "/page/instructorCourseStudentDeleteAll";
         public static final String INSTRUCTOR_COURSE_STUDENT_LIST_DOWNLOAD = "/page/instructorCourseStudentListDownload";
+        public static final String INSTRUCTOR_COURSE_STUDENT_LIST_PDF_DOWNLOAD = "/page/instructorCourseStudentPdfListDownload";
         public static final String INSTRUCTOR_COURSE_ENROLL_PAGE = "/page/instructorCourseEnrollPage";
         public static final String INSTRUCTOR_COURSE_ENROLL_SAVE = "/page/instructorCourseEnrollSave";
         public static final String INSTRUCTOR_COURSE_REMIND = "/page/instructorCourseRemind";

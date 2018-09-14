@@ -1,18 +1,19 @@
 package teammates.ui.controller;
 
 // CHECKSTYLE.OFF:AvoidStarImport as there would be many (>100) import lines added if we were to import all of the ActionURIs
-import static teammates.common.util.Const.ActionURIs.*;
-// CHECKSTYLE.ON:AvoidStarImport
-
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import teammates.common.exception.PageNotFoundException;
 import teammates.common.exception.TeammatesException;
 import teammates.common.util.Assumption;
 import teammates.common.util.Logger;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+
+import static teammates.common.util.Const.ActionURIs.*;
+
+// CHECKSTYLE.ON:AvoidStarImport
 
 /**
  * Is used to generate the matching {@link Action} for a given URI.
@@ -67,6 +68,7 @@ public class ActionFactory {
         map(INSTRUCTOR_COURSE_STUDENT_DELETE, InstructorCourseStudentDeleteAction.class);
         map(INSTRUCTOR_COURSE_STUDENT_DELETE_ALL, InstructorCourseStudentDeleteAllAction.class);
         map(INSTRUCTOR_COURSE_STUDENT_LIST_DOWNLOAD, InstructorCourseStudentListDownloadAction.class);
+        map(INSTRUCTOR_COURSE_STUDENT_LIST_PDF_DOWNLOAD, InstructorCourseStudentPdfDownloadAction.class);
         map(INSTRUCTOR_COURSE_STUDENT_DETAILS_PAGE, InstructorCourseStudentDetailsPageAction.class);
         map(INSTRUCTOR_COURSE_STUDENT_DETAILS_EDIT, InstructorCourseStudentDetailsEditPageAction.class);
         map(INSTRUCTOR_COURSE_STUDENT_DETAILS_EDIT_SAVE, InstructorCourseStudentDetailsEditSaveAction.class);
