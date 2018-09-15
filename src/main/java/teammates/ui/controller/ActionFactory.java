@@ -135,7 +135,7 @@ public class ActionFactory {
         map(CREATE_IMAGE_UPLOAD_URL, CreateImageUploadUrlAction.class);
         map(CREATE_DOC_UPLOAD_URL, CreateDocUploadUrlAction.class);
         map(IMAGE_UPLOAD, ImageUploadAction.class);
-        map(DOC_UPLOAD, PdfFileUploadAction.class);
+        map(DOC_UPLOAD, FeedbackPdfUploadAction.class);
 
         map(ERROR_FEEDBACK_SUBMIT, ErrorUserReportLogAction.class);
     }

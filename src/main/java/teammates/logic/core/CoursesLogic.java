@@ -4,7 +4,9 @@ import be.quodlibet.boxable.BaseTable;
 import be.quodlibet.boxable.datatable.DataTable;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import teammates.common.datatransfer.*;
 import teammates.common.datatransfer.attributes.*;
 import teammates.common.exception.EntityAlreadyExistsException;
@@ -690,11 +692,20 @@ public final class CoursesLogic {
     {
         PDDocument pdDocument = new PDDocument();
         PDPage page = new PDPage(PDRectangle.A4);
-        List<List> dataList = new ArrayList<>();
 
+        List<List> dataList = new ArrayList<>();
         Map<String, CourseDetailsBundle> courses = getCourseSummariesForInstructor(googleId, false);
         CourseDetailsBundle course = courses.get(courseId);
         boolean hasSection = hasIndicatedSections(courseId);
+
+        // Generate a title
+        PDPageContentStream contentStream = new PDPageContentStream(pdDocument, page);
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 22);
+        contentStream.newLineAtOffset(50, 200);
+        contentStream.showText("Student list of " + course.course.getName());
+        contentStream.endText();
+        contentStream.close();
 
         // Create a table header
         dataList.add(hasSection ?
