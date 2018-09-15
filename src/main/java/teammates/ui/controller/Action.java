@@ -1,33 +1,23 @@
 package teammates.ui.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Pattern;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
+import org.apache.pdfbox.pdmodel.PDDocument;
 import teammates.common.datatransfer.UserType;
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.exception.*;
-import teammates.common.util.Assumption;
-import teammates.common.util.Config;
-import teammates.common.util.Const;
-import teammates.common.util.CryptoHelper;
-import teammates.common.util.HttpRequestHelper;
-import teammates.common.util.LogMessageGenerator;
-import teammates.common.util.SanitizationHelper;
-import teammates.common.util.StatusMessage;
-import teammates.common.util.StatusMessageColor;
-import teammates.common.util.StringHelper;
-import teammates.common.util.Url;
+import teammates.common.util.*;
 import teammates.logic.api.EmailSender;
 import teammates.logic.api.GateKeeper;
 import teammates.logic.api.Logic;
 import teammates.logic.api.TaskQueuer;
 import teammates.ui.pagedata.PageData;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 /** An 'action' to be performed by the system. If the logged in user is allowed
  * to perform the requested action, this object can talk to the back end to
@@ -655,6 +645,16 @@ public abstract class Action {
                                       fileContent);
     }
 
+    /**
+     * Generates a {@link PdfDownloadResult} with the information in this object
+     * @param fileName Suggested file name (used in content disposition header)
+     * @param document PDF document object
+     * @return PDF download result
+     */
+    public PdfDownloadResult createPdfDownloadResult(String fileName, PDDocument document) {
+        return new PdfDownloadResult("docdownload", account, statusToUser, fileName, document);
+    }
+
     protected ActionResult createPleaseJoinCourseResponse(String courseId) {
         String errorMessage = "You are not registered in the course " + SanitizationHelper.sanitizeForHtml(courseId);
         statusToUser.add(new StatusMessage(errorMessage, StatusMessageColor.DANGER));
@@ -671,7 +671,7 @@ public abstract class Action {
     }
 
     protected ActionResult createDocResult(String blobKey) {
-        return new PdfFileResult("documents", blobKey, account, statusToUser);
+        return new FeedbackPdfFileResult("documents", blobKey, account, statusToUser);
     }
 
 

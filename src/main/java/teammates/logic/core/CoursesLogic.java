@@ -1,35 +1,24 @@
 package teammates.logic.core;
 
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import teammates.common.datatransfer.CourseDetailsBundle;
-import teammates.common.datatransfer.CourseSummaryBundle;
-import teammates.common.datatransfer.FeedbackSessionDetailsBundle;
-import teammates.common.datatransfer.InstructorPrivileges;
-import teammates.common.datatransfer.SectionDetailsBundle;
-import teammates.common.datatransfer.TeamDetailsBundle;
-import teammates.common.datatransfer.attributes.AccountAttributes;
-import teammates.common.datatransfer.attributes.CourseAttributes;
-import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
-import teammates.common.datatransfer.attributes.InstructorAttributes;
-import teammates.common.datatransfer.attributes.StudentAttributes;
+import be.quodlibet.boxable.BaseTable;
+import be.quodlibet.boxable.datatable.DataTable;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import teammates.common.datatransfer.*;
+import teammates.common.datatransfer.attributes.*;
 import teammates.common.exception.EntityAlreadyExistsException;
 import teammates.common.exception.EntityDoesNotExistException;
 import teammates.common.exception.InvalidParametersException;
 import teammates.common.exception.TeammatesException;
-import teammates.common.util.Assumption;
-import teammates.common.util.Const;
-import teammates.common.util.FieldValidator;
-import teammates.common.util.Logger;
-import teammates.common.util.SanitizationHelper;
-import teammates.common.util.StringHelper;
+import teammates.common.util.*;
 import teammates.storage.api.CoursesDb;
+
+import java.io.IOException;
+import java.time.ZoneId;
+import java.util.*;
 
 /**
  * Handles operations related to courses.
@@ -684,15 +673,95 @@ public final class CoursesLogic {
                         export.append(SanitizationHelper.sanitizeForCsv(section.name)).append(',');
                     }
 
-                    export.append(SanitizationHelper.sanitizeForCsv(team.name) + ','
-                            + SanitizationHelper.sanitizeForCsv(StringHelper.removeExtraSpace(student.name)) + ','
-                            + SanitizationHelper.sanitizeForCsv(StringHelper.removeExtraSpace(student.lastName)) + ','
-                            + SanitizationHelper.sanitizeForCsv(studentStatus) + ','
-                            + SanitizationHelper.sanitizeForCsv(student.email) + System.lineSeparator());
+                    export.append(SanitizationHelper.sanitizeForCsv(team.name))
+                            .append(',')
+                            .append(SanitizationHelper.sanitizeForCsv(StringHelper.removeExtraSpace(student.name)))
+                            .append(',')
+                            .append(SanitizationHelper.sanitizeForCsv(StringHelper.removeExtraSpace(student.lastName)))
+                            .append(',')
+                            .append(SanitizationHelper.sanitizeForCsv(studentStatus))
+                            .append(',').append(SanitizationHelper.sanitizeForCsv(student.email))
+                            .append(System.lineSeparator());
                 }
             }
         }
         return export.toString();
+    }
+
+    public PDDocument getCourseStudentListAsPdf(String courseId, String googleId) throws IOException, EntityDoesNotExistException
+    {
+        PDDocument pdDocument = new PDDocument();
+        PDPage page = new PDPage(PDRectangle.A4);
+
+        List<List> dataList = new ArrayList<>();
+        Map<String, CourseDetailsBundle> courses = getCourseSummariesForInstructor(googleId, false);
+        CourseDetailsBundle course = courses.get(courseId);
+        boolean hasSection = hasIndicatedSections(courseId);
+
+        // Generate a title
+        PDPageContentStream contentStream = new PDPageContentStream(pdDocument, page);
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 22);
+        contentStream.newLineAtOffset(50, 200);
+        contentStream.showText("Student list of " + course.course.getName());
+        contentStream.endText();
+        contentStream.close();
+
+        // Create a table header
+        dataList.add(hasSection ?
+                new ArrayList<>(Arrays.asList("Section", "Team", "Full Name", "Last Name", "Status", "Email")) :
+                new ArrayList<>(Arrays.asList("Team", "Full Name", "Last Name", "Status", "Email")));
+
+        // Add the elements (students)
+        for (SectionDetailsBundle section : course.sections) {
+            for (TeamDetailsBundle team : section.teams) {
+                for (StudentAttributes student : team.students) {
+                    List<String> rowElements = new ArrayList<>();
+                    String studentStatus = null;
+                    if (student.googleId == null || student.googleId.isEmpty()) {
+                        studentStatus = Const.STUDENT_COURSE_STATUS_YET_TO_JOIN;
+                    } else {
+                        studentStatus = Const.STUDENT_COURSE_STATUS_JOINED;
+                    }
+
+                    if (hasSection) {
+                        rowElements.add(section.name);
+                    }
+
+                    rowElements.addAll(
+                            Arrays.asList(team.name, student.name, student.lastName, studentStatus, student.email));
+
+                    dataList.add(rowElements);
+                }
+            }
+        }
+
+
+        // These positioning code comes from: https://github.com/dhorions/boxable/wiki
+        //Dummy Table
+        float margin = 50;
+        // starting y position is whole page height subtracted by top and bottom margin
+        float yStartNewPage = page.getMediaBox().getHeight() - (2 * margin);
+        // we want table across whole page width (subtracted by left and right margin ofcourse)
+        float tableWidth = page.getMediaBox().getWidth() - (2 * margin);
+
+        boolean drawContent = true;
+        float yStart = yStartNewPage;
+        float bottomMargin = 70;
+        // y position is your coordinate of top left corner of the table
+        float yPosition = 550;
+
+        // Use the existing CSV to generate PDF for now
+        BaseTable baseTable = new BaseTable(yPosition, yStartNewPage, bottomMargin, tableWidth, margin,
+                pdDocument, page, true, drawContent);
+        DataTable dataTable = new DataTable(baseTable, page);
+
+        // Add the data list into the table
+        dataTable.addListToTable(dataList, DataTable.HASHEADER);
+        baseTable.draw();
+
+        pdDocument.addPage(page);
+        return pdDocument;
     }
 
     public boolean hasIndicatedSections(String courseId) throws EntityDoesNotExistException {
