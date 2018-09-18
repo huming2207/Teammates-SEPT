@@ -1,5 +1,9 @@
 package teammates.logic.core;
 
+import java.io.IOException;
+import java.time.ZoneId;
+import java.util.*;
+
 import be.quodlibet.boxable.BaseTable;
 import be.quodlibet.boxable.datatable.DataTable;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -7,6 +11,7 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
 import teammates.common.datatransfer.*;
 import teammates.common.datatransfer.attributes.*;
 import teammates.common.exception.EntityAlreadyExistsException;
@@ -15,10 +20,6 @@ import teammates.common.exception.InvalidParametersException;
 import teammates.common.exception.TeammatesException;
 import teammates.common.util.*;
 import teammates.storage.api.CoursesDb;
-
-import java.io.IOException;
-import java.time.ZoneId;
-import java.util.*;
 
 /**
  * Handles operations related to courses.
@@ -688,8 +689,8 @@ public final class CoursesLogic {
         return export.toString();
     }
 
-    public PDDocument getCourseStudentListAsPdf(String courseId, String googleId) throws IOException, EntityDoesNotExistException
-    {
+    public PDDocument getCourseStudentListAsPdf(String courseId, String googleId)
+            throws IOException, EntityDoesNotExistException {
         PDDocument pdDocument = new PDDocument();
         PDPage page = new PDPage(PDRectangle.A4);
 
@@ -708,9 +709,9 @@ public final class CoursesLogic {
         contentStream.close();
 
         // Create a table header
-        dataList.add(hasSection ?
-                new ArrayList<>(Arrays.asList("Section", "Team", "Full Name", "Last Name", "Status", "Email")) :
-                new ArrayList<>(Arrays.asList("Team", "Full Name", "Last Name", "Status", "Email")));
+        dataList.add(hasSection
+                ? new ArrayList<>(Arrays.asList("Section", "Team", "Full Name", "Last Name", "Status", "Email"))
+                : new ArrayList<>(Arrays.asList("Team", "Full Name", "Last Name", "Status", "Email")));
 
         // Add the elements (students)
         for (SectionDetailsBundle section : course.sections) {

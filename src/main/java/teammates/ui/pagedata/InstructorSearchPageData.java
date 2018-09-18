@@ -31,6 +31,7 @@ import teammates.ui.template.StudentListSectionData;
  * PageData: the data to be used in the InstructorSearchPage.
  */
 public class InstructorSearchPageData extends PageData {
+
     private String searchKey = "";
 
     /* Whether checkbox is checked for search input */
@@ -55,8 +56,8 @@ public class InstructorSearchPageData extends PageData {
     public void init(FeedbackResponseCommentSearchResultBundle frcSearchResultBundle,
                      StudentSearchResultBundle studentSearchResultBundle,
                      StudentSearchResultBundle teamsSearchResultBundle,
-
-                     String searchKey, boolean isSearchFeedbackSessionData, boolean isSearchForStudents,boolean isSearchForTeams) {
+                     String searchKey, boolean isSearchFeedbackSessionData,
+                     boolean isSearchForStudents, boolean isSearchForTeams) {
 
         this.searchKey = searchKey;
 
@@ -115,6 +116,7 @@ public class InstructorSearchPageData extends PageData {
     public List<SearchStudentsTable> getSearchStudentsTables() {
         return searchStudentsTables;
     }
+
     public List<SearchStudentsTable> getSearchTeamsTables() {
         return searchTeamsTables;
     }

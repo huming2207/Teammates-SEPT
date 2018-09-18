@@ -44,7 +44,6 @@
     <module name="NeedBraces">
       <property name="tokens" value="LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_WHILE"/>
     </module>
-    <module name="AvoidStarImport"/>
     <module name="EmptyLineSeparator">
       <property name="allowNoEmptyLineBetweenFields" value="true"/>
     </module>
@@ -159,12 +158,6 @@
       <property name="scope" value="public"/>
     </module>
     <module name="CommentsIndentation"/>
-    <module name="ImportOrder">
-      <property name="option" value="top"/>
-      <property name="groups" value="java,javax,org,com,teammates"/>
-      <property name="separated" value="true"/>
-      <property name="sortStaticImportsAlphabetically" value="true"/>
-    </module>
     <module name="IllegalImport">
       <property name="illegalPkgs" value="sun,com.google.appengine.repackaged,com.google.appengine.labs.repackaged"/>
     </module>

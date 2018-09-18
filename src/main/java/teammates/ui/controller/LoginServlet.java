@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
         boolean isAdmin = req.getParameter(Const.ParamsNames.LOGIN_ADMIN) != null;
 
         if (isInstructor) {
-             if (isMasqueradeMode(user)) {
+            if (isMasqueradeMode(user)) {
                 resp.sendRedirect(Const.ActionURIs.INSTRUCTOR_HOME_PAGE);
             } else {
                 resp.sendRedirect(gateKeeper.getLoginUrl(Const.ActionURIs.INSTRUCTOR_HOME_PAGE));

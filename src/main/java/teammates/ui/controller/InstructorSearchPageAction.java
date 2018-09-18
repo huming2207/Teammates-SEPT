@@ -73,7 +73,9 @@ public class InstructorSearchPageAction extends Action {
             }
 
 
-            totalResultsSize = frCommentSearchResults.numberOfResults + studentSearchResults.numberOfResults + teamsSearchResults.numberOfResults;
+            totalResultsSize = frCommentSearchResults.numberOfResults
+                    + studentSearchResults.numberOfResults
+                    + teamsSearchResults.numberOfResults;
 
             Set<String> instructorEmails = new HashSet<>();
 
@@ -90,7 +92,9 @@ public class InstructorSearchPageAction extends Action {
         InstructorSearchPageData data = new InstructorSearchPageData(account, sessionToken);
 
         /* 04.这里加上team初始化的数据*/
-        data.init(frCommentSearchResults, studentSearchResults, teamsSearchResults, searchKey, isSearchFeedbackSessionData, isSearchForStudents,isSearchForTeams);
+        data.init(frCommentSearchResults, studentSearchResults,
+                teamsSearchResults, searchKey, isSearchFeedbackSessionData,
+                isSearchForStudents, isSearchForTeams);
 
         return createShowPageResult(Const.ViewURIs.INSTRUCTOR_SEARCH, data);
     }
