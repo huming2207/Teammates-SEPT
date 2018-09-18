@@ -456,14 +456,12 @@ function showDeleteCommentButtonModal($deleteCommentButton, $parentCommentModal)
 }
 
 
-
 function showPraiseCommentButtonModal($praiseCommentButton, $parentCommentModal) {
     const onHiddenCallback = $parentCommentModal === undefined ? null : () => $parentCommentModal.modal('show');
 
     const okCallback = () => {
         const $form = $praiseCommentButton.parent();
         const formData = $form.serialize();
-        const displayIcon = $(this).children('.glyphicon-heart');
 
         $.ajax({
             type: 'POST',
