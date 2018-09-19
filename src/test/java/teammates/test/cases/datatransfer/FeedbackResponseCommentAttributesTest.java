@@ -55,11 +55,6 @@ public class FeedbackResponseCommentAttributesTest extends BaseTestCase {
         assertTrue(feedbackAttributes.isVisibilityFollowingFeedbackQuestion);
     }
 
-    @Test
-    public void testValueOf() {
-
-    }
-
     private void assertEquals(FeedbackResponseComment responseComment,
                               FeedbackResponseCommentAttributes feedbackAttributes) {
         assertEquals(responseComment.getCourseId(), feedbackAttributes.courseId);

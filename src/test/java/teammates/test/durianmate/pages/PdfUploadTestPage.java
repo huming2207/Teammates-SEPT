@@ -4,8 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-public class PdfUploadTestPage
-{
+public class PdfUploadTestPage {
+
     @FindBy(how = How.ID, using = "get-url-button")
     private WebElement createUrlButton;
 
@@ -15,18 +15,15 @@ public class PdfUploadTestPage
     @FindBy(how = How.ID, using = "upload-file-button")
     private WebElement uploadButton;
 
-    public void clickCreateUrlButton()
-    {
+    public void clickCreateUrlButton() {
         createUrlButton.click();
     }
 
-    public void addFileToFileInput(String filePath)
-    {
+    public void addFileToFileInput(String filePath) {
         fileInput.sendKeys(filePath);
     }
 
-    public void clickUploadButton()
-    {
+    public void clickUploadButton() {
         uploadButton.click();
     }
 }

@@ -747,7 +747,6 @@ public final class CoursesLogic {
         float tableWidth = page.getMediaBox().getWidth() - (2 * margin);
 
         boolean drawContent = true;
-        float yStart = yStartNewPage;
         float bottomMargin = 70;
         // y position is your coordinate of top left corner of the table
         float yPosition = 550;
