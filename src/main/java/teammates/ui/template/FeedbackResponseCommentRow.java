@@ -1,16 +1,16 @@
 package teammates.ui.template;
 
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.List;
+import java.util.Map;
+
 import teammates.common.datatransfer.FeedbackParticipantType;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.attributes.FeedbackResponseCommentAttributes;
 import teammates.common.util.Const;
 import teammates.common.util.SanitizationHelper;
 import teammates.common.util.TimeHelper;
-
-import java.time.Instant;
-import java.time.ZoneId;
-import java.util.List;
-import java.util.Map;
 
 public class FeedbackResponseCommentRow {
     private Long commentId;
@@ -41,7 +41,8 @@ public class FeedbackResponseCommentRow {
     private boolean praised;
 
     public FeedbackResponseCommentRow(FeedbackResponseCommentAttributes frc, String giverDisplay,
-                                      Map<String, String> instructorEmailNameTable, ZoneId sessionTimeZone, FeedbackQuestionAttributes question) {
+                                      Map<String, String> instructorEmailNameTable, ZoneId sessionTimeZone,
+                                      FeedbackQuestionAttributes question) {
         this.instructorEmailNameTable = instructorEmailNameTable;
         this.commentId = frc.getId();
         this.giverDisplay = giverDisplay;
@@ -56,8 +57,10 @@ public class FeedbackResponseCommentRow {
     }
 
     public FeedbackResponseCommentRow(FeedbackResponseCommentAttributes frc, String giverDisplay,
-                                      String giverName, String recipientName, String showCommentToString, String showGiverNameToString,
-                                      Map<FeedbackParticipantType, Boolean> responseVisibilities, Map<String, String> instructorEmailNameTable,
+                                      String giverName, String recipientName, String showCommentToString,
+                                      String showGiverNameToString,
+                                      Map<FeedbackParticipantType, Boolean> responseVisibilities,
+                                      Map<String, String> instructorEmailNameTable,
                                       ZoneId sessionTimeZone, FeedbackQuestionAttributes question) {
         this(frc, giverDisplay, instructorEmailNameTable, sessionTimeZone, question);
         setDataForAddEditDelete(frc, giverName, recipientName,
@@ -66,7 +69,8 @@ public class FeedbackResponseCommentRow {
 
     // for adding comments
     public FeedbackResponseCommentRow(FeedbackResponseCommentAttributes frc,
-                                      String giverName, String recipientName, String showCommentToString, String showGiverNameToString,
+                                      String giverName, String recipientName, String showCommentToString,
+                                      String showGiverNameToString,
                                       Map<FeedbackParticipantType, Boolean> responseVisibilities, ZoneId sessionTimeZone) {
         setDataForAddEditDelete(frc, giverName, recipientName,
                 showCommentToString, showGiverNameToString, responseVisibilities);
@@ -301,26 +305,26 @@ public class FeedbackResponseCommentRow {
             }
 
             switch (commentViewer) {
-                case GIVER:
-                    peopleCanView.append("response giver, ");
-                    break;
-                case RECEIVER:
-                    peopleCanView.append("response recipient, ");
-                    break;
-                case OWN_TEAM:
-                    peopleCanView.append("response giver's team, ");
-                    break;
-                case RECEIVER_TEAM_MEMBERS:
-                    peopleCanView.append("response recipient's team, ");
-                    break;
-                case STUDENTS:
-                    peopleCanView.append("other students in this course, ");
-                    break;
-                case INSTRUCTORS:
-                    peopleCanView.append("instructors, ");
-                    break;
-                default:
-                    break;
+            case GIVER:
+                peopleCanView.append("response giver, ");
+                break;
+            case RECEIVER:
+                peopleCanView.append("response recipient, ");
+                break;
+            case OWN_TEAM:
+                peopleCanView.append("response giver's team, ");
+                break;
+            case RECEIVER_TEAM_MEMBERS:
+                peopleCanView.append("response recipient's team, ");
+                break;
+            case STUDENTS:
+                peopleCanView.append("other students in this course, ");
+                break;
+            case INSTRUCTORS:
+                peopleCanView.append("instructors, ");
+                break;
+            default:
+                break;
             }
         }
         String peopleCanViewString = peopleCanView.toString();

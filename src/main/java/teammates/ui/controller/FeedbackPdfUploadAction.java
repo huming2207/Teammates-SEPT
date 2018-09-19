@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Action: uploads a document to Google Cloud Storage.
  */
-public class PdfFileUploadAction extends Action {
+public class FeedbackPdfUploadAction extends Action {
 
     private static final Logger log = Logger.getLogger();
 
@@ -75,7 +75,7 @@ public class PdfFileUploadAction extends Action {
             }
 
             BlobInfo pdfBlob = blobs.get(0);
-            return validateImage(pdfBlob);
+            return validateDocument(pdfBlob);
         } catch (IllegalStateException e) {
             return null;
         }
@@ -84,7 +84,7 @@ public class PdfFileUploadAction extends Action {
     /**
      * Validates the document by size and content type.
      */
-    protected BlobInfo validateImage(BlobInfo document) {
+    protected BlobInfo validateDocument(BlobInfo document) {
         if (document.getSize() > Const.SystemParams.MAX_PDF_DOC_SIZE) {
             this.deleteDocument(document.getBlobKey());
             isError = true;

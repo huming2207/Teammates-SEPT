@@ -29,6 +29,16 @@
       <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
     </form>
 
+    <form method="post" action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_LIST_PDF_DOWNLOAD%>" style="display: inline">
+      <button id="button_download_pdf" type="submit" class="btn btn-primary" value="Delete All Students"
+              name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
+        <span class="glyphicon glyphicon-download-alt"></span>
+        Download Information as PDF
+      </button>
+      <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
+      <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
+    </form>
+
     <div>
       <span class="help-block">
         Non-English characters not displayed properly in the downloaded file?

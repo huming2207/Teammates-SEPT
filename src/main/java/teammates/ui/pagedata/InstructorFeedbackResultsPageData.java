@@ -1550,7 +1550,7 @@ public class InstructorFeedbackResultsPageData extends PageData {
             }
         }
 
-        frca.praiseTo =   new ArrayList<>();
+        frca.praiseTo = new ArrayList<>();
 
 
         return new FeedbackResponseCommentRow(frca, giverName, recipientName,

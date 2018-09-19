@@ -639,10 +639,13 @@ public class CoursesLogicTest extends BaseLogicTest {
         }
     }
 
-   // test csv function
+    /**
+     * Test CSV output function.
+     * @throws Exception When things goes wrong
+     */
     private void testGetCourseStudentListAsCsv() throws Exception {
-  // Successful case
 
+        // Successful case
         ______TS("Typical case: course with section");
 
         InstructorAttributes instructor1OfCourse1 = dataBundle.instructors.get("instructor1OfCourse1");

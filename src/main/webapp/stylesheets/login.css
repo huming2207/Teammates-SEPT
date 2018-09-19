@@ -15,7 +15,7 @@ body {
     justify-content: center;
     padding-top: 40px;
     padding-bottom: 40px;
-    background-color: #f5f5f5;
+    background-color: #F5F5F5;
 }
 
 .form-signin {
@@ -29,7 +29,6 @@ body {
     position: relative;
     box-sizing: border-box;
     height: auto;
-
 }
 
 .form-signin input[type="email"] {

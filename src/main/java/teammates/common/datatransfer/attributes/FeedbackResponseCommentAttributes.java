@@ -120,7 +120,7 @@ public class FeedbackResponseCommentAttributes extends EntityAttributes<Feedback
     public FeedbackResponseComment toEntity() {
         return new FeedbackResponseComment(courseId, feedbackSessionName, feedbackQuestionId, giverEmail,
                 feedbackResponseId, createdAt, commentText, giverSection, receiverSection,
-                showCommentTo, showGiverNameTo,praiseTo, lastEditorEmail, lastEditedAt);
+                showCommentTo, showGiverNameTo, praiseTo, lastEditorEmail, lastEditedAt);
     }
 
     @Override
@@ -212,6 +212,7 @@ public class FeedbackResponseCommentAttributes extends EntityAttributes<Feedback
             frca.showGiverNameTo = showGiverNameTo == null ? new ArrayList<FeedbackParticipantType>() : showGiverNameTo;
             return this;
         }
+
         public Builder withPraiseTo(List<String> praiseTo) {
             frca.praiseTo = praiseTo == null ? new ArrayList<String>() : praiseTo;
             return this;

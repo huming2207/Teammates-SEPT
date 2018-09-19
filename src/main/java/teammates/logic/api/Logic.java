@@ -1,55 +1,20 @@
 package teammates.logic.api;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.Map;
 
 import com.google.appengine.api.blobstore.BlobKey;
+import org.apache.pdfbox.pdmodel.PDDocument;
 
-import teammates.common.datatransfer.CourseDetailsBundle;
-import teammates.common.datatransfer.CourseEnrollmentResult;
-import teammates.common.datatransfer.CourseRoster;
-import teammates.common.datatransfer.CourseSummaryBundle;
-import teammates.common.datatransfer.FeedbackResponseCommentSearchResultBundle;
-import teammates.common.datatransfer.FeedbackSessionDetailsBundle;
-import teammates.common.datatransfer.FeedbackSessionQuestionsBundle;
-import teammates.common.datatransfer.FeedbackSessionResponseStatus;
-import teammates.common.datatransfer.FeedbackSessionResultsBundle;
-import teammates.common.datatransfer.InstructorPrivileges;
-import teammates.common.datatransfer.InstructorSearchResultBundle;
-import teammates.common.datatransfer.SectionDetailsBundle;
-import teammates.common.datatransfer.StudentEnrollDetails;
-import teammates.common.datatransfer.StudentSearchResultBundle;
-import teammates.common.datatransfer.TeamDetailsBundle;
-import teammates.common.datatransfer.attributes.AccountAttributes;
-import teammates.common.datatransfer.attributes.AdminEmailAttributes;
-import teammates.common.datatransfer.attributes.CourseAttributes;
-import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
-import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
-import teammates.common.datatransfer.attributes.FeedbackResponseCommentAttributes;
-import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
-import teammates.common.datatransfer.attributes.InstructorAttributes;
-import teammates.common.datatransfer.attributes.StudentAttributes;
-import teammates.common.datatransfer.attributes.StudentProfileAttributes;
-import teammates.common.exception.EnrollException;
-import teammates.common.exception.EntityAlreadyExistsException;
-import teammates.common.exception.EntityDoesNotExistException;
-import teammates.common.exception.ExceedingRangeException;
-import teammates.common.exception.InvalidParametersException;
-import teammates.common.exception.JoinCourseException;
+import teammates.common.datatransfer.*;
+import teammates.common.datatransfer.attributes.*;
+import teammates.common.exception.*;
 import teammates.common.util.Assumption;
 import teammates.common.util.GoogleCloudStorageHelper;
-import teammates.logic.core.AccountsLogic;
-import teammates.logic.core.AdminEmailsLogic;
-import teammates.logic.core.CoursesLogic;
-import teammates.logic.core.FeedbackQuestionsLogic;
-import teammates.logic.core.FeedbackResponseCommentsLogic;
-import teammates.logic.core.FeedbackResponsesLogic;
-import teammates.logic.core.FeedbackSessionsLogic;
-import teammates.logic.core.InstructorsLogic;
-import teammates.logic.core.ProfilesLogic;
-import teammates.logic.core.StudentsLogic;
+import teammates.logic.core.*;
 
 /**
  * Provides the business logic for production usage of the system.
@@ -759,8 +724,8 @@ public class Logic {
     public StudentSearchResultBundle searchTeams(String queryString, List<InstructorAttributes> instructors) {
         Assumption.assertNotNull(queryString);
         Assumption.assertNotNull(instructors);
-        queryString = "Team:"+queryString;
-        return studentsLogic.searchTeams(queryString, instructors);
+        String teamQueryString = "Team:" + queryString;
+        return studentsLogic.searchTeams(teamQueryString, instructors);
     }
 
 
@@ -1122,6 +1087,14 @@ public class Logic {
         Assumption.assertNotNull(googleId);
 
         return coursesLogic.getCourseStudentListAsCsv(courseId, googleId);
+    }
+
+    public PDDocument getCourseStudentListAsPdf(String courseId, String googleId)
+            throws EntityDoesNotExistException, IOException {
+        Assumption.assertNotNull(courseId);
+        Assumption.assertNotNull(googleId);
+
+        return coursesLogic.getCourseStudentListAsPdf(courseId, googleId);
     }
 
     /**

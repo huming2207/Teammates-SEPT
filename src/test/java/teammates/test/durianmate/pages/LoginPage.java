@@ -4,8 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-public class LoginPage
-{
+public class LoginPage {
+
     @FindBy(id = "userEmail")
     private WebElement userEmailTextBox;
 
@@ -15,18 +15,15 @@ public class LoginPage
     @FindBy(id = "signin-button")
     private WebElement loginButton;
 
-    public void selectRole(String roleName)
-    {
+    public void selectRole(String roleName) {
         new Select(roleSelection).selectByVisibleText(roleName);
     }
 
-    public void inputUserEmail(String email)
-    {
+    public void inputUserEmail(String email) {
         userEmailTextBox.sendKeys(email);
     }
 
-    public void login()
-    {
+    public void login() {
         loginButton.click();
     }
 }
