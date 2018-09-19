@@ -403,7 +403,7 @@ task lintMain {
 }
 
 task lintTest {
-    dependsOn checkstyleTest, pmdTest, findbugsTest
+    dependsOn checkstyleTest
 }
 
 task macker {

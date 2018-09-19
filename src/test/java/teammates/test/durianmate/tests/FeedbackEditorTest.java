@@ -1,14 +1,9 @@
 package teammates.test.durianmate.tests;
 
-import com.google.common.base.Function;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
@@ -17,22 +12,19 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import teammates.test.driver.Priority;
 import teammates.test.driver.TestProperties;
 import teammates.test.durianmate.SeleniumService;
 import teammates.test.durianmate.pages.LoginPage;
 import teammates.test.durianmate.pages.StudentFeedbackPage;
 
-import java.util.concurrent.TimeUnit;
-
 @Test(singleThreaded = true)
-public class FeedbackEditorTest
-{
+public class FeedbackEditorTest {
+
     private WebDriver webDriver;
 
     @BeforeMethod
-    private void prepareBrowser()
-    {
+    private void prepareBrowser() {
+
         webDriver = SeleniumService.getWebDriver();
         webDriver.get(TestProperties.TEAMMATES_URL + "/login.html");
 
@@ -62,14 +54,12 @@ public class FeedbackEditorTest
     }
 
     @AfterMethod
-    private void killBrowser()
-    {
+    private void killBrowser() {
         webDriver.close();
     }
 
     @Test
-    public void testTinyMCE()
-    {
+    public void testTinyMce() {
         // Click the input box and see what's happen next
         StudentFeedbackPage studentFeedbackPage = PageFactory.initElements(webDriver, StudentFeedbackPage.class);
         studentFeedbackPage.clickTextBox();

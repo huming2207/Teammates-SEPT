@@ -3,10 +3,9 @@ package teammates.test.durianmate.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
-import teammates.ui.controller.Action;
 
-public class StudentFeedbackPage
-{
+public class StudentFeedbackPage {
+
     @FindBy(how = How.ID, using = "responsetext-2-0")
     private WebElement answerTextBox;
 
@@ -22,28 +21,23 @@ public class StudentFeedbackPage
     @FindBy(how = How.XPATH, using = "//span[@class=\"mce-txt\"][text() = 'Ok']/../..")
     private WebElement okayButtonDiv;
 
-    public void clickTextBox()
-    {
+    public void clickTextBox() {
         responseTextBoxDiv.click();
     }
 
-    public void clickInsertAttachmentLinkButton()
-    {
+    public void clickInsertAttachmentLinkButton() {
         insertAttachmentLinkButton.click();
     }
 
-    public WebElement getUploadButton()
-    {
+    public WebElement getUploadButton() {
         return this.uploadButtonDiv;
     }
 
-    public WebElement getAnswerTextBox()
-    {
+    public WebElement getAnswerTextBox() {
         return this.answerTextBox;
     }
 
-    public WebElement getOkayButtonDiv()
-    {
+    public WebElement getOkayButtonDiv() {
         return this.okayButtonDiv;
     }
 }

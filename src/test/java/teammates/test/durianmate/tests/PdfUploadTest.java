@@ -20,13 +20,13 @@ import teammates.test.durianmate.pages.PdfUploadTestPage;
 import java.io.File;
 
 @Test(singleThreaded = true)
-public class PdfUploadTest
-{
+public class PdfUploadTest {
+
     private WebDriver webDriver;
 
     @BeforeMethod
-    private void startBrowser()
-    {
+    private void startBrowser() {
+
         webDriver = SeleniumService.getWebDriver();
         webDriver.get(TestProperties.TEAMMATES_URL + "/login.html");
 
@@ -45,15 +45,14 @@ public class PdfUploadTest
     }
 
     @AfterMethod
-    private void killBrowser()
-    {
+    private void killBrowser() {
         webDriver.close();
     }
 
     @Test
     @Priority(1)
-    private void testCreateUploadLink()
-    {
+    private void testCreateUploadLink() {
+
         PdfUploadTestPage pdfUploadTestPage = PageFactory.initElements(webDriver, PdfUploadTestPage.class);
         pdfUploadTestPage.clickCreateUrlButton();
 
@@ -71,8 +70,8 @@ public class PdfUploadTest
 
     @Test
     @Priority(2)
-    private void testPdfUpload()
-    {
+    private void testPdfUpload() {
+
         // Get the upload endpoint URL first
         PdfUploadTestPage pdfUploadTestPage = PageFactory.initElements(webDriver, PdfUploadTestPage.class);
         pdfUploadTestPage.clickCreateUrlButton();
@@ -102,8 +101,8 @@ public class PdfUploadTest
 
     @Test
     @Priority(3)
-    private void testInvalidFile()
-    {
+    private void testInvalidFile() {
+
         // Get the upload endpoint URL first
         PdfUploadTestPage pdfUploadTestPage = PageFactory.initElements(webDriver, PdfUploadTestPage.class);
         pdfUploadTestPage.clickCreateUrlButton();
@@ -131,8 +130,7 @@ public class PdfUploadTest
         }
     }
 
-    private static String getFullFilePath(String testFile)
-    {
+    private static String getFullFilePath(String testFile) {
         return new File(TestProperties.TEST_DATA_FOLDER + testFile).getAbsolutePath();
     }
 }

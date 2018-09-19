@@ -1,6 +1,15 @@
 package teammates.ui.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
+
 import teammates.common.datatransfer.UserType;
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
@@ -11,13 +20,6 @@ import teammates.logic.api.GateKeeper;
 import teammates.logic.api.Logic;
 import teammates.logic.api.TaskQueuer;
 import teammates.ui.pagedata.PageData;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Pattern;
 
 /** An 'action' to be performed by the system. If the logged in user is allowed
  * to perform the requested action, this object can talk to the back end to
@@ -232,9 +234,14 @@ public abstract class Action {
     }
 
     private void blockNonRmitDomain(UserType userType) {
-        if(userType == null) return;
+
+        if (userType == null) {
+            return;
+        }
+
         Pattern pattern = Pattern.compile("^[^@\\s]+@(student\\.)?rmit\\.edu\\.au$");
-        if(!pattern.matcher(userType.id).matches() && !userType.isAdmin) {
+
+        if (!pattern.matcher(userType.id).matches() && !userType.isAdmin) {
             throw new NonRmitLoginException(
                     String.format("Looks like the user \"%s\" is not a RMIT staff/student", userType.id));
         }
@@ -646,7 +653,7 @@ public abstract class Action {
     }
 
     /**
-     * Generates a {@link PdfDownloadResult} with the information in this object
+     * Generates a {@link PdfDownloadResult} with the information in this object.
      * @param fileName Suggested file name (used in content disposition header)
      * @param document PDF document object
      * @return PDF download result

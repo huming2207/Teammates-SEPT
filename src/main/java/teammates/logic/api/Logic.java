@@ -1,19 +1,20 @@
 package teammates.logic.api;
 
+import java.io.IOException;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.List;
+import java.util.Map;
+
 import com.google.appengine.api.blobstore.BlobKey;
 import org.apache.pdfbox.pdmodel.PDDocument;
+
 import teammates.common.datatransfer.*;
 import teammates.common.datatransfer.attributes.*;
 import teammates.common.exception.*;
 import teammates.common.util.Assumption;
 import teammates.common.util.GoogleCloudStorageHelper;
 import teammates.logic.core.*;
-
-import java.io.IOException;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Provides the business logic for production usage of the system.
@@ -723,8 +724,8 @@ public class Logic {
     public StudentSearchResultBundle searchTeams(String queryString, List<InstructorAttributes> instructors) {
         Assumption.assertNotNull(queryString);
         Assumption.assertNotNull(instructors);
-        queryString = "Team:"+queryString;
-        return studentsLogic.searchTeams(queryString, instructors);
+        String teamQueryString = "Team:" + queryString;
+        return studentsLogic.searchTeams(teamQueryString, instructors);
     }
 
 
@@ -1088,8 +1089,8 @@ public class Logic {
         return coursesLogic.getCourseStudentListAsCsv(courseId, googleId);
     }
 
-    public PDDocument getCourseStudentListAsPdf(String courseId, String googleId) throws EntityDoesNotExistException, IOException
-    {
+    public PDDocument getCourseStudentListAsPdf(String courseId, String googleId)
+            throws EntityDoesNotExistException, IOException {
         Assumption.assertNotNull(courseId);
         Assumption.assertNotNull(googleId);
 

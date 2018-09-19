@@ -1,10 +1,10 @@
 package teammates.common.util;
 
-import teammates.common.datatransfer.FeedbackParticipantType;
-
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.*;
+
+import teammates.common.datatransfer.FeedbackParticipantType;
 
 /**
  * Stores constants that are widely used across classes.
@@ -910,7 +910,7 @@ public final class Const {
         public static final String FEEDBACK_RESPONSE_COMMENT = "feedbackresponsecomment";
         public static final String STUDENT = "student";
         public static final String INSTRUCTOR = "instructor";
-     }
+    }
 
     public static class SearchDocumentField {
         public static final String STUDENT_ATTRIBUTE = "studentAttribute";
@@ -957,7 +957,8 @@ public final class Const {
         public static final String INSTRUCTOR_COURSE_STUDENT_DELETE = "/page/instructorCourseStudentDelete";
         public static final String INSTRUCTOR_COURSE_STUDENT_DELETE_ALL = "/page/instructorCourseStudentDeleteAll";
         public static final String INSTRUCTOR_COURSE_STUDENT_LIST_DOWNLOAD = "/page/instructorCourseStudentListDownload";
-        public static final String INSTRUCTOR_COURSE_STUDENT_LIST_PDF_DOWNLOAD = "/page/instructorCourseStudentPdfListDownload";
+        public static final String INSTRUCTOR_COURSE_STUDENT_LIST_PDF_DOWNLOAD =
+                "/page/instructorCourseStudentPdfListDownload";
         public static final String INSTRUCTOR_COURSE_ENROLL_PAGE = "/page/instructorCourseEnrollPage";
         public static final String INSTRUCTOR_COURSE_ENROLL_SAVE = "/page/instructorCourseEnrollSave";
         public static final String INSTRUCTOR_COURSE_REMIND = "/page/instructorCourseRemind";
@@ -1012,8 +1013,10 @@ public final class Const {
         public static final String INSTRUCTOR_FEEDBACK_RESPONSE_COMMENT_EDIT = "/page/instructorFeedbackResponseCommentEdit";
         public static final String INSTRUCTOR_FEEDBACK_RESPONSE_COMMENT_DELETE =
                 "/page/instructorFeedbackResponseCommentDelete";
-        public static final String INSTRUCTOR_FEEDBACK_RESPONSE_COMMENT_PRAISE_ADD = "/page/instructorFeedbackResponseCommentPraiseAdd";
-        public static final String INSTRUCTOR_FEEDBACK_RESPONSE_COMMENT_PRAISE_DELETE = "/page/instructorFeedbackResponseCommentPraiseDelete";
+        public static final String INSTRUCTOR_FEEDBACK_RESPONSE_COMMENT_PRAISE_ADD =
+                "/page/instructorFeedbackResponseCommentPraiseAdd";
+        public static final String INSTRUCTOR_FEEDBACK_RESPONSE_COMMENT_PRAISE_DELETE =
+                "/page/instructorFeedbackResponseCommentPraiseDelete";
 
         public static final String INSTRUCTOR_COURSE_STATS_PAGE = "/page/courseStatsPage";
         public static final String INSTRUCTOR_FEEDBACK_STATS_PAGE = "/page/feedbackSessionStatsPage";

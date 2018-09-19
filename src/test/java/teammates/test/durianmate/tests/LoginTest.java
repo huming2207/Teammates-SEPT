@@ -1,11 +1,7 @@
 package teammates.test.durianmate.tests;
 
-import com.gargoylesoftware.htmlunit.Page;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,33 +9,29 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.Assertion;
 import teammates.test.driver.TestProperties;
 import teammates.test.durianmate.SeleniumService;
-import teammates.test.durianmate.pages.IndexPage;
 import teammates.test.durianmate.pages.LoginPage;
 
 @Test(singleThreaded = true)
-public class LoginTest
-{
+public class LoginTest {
+
     private WebDriver webDriver;
 
     @BeforeMethod
-    private void prepareBrowser()
-    {
+    private void prepareBrowser() {
         webDriver = SeleniumService.getWebDriver();
         webDriver.get(TestProperties.TEAMMATES_URL + "/login.html");
     }
 
     @AfterMethod
-    private void killBrowser()
-    {
+    private void killBrowser() {
         webDriver.close();
     }
 
     @Test
-    private void testAdminLogin()
-    {
+    private void testAdminLogin() {
+
         // Fill in the admin info and login
         LoginPage loginPage = PageFactory.initElements(webDriver, LoginPage.class);
         loginPage.inputUserEmail(TestProperties.TEST_ADMIN_ACCOUNT);
@@ -55,8 +47,8 @@ public class LoginTest
     }
 
     @Test
-    private void testInstructorLogin()
-    {
+    private void testInstructorLogin() {
+
         // Fill in the instructor info and login
         LoginPage loginPage = PageFactory.initElements(webDriver, LoginPage.class);
         loginPage.inputUserEmail(TestProperties.TEST_INSTRUCTOR_ACCOUNT);
@@ -73,8 +65,8 @@ public class LoginTest
     }
 
     @Test
-    private void testStudentLogin()
-    {
+    private void testStudentLogin() {
+
         // Fill in the student info and login
         LoginPage loginPage = PageFactory.initElements(webDriver, LoginPage.class);
         loginPage.inputUserEmail(TestProperties.TEST_STUDENT1_ACCOUNT);
@@ -91,8 +83,8 @@ public class LoginTest
     }
 
     @Test
-    private void testBlockNonRmitAccount()
-    {
+    private void testBlockNonRmitAccount() {
+
         // Fill in the student info and login
         LoginPage loginPage = PageFactory.initElements(webDriver, LoginPage.class);
         loginPage.inputUserEmail(TestProperties.TEST_ADMIN_ACCOUNT);
@@ -106,7 +98,7 @@ public class LoginTest
 
         // Now do some test...
         Assert.assertTrue(webDriver.getCurrentUrl().contains("nonrmit.jsp"));
-        Assert.assertTrue(webDriver.getPageSource().contains("You are not a RMIT user, " +
-                "please contact the ITS to retrieve an account."));
+        Assert.assertTrue(webDriver.getPageSource().contains("You are not a RMIT user, "
+                + "please contact the ITS to retrieve an account."));
     }
 }

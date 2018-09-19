@@ -5,14 +5,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import teammates.test.driver.TestProperties;
 
-public class SeleniumService
-{
+public class SeleniumService {
+
     // This is NOT a singleton as it needs to close the browser every time.
-    public static WebDriver getWebDriver()
-    {
+    public static WebDriver getWebDriver() {
+
         WebDriver webDriver;
 
-        if(TestProperties.BROWSER.equals("chrome")) {
+        if (TestProperties.BROWSER.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", TestProperties.CHROMEDRIVER_PATH);
             webDriver = new ChromeDriver();
         } else {

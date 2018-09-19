@@ -1,17 +1,20 @@
 package teammates.ui.controller;
 
-import org.apache.pdfbox.pdmodel.PDDocument;
+import java.io.IOException;
+
 import teammates.common.exception.EntityDoesNotExistException;
 import teammates.common.util.Assumption;
 import teammates.common.util.Const;
 
-import java.io.IOException;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import teammates.common.util.Logger;
 
-public class InstructorCourseStudentPdfDownloadAction extends Action
-{
+public class InstructorCourseStudentPdfDownloadAction extends Action {
+
+    private static final Logger log = Logger.getLogger();
+
     @Override
-    protected ActionResult execute() throws EntityDoesNotExistException
-    {
+    protected ActionResult execute() throws EntityDoesNotExistException {
         String courseId = getRequestParamValue(Const.ParamsNames.COURSE_ID);
         Assumption.assertPostParamNotNull(Const.ParamsNames.COURSE_ID, courseId);
 
@@ -27,7 +30,7 @@ public class InstructorCourseStudentPdfDownloadAction extends Action
             statusToAdmin = "Students data for Course " + courseId + " was downloaded";
             return createPdfDownloadResult(fileName, document);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.severe(e.getMessage());
             return null;
         }
     }

@@ -1,6 +1,5 @@
 package teammates.ui.controller;
 
-
 import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
 import teammates.common.datatransfer.attributes.FeedbackResponseCommentAttributes;
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
@@ -11,12 +10,11 @@ import teammates.common.util.Assumption;
 import teammates.common.util.Const;
 import teammates.ui.pagedata.InstructorFeedbackResponseCommentAjaxPageData;
 
-
 public class InstructorFeedbackResponseCommentPraiseAddAction extends InstructorFeedbackResponseCommentAbstractAction {
 
     @Override
     protected ActionResult execute() throws EntityDoesNotExistException {
-        //
+
         String courseId = getRequestParamValue(Const.ParamsNames.COURSE_ID);
         Assumption.assertPostParamNotNull(Const.ParamsNames.COURSE_ID, courseId);
         String feedbackSessionName = getRequestParamValue(Const.ParamsNames.FEEDBACK_SESSION_NAME);
@@ -26,7 +24,7 @@ public class InstructorFeedbackResponseCommentPraiseAddAction extends Instructor
         String feedbackResponseCommentId = getRequestParamValue(Const.ParamsNames.FEEDBACK_RESPONSE_COMMENT_ID);
         Assumption.assertPostParamNotNull(Const.ParamsNames.FEEDBACK_RESPONSE_COMMENT_ID, feedbackResponseCommentId);
 
-        //数据库查询基本信息
+        // Query database
         InstructorAttributes instructor = logic.getInstructorForGoogleId(courseId, account.googleId);
         FeedbackSessionAttributes session = logic.getFeedbackSession(feedbackSessionName, courseId);
         FeedbackResponseAttributes response = logic.getFeedbackResponse(feedbackResponseId);
@@ -67,7 +65,7 @@ public class InstructorFeedbackResponseCommentPraiseAddAction extends Instructor
         data.sessionTimeZone = session.getTimeZone();
 
         data.editedCommentDetails = data.createEditedCommentDetails(commentGiverName, commentEditorName);
-        data.isLiked=true;
+        data.isLiked = true;
 
         return createAjaxResult(data);
     }

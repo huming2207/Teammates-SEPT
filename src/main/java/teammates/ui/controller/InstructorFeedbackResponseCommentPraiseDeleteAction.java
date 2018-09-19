@@ -25,7 +25,7 @@ public class InstructorFeedbackResponseCommentPraiseDeleteAction extends Instruc
         Assumption.assertPostParamNotNull(Const.ParamsNames.FEEDBACK_RESPONSE_COMMENT_ID, feedbackResponseCommentId);
 
 
-        //数据库查询基本信息
+        // Query database
         InstructorAttributes instructor = logic.getInstructorForGoogleId(courseId, account.googleId);
         FeedbackSessionAttributes session = logic.getFeedbackSession(feedbackSessionName, courseId);
         FeedbackResponseAttributes response = logic.getFeedbackResponse(feedbackResponseId);
@@ -68,7 +68,7 @@ public class InstructorFeedbackResponseCommentPraiseDeleteAction extends Instruc
         data.sessionTimeZone = session.getTimeZone();
 
         data.editedCommentDetails = data.createEditedCommentDetails(commentGiverName, commentEditorName);
-        data.isLiked=false;
+        data.isLiked = false;
 
         return createAjaxResult(data);
     }
