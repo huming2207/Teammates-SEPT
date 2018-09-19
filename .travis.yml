@@ -6,6 +6,7 @@ branches:
   only:
     - master
     - release
+    - /^feature.*$/
 
 notifications:
   email: false
