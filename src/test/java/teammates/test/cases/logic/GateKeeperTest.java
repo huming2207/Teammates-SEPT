@@ -64,6 +64,16 @@ public class GateKeeperTest extends BaseLogicTest {
         assertFalse(user.isInstructor);
         assertFalse(user.isStudent);
 
+        ______TS("Non-RMIT");
+
+        gaeSimulation.loginUser("test@example.com");
+
+        user = gateKeeper.getCurrentUser();
+        assertEquals("test@example.com", user.id);
+        assertFalse(user.isAdmin);
+        assertFalse(user.isInstructor);
+        assertFalse(user.isStudent);
+
         ______TS("not logged in");
 
         // check for user not logged in
