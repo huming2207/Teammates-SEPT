@@ -7,7 +7,7 @@ import teammates.common.datatransfer.attributes.CourseAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.Const;
 import teammates.logic.core.StudentsLogic;
-import teammates.ui.controller.FileDownloadResult;
+import teammates.ui.controller.CsvDownloadResult;
 import teammates.ui.controller.InstructorCourseStudentListDownloadAction;
 
 /**
@@ -38,7 +38,7 @@ public class InstructorCourseStudentListDownloadActionTest extends BaseActionTes
 
         ______TS("Typical case: student list downloaded successfully");
         InstructorCourseStudentListDownloadAction a = getAction(submissionParams);
-        FileDownloadResult r = getFileDownloadResult(a);
+        CsvDownloadResult r = getFileDownloadResult(a);
 
         String expectedFileName = "idOfTypicalCourse1_studentList";
         assertEquals(expectedFileName, r.getFileName());

@@ -1089,6 +1089,20 @@ public class Logic {
         return coursesLogic.getCourseStudentListAsCsv(courseId, googleId);
     }
 
+    /**
+     * Generates student list of a serialized course object in JSON
+     * @param courseId Course ID
+     * @param googleId Account ID
+     * @return Serialized string in JSON
+     */
+    public String getCourseStudentBackupAsJson(String courseId, String googleId) throws EntityDoesNotExistException {
+
+        Assumption.assertNotNull(courseId);
+        Assumption.assertNotNull(googleId);
+
+        return coursesLogic.getCourseStudentBackupAsJson(courseId, googleId);
+    }
+
     public PDDocument getCourseStudentListAsPdf(String courseId, String googleId)
             throws EntityDoesNotExistException, IOException {
         Assumption.assertNotNull(courseId);

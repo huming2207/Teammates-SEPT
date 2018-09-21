@@ -642,14 +642,24 @@ public abstract class Action {
     }
 
     /**
-     * Generates a {@link FileDownloadResult} with the information in this object.
+     * Generates a {@link CsvDownloadResult} with the information in this object.
      */
-    public FileDownloadResult createFileDownloadResult(String fileName, String fileContent) {
-        return new FileDownloadResult("filedownload",
+    public CsvDownloadResult createFileDownloadResult(String fileName, String fileContent) {
+        return new CsvDownloadResult("filedownload",
                                       account,
                                       statusToUser,
                                       fileName,
                                       fileContent);
+    }
+
+    /**
+     * Generates a {@link JsonDownloadResult} with the serialized object string
+     * @param fileName JSON file name
+     * @param fileContent Serialized object
+     * @return JSON download result object
+     */
+    public JsonDownloadResult createJsonBackupResult(String fileName, String fileContent) {
+        return new JsonDownloadResult("filedownload", account, statusToUser, fileName, fileContent);
     }
 
     /**

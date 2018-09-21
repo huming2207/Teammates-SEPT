@@ -12,7 +12,7 @@ import teammates.common.util.Config;
 import teammates.common.util.Const;
 import teammates.logic.core.FeedbackQuestionsLogic;
 import teammates.logic.core.StudentsLogic;
-import teammates.ui.controller.FileDownloadResult;
+import teammates.ui.controller.CsvDownloadResult;
 import teammates.ui.controller.InstructorFeedbackResultsDownloadAction;
 import teammates.ui.controller.RedirectResult;
 
@@ -71,7 +71,7 @@ public class InstructorFeedbackResultsDownloadActionTest extends BaseActionTest 
         ______TS("Typical case: results downloadable");
 
         InstructorFeedbackResultsDownloadAction action = getAction(paramsNormal);
-        FileDownloadResult result = getFileDownloadResult(action);
+        CsvDownloadResult result = getFileDownloadResult(action);
 
         String expectedDestination = getPageResultDestination("filedownload", false, "idOfInstructor1OfCourse1");
         assertEquals(expectedDestination, result.getDestinationWithParams());

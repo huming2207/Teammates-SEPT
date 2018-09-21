@@ -97,7 +97,7 @@ public abstract class FeedbackSubmissionEditPageAction extends Action {
      *     <ul>
      *     <li>For {@link AjaxResult}, the session status messages may be cleared after setting it
      *         in the {@link PageData} ({@link AjaxResult#clearStatusMessageForRequest(HttpServletRequest)}).
- *         <li>For {@link FileDownloadResult} or {@link ImageResult}, they do not do anything with status messages but
+ *         <li>For {@link CsvDownloadResult} or {@link ImageResult}, they do not do anything with status messages but
      *         the session status messages will <strong>continue to persist.</strong>
      *     <li>For {@link RedirectResult}, the session status messages will be used in the next page.
      *     <li>For {@link ShowPageResult}, the session status messages in the session is cleared after setting it

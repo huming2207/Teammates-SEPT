@@ -39,6 +39,16 @@
       <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
     </form>
 
+    <form method="post" action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_BACKUP%>" style="display: inline">
+      <button id="button_backup_json" type="submit" class="btn btn-primary" value="Delete All Students"
+              name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
+        <span class="glyphicon glyphicon-download-alt"></span>
+        Backup course as JSON
+      </button>
+      <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
+      <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
+    </form>
+
     <div>
       <span class="help-block">
         Non-English characters not displayed properly in the downloaded file?
