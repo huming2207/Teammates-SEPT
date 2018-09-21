@@ -3,12 +3,9 @@ package teammates.logic.core;
 import java.util.ArrayList;
 import java.util.List;
 
-import teammates.common.datatransfer.CourseEnrollmentResult;
-import teammates.common.datatransfer.StudentAttributesFactory;
-import teammates.common.datatransfer.StudentEnrollDetails;
-import teammates.common.datatransfer.StudentSearchResultBundle;
-import teammates.common.datatransfer.StudentUpdateStatus;
-import teammates.common.datatransfer.TeamDetailsBundle;
+import com.google.appengine.repackaged.com.google.gson.Gson;
+import com.google.appengine.repackaged.com.google.gson.reflect.TypeToken;
+import teammates.common.datatransfer.*;
 import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
@@ -282,6 +279,51 @@ public final class StudentsLogic {
         return enrollStudents(enrollLines, courseId, false);
     }
 
+    public CourseEnrollmentResult restoreStudents(String studentSectionJson, String courseId)
+            throws EntityDoesNotExistException, EnrollException, InvalidParametersException, EntityAlreadyExistsException {
+
+        if (!coursesLogic.isCoursePresent(courseId)) {
+            throw new EntityDoesNotExistException("Course does not exist :"
+                    + courseId);
+        }
+
+        if (studentSectionJson.isEmpty()) {
+            throw new EnrollException(Const.StatusMessages.ENROLL_LINE_EMPTY);
+        }
+
+        Gson gson = new Gson();
+        List<SectionDetailsBundle> sectionList = gson.fromJson(studentSectionJson,
+                new TypeToken<List<SectionDetailsBundle>>(){}.getType());
+
+        List<StudentAttributes> studentList = createStudents(sectionList);
+        ArrayList<StudentAttributes> returnList = new ArrayList<>();
+        ArrayList<StudentEnrollDetails> enrollmentList = new ArrayList<>();
+
+        verifyIsWithinSizeLimitPerEnrollment(studentList);
+        validateSectionsAndTeams(studentList, courseId);
+
+        for (StudentAttributes student : studentList) {
+            StudentEnrollDetails enrollmentDetails;
+
+            enrollmentDetails = enrollStudent(student, true);
+            student.updateStatus = enrollmentDetails.updateStatus;
+
+            enrollmentList.add(enrollmentDetails);
+            returnList.add(student);
+        }
+
+        // add to return list students not included in the enroll list.
+        List<StudentAttributes> studentsInCourse = getStudentsForCourse(courseId);
+        for (StudentAttributes student : studentsInCourse) {
+            if (!isInEnrollList(student, returnList)) {
+                student.updateStatus = StudentUpdateStatus.NOT_IN_ENROLL_LIST;
+                returnList.add(student);
+            }
+        }
+
+        return new CourseEnrollmentResult(returnList, enrollmentList);
+    }
+
     private CourseEnrollmentResult enrollStudents(String enrollLines, String courseId, boolean hasDocument)
             throws EntityDoesNotExistException, EnrollException, InvalidParametersException, EntityAlreadyExistsException {
 
@@ -323,6 +365,43 @@ public final class StudentsLogic {
         }
 
         return new CourseEnrollmentResult(returnList, enrollmentList);
+    }
+
+    /**
+     * Separate the StudentData objects in the list into different categories based
+     * on their updateStatus. Each category is put into a separate list.<br>
+     *
+     * @return An array of lists of StudentData objects in which each list contains
+     *         student with the same updateStatus
+     */
+    @SuppressWarnings("unchecked")
+    public static List<StudentAttributes>[] separateStudents(List<StudentAttributes> students) {
+
+        ArrayList<StudentAttributes>[] lists = new ArrayList[StudentUpdateStatus.STATUS_COUNT];
+        for (int i = 0; i < StudentUpdateStatus.STATUS_COUNT; i++) {
+            lists[i] = new ArrayList<>();
+        }
+
+        for (StudentAttributes student : students) {
+            lists[student.updateStatus.numericRepresentation].add(student);
+        }
+
+        for (int i = 0; i < StudentUpdateStatus.STATUS_COUNT; i++) {
+            StudentAttributes.sortByNameAndThenByEmail(lists[i]);
+        }
+
+        return lists;
+    }
+
+    public static boolean studentListHasSection(List<StudentAttributes>[] students) {
+        for (List<StudentAttributes> studentList : students) {
+            for (StudentAttributes student : studentList) {
+                if (!student.section.equals(Const.DEFAULT_SECTION)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private void verifyIsWithinSizeLimitPerEnrollment(List<StudentAttributes> students) throws EnrollException {
@@ -566,6 +645,24 @@ public final class StudentsLogic {
         }
 
         return enrollmentDetails;
+    }
+
+    /**
+     * Build {@code studentList} from section detail bundle list.
+     * @param bundles Section details bundle list
+     * @return student list
+     */
+    public List<StudentAttributes> createStudents(List<SectionDetailsBundle> bundles) {
+
+        List<StudentAttributes> students = new ArrayList<>();
+
+        for(SectionDetailsBundle bundle : bundles) {
+            for(TeamDetailsBundle team : bundle.teams) {
+                students.addAll(team.students);
+            }
+        }
+
+        return students;
     }
 
     /**

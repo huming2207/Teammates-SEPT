@@ -19,6 +19,7 @@ import teammates.common.util.Logger;
 import teammates.common.util.SanitizationHelper;
 import teammates.common.util.StatusMessage;
 import teammates.common.util.StatusMessageColor;
+import teammates.logic.core.StudentsLogic;
 import teammates.ui.pagedata.InstructorCourseEnrollPageData;
 import teammates.ui.pagedata.InstructorCourseEnrollResultPageData;
 
@@ -45,7 +46,7 @@ public class InstructorCourseEnrollSaveAction extends Action {
         /* Process enrollment list and setup data for page result */
         try {
             List<StudentAttributes>[] students = enrollAndProcessResultForDisplay(studentsInfo, courseId);
-            boolean hasSection = hasSections(students);
+            boolean hasSection = StudentsLogic.studentListHasSection(students);
 
             InstructorCourseEnrollResultPageData pageData = new InstructorCourseEnrollResultPageData(account, sessionToken,
                                                                     courseId, students, hasSection, studentsInfo);
@@ -81,17 +82,6 @@ public class InstructorCourseEnrollSaveAction extends Action {
         }
     }
 
-    private boolean hasSections(List<StudentAttributes>[] students) {
-        for (List<StudentAttributes> studentList : students) {
-            for (StudentAttributes student : studentList) {
-                if (!student.section.equals(Const.DEFAULT_SECTION)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     private List<StudentAttributes>[] enrollAndProcessResultForDisplay(String studentsInfo, String courseId)
             throws EnrollException, EntityDoesNotExistException, InvalidParametersException, EntityAlreadyExistsException {
         CourseEnrollmentResult enrollResult = logic.enrollStudents(studentsInfo, courseId);
@@ -106,34 +96,6 @@ public class InstructorCourseEnrollSaveAction extends Action {
         }
 
         students.sort(Comparator.comparing(obj -> obj.updateStatus.numericRepresentation));
-
-        return separateStudents(students);
+        return StudentsLogic.separateStudents(students);
     }
-
-    /**
-     * Separate the StudentData objects in the list into different categories based
-     * on their updateStatus. Each category is put into a separate list.<br>
-     *
-     * @return An array of lists of StudentData objects in which each list contains
-     *         student with the same updateStatus
-     */
-    @SuppressWarnings("unchecked")
-    private List<StudentAttributes>[] separateStudents(List<StudentAttributes> students) {
-
-        ArrayList<StudentAttributes>[] lists = new ArrayList[StudentUpdateStatus.STATUS_COUNT];
-        for (int i = 0; i < StudentUpdateStatus.STATUS_COUNT; i++) {
-            lists[i] = new ArrayList<>();
-        }
-
-        for (StudentAttributes student : students) {
-            lists[student.updateStatus.numericRepresentation].add(student);
-        }
-
-        for (int i = 0; i < StudentUpdateStatus.STATUS_COUNT; i++) {
-            StudentAttributes.sortByNameAndThenByEmail(lists[i]);
-        }
-
-        return lists;
-    }
-
 }

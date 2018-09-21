@@ -638,6 +638,7 @@ public final class Const {
         public static final String INSTRUCTOR_INSTITUTION = "instructorinstitution";
         public static final String INSTRUCTOR_NAME = "instructorname";
         public static final String STUDENTS_ENROLLMENT_INFO = "enrollstudents";
+        public static final String STUDENTS_ENROLLMENT_RESTORE = "restorejson";
 
         public static final String INSTRUCTOR_IS_DISPLAYED_TO_STUDENT = "instructorisdisplayed";
         public static final String INSTRUCTOR_DISPLAY_NAME = "instructordisplayname";
@@ -960,6 +961,7 @@ public final class Const {
         public static final String INSTRUCTOR_COURSE_STUDENT_LIST_PDF_DOWNLOAD =
                 "/page/instructorCourseStudentPdfListDownload";
         public static final String INSTRUCTOR_COURSE_STUDENT_BACKUP = "/page/instructorCourseStudentBackup";
+        public static final String INSTRUCTOR_COURSE_STUDENT_RESTORE = "/page/instructorCourseStudentRestore";
         public static final String INSTRUCTOR_COURSE_ENROLL_PAGE = "/page/instructorCourseEnrollPage";
         public static final String INSTRUCTOR_COURSE_ENROLL_SAVE = "/page/instructorCourseEnrollSave";
         public static final String INSTRUCTOR_COURSE_REMIND = "/page/instructorCourseRemind";

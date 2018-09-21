@@ -975,6 +975,15 @@ public class Logic {
 
     }
 
+    public CourseEnrollmentResult restoreStudents(String sectionBundleJson, String courseId)
+            throws InvalidParametersException, EnrollException, EntityDoesNotExistException, EntityAlreadyExistsException {
+
+        Assumption.assertNotNull(courseId);
+        Assumption.assertNotNull(sectionBundleJson);
+
+        return studentsLogic.restoreStudents(sectionBundleJson, courseId);
+    }
+
     public List<StudentAttributes> getUnregisteredStudentsForCourse(String courseId) {
         Assumption.assertNotNull(courseId);
         return studentsLogic.getUnregisteredStudentsForCourse(courseId);
