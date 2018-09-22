@@ -142,9 +142,6 @@
       <property name="scope" value="public"/>
     </module>
     <module name="CommentsIndentation"/>
-    <module name="IllegalImport">
-      <property name="illegalPkgs" value="sun,com.google.appengine.repackaged,com.google.appengine.labs.repackaged"/>
-    </module>
     <module name="NoLineWrap"/>
     <module name="SuppressionCommentFilter">
       <property name="offCommentFormat" value="CHECKSTYLE\.OFF:([A-Za-z\|]+)"/>
