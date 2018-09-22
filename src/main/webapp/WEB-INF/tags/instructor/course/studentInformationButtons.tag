@@ -20,17 +20,17 @@
     </button>
 
     <form method="post" action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_LIST_DOWNLOAD%>" style="display:inline;">
-      <button id="button_download" type="submit" class="btn btn-primary" value="Delete All Students"
+      <button id="button_download" type="submit" class="btn btn-primary" value="Download Information as CSV"
               name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
         <span class="glyphicon glyphicon-download-alt"></span>
-        Download Information as csv
+        Download Information as CSV
       </button>
       <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
       <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
     </form>
 
     <form method="post" action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_LIST_PDF_DOWNLOAD%>" style="display: inline">
-      <button id="button_download_pdf" type="submit" class="btn btn-primary" value="Delete All Students"
+      <button id="button_download_pdf" type="submit" class="btn btn-primary" value="Download Information as PDF"
               name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
         <span class="glyphicon glyphicon-download-alt"></span>
         Download Information as PDF
@@ -40,7 +40,7 @@
     </form>
 
     <form method="post" action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_BACKUP%>" style="display: inline">
-      <button id="button_backup_json" type="submit" class="btn btn-primary" value="Delete All Students"
+      <button id="button_backup_json" type="submit" class="btn btn-primary" value="Backup as JSON"
               name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
         <span class="glyphicon glyphicon-download-alt"></span>
         Backup course as JSON
@@ -50,10 +50,10 @@
     </form>
 
     <form method="post" action="#" id="form_restore_course_dummy" style="display: inline">
-      <button id="button_restore_json" class="btn btn-primary" value="Delete All Students"
+      <button id="button_restore_json" class="btn btn-primary" value="Restore from JSON"
               name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
         <span class="glyphicon glyphicon-upload"></span>
-        Restore course from JSON
+        Restore from JSON
       </button>
     </form>
 

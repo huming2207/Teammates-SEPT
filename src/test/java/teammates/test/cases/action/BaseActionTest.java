@@ -74,6 +74,20 @@ public abstract class BaseActionTest extends BaseComponentTestCase {
     }
 
     /** Executes the action and returns the result.
+     * Assumption: The action returns a JsonDownloadResult.
+     */
+    protected JsonDownloadResult getJsonDownloadResult(Action a) {
+        return (JsonDownloadResult) a.executeAndPostProcess();
+    }
+
+    /** Executes the action and returns the result.
+     * Assumption: The action returns a PdfDownloadResult.
+     */
+    protected PdfDownloadResult getPdfDownloadResult(Action a) {
+        return (PdfDownloadResult) a.executeAndPostProcess();
+    }
+
+    /** Executes the action and returns the result.
      * Assumption: The action returns an AjaxResult.
      */
     protected AjaxResult getAjaxResult(Action a) {
