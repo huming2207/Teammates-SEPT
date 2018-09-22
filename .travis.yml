@@ -50,13 +50,14 @@ before_script:
 
 install: true
 script:
-  - npm run build
-  - ./gradlew appengineStart
+- npm run build
+- ./gradlew appengineStart
+- ./gradlew ciTests
 
 after_failure:
-  - gem install gist
-  - ./gradlew generateFailedCmd
+- gem install gist
+- ./gradlew generateFailedCmd
+
 
 after_success:
   - ./gradlew jacocoReport
-  - bash <(curl -s https://codecov.io/bash)
