@@ -1,21 +1,12 @@
 /* global tinymce:false */
 
-import {
-    extractIdSuffixFromId,
-} from './helper';
+import {extractIdSuffixFromId,} from './helper';
 
-import {
-    showModalConfirmation,
-} from './bootboxWrapper';
+import {showModalConfirmation,} from './bootboxWrapper';
 
-import {
-    BootstrapContextualColors,
-} from './const';
+import {BootstrapContextualColors,} from './const';
 
-import {
-    destroyEditor,
-    richTextEditorBuilder,
-} from './richTextEditor';
+import {destroyEditor, richTextEditorBuilder,} from './richTextEditor';
 
 const initialVisibilityOptions = new Map();
 
@@ -473,39 +464,27 @@ function showPraiseCommentButtonModal($praiseCommentButton, $parentCommentModal)
                 showErrorMessage('Failed to delete comment. Please try again.', $praiseCommentButton);
             },
             success(data) {
-
                 if (data.isError) {
                     showErrorMessage(data.errorMessage, $praiseCommentButton);
-                }else
-                {
-
-                    var addUrl = "/page/instructorFeedbackResponseCommentPraiseAdd";
-                    var delUrl = "/page/instructorFeedbackResponseCommentPraiseDelete";
-                    if(data.isLiked == true)
-                    {
-                        $praiseCommentButton.closest("a").attr("href",delUrl);
-                    }else
-                    {
-                        $praiseCommentButton.closest("a").attr("href",addUrl);
+                } else {
+                    const addUrl = '/page/instructorFeedbackResponseCommentPraiseAdd';
+                    const delUrl = '/page/instructorFeedbackResponseCommentPraiseDelete';
+                    if (data.isLiked === true) {
+                        $praiseCommentButton.closest('a').attr('href', delUrl);
+                    } else {
+                        $praiseCommentButton.closest('a').attr('href', addUrl);
                     }
 
-                    const praiseButtonContent = `<span class="glyphicon glyphicon-heart  ${data.isLiked == true ? 'glyphicon-primary' : ''}"></span>`;
+                    // eslint-disable-next-line max-len
+                    const praiseButtonContent = `<span class="glyphicon glyphicon-heart  ${data.isLiked === true ? 'glyphicon-primary' : ''}"></span>`;
                     $praiseCommentButton.html(praiseButtonContent);
-
-
-
-
                 }
-
-
             },
         });
     };
     showModalConfirmation('Confirm like?', 'Are you sure you want to like this comment?', okCallback,
-        null, null, null, BootstrapContextualColors.WARNING, onHiddenCallback);
+            null, null, null, BootstrapContextualColors.WARNING, onHiddenCallback);
 }
-
-
 
 function onHideShowDeleteCommentButtonModal($deleteCommentButton, $parentCommentModal) {
     $parentCommentModal.on('hidden.bs.modal', function handler() {
@@ -513,6 +492,7 @@ function onHideShowDeleteCommentButtonModal($deleteCommentButton, $parentComment
         $parentCommentModal.off('hidden.bs.modal', handler);
     });
 }
+
 function onHideShowPraiseCommentButtonModal($praiseCommentButton, $parentCommentModal) {
     $parentCommentModal.on('hidden.bs.modal', function handler() {
         showDeleteCommentButtonModal($praiseCommentButton, $parentCommentModal);
@@ -558,7 +538,7 @@ const praiseCommentHandler = (e) => {
 
         $parentCommentModal.modal('hide');
     } else {
-         showPraiseCommentButtonModal($praiseCommentButton);
+        showPraiseCommentButtonModal($praiseCommentButton);
     }
 };
 
@@ -575,9 +555,7 @@ function registerResponseCommentsEvent() {
 
     const praiseCommentButtonPrefix = 'commentpraise';
     $body.on('click', `form[class*="responseCommentPraiseForm"] > a[id^="${praiseCommentButtonPrefix}"]`,
-        {  praiseCommentButtonPrefix }, praiseCommentHandler);
-
-
+            { praiseCommentButtonPrefix }, praiseCommentHandler);
 
     const clickHandlerMap = new Map();
     clickHandlerMap.set(
