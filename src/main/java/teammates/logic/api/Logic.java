@@ -1099,7 +1099,7 @@ public class Logic {
     }
 
     /**
-     * Generates student list of a serialized course object in JSON
+     * Generates student list of a serialized course object in JSON.
      * @param courseId Course ID
      * @param googleId Account ID
      * @return Serialized string in JSON

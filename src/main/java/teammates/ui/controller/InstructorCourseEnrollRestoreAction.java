@@ -44,8 +44,8 @@ public class InstructorCourseEnrollRestoreAction extends Action {
 
         } catch (InvalidParametersException | EnrollException | EntityAlreadyExistsException e) {
             setStatusForException(e);
-            statusToAdmin = "Student restore failed: " + e.getMessage() + "<br>" +
-                    "Content: " + backupJson + "<br>";
+            statusToAdmin = "Student restore failed: " + e.getMessage() + "<br>"
+                    + "Content: " + backupJson + "<br>";
 
             InstructorCourseEnrollPageData pageData =
                     new InstructorCourseEnrollPageData(account, sessionToken, courseId, backupJson);
