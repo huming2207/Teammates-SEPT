@@ -52,10 +52,10 @@ public class InstructorCourseEnrollBackupActionTest extends BaseActionTest {
     }
 
     private boolean findStudentsInBundle(List<SectionDetailsBundle> bundles, StudentAttributes desiredStudent) {
-        for(SectionDetailsBundle bundle : bundles) {
-            for(TeamDetailsBundle team : bundle.teams) {
-                for(StudentAttributes student : team.students) {
-                    if(student.key.equals(desiredStudent.key)) {
+        for (SectionDetailsBundle bundle : bundles) {
+            for (TeamDetailsBundle team : bundle.teams) {
+                for (StudentAttributes student : team.students) {
+                    if (student.key.equals(desiredStudent.key)) {
                         return true;
                     }
                 }

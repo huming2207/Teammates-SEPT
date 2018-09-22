@@ -1,11 +1,9 @@
 package teammates.ui.controller;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import teammates.common.datatransfer.CourseEnrollmentResult;
-import teammates.common.datatransfer.StudentUpdateStatus;
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;

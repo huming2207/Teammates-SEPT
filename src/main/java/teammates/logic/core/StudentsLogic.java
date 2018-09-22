@@ -656,8 +656,8 @@ public final class StudentsLogic {
 
         List<StudentAttributes> students = new ArrayList<>();
 
-        for(SectionDetailsBundle bundle : bundles) {
-            for(TeamDetailsBundle team : bundle.teams) {
+        for (SectionDetailsBundle bundle : bundles) {
+            for (TeamDetailsBundle team : bundle.teams) {
                 students.addAll(team.students);
             }
         }

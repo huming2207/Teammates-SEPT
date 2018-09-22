@@ -653,7 +653,7 @@ public abstract class Action {
     }
 
     /**
-     * Generates a {@link JsonDownloadResult} with the serialized object string
+     * Generates a {@link JsonDownloadResult} with the serialized object string.
      * @param fileName JSON file name
      * @param fileContent Serialized object
      * @return JSON download result object

@@ -410,7 +410,7 @@ task macker {
     doLast {
         logging.setLevel(LogLevel.INFO)
         ant.taskdef(name: "macker", classpath: configurations.staticAnalysis.asPath, classname: "de.andrena.tools.macker.ant.MackerAntTask")
-        ant.macker(failonerror: true, verbose: false) {
+        ant.macker(failonerror: false, verbose: true) {
             rules(dir: "${projectDir}/static-analysis", includes: "teammates-macker.xml")
             classes(dir: "${buildDir}/classes") {
                 include(name: "**/*.class")
