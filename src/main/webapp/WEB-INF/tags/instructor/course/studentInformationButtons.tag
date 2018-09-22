@@ -49,6 +49,26 @@
       <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
     </form>
 
+    <form method="post" action="#" id="form_restore_course_dummy" style="display: inline">
+      <button id="button_restore_json" class="btn btn-primary" value="Delete All Students"
+              name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
+        <span class="glyphicon glyphicon-upload"></span>
+        Restore course from JSON
+      </button>
+    </form>
+
+    <form method="post" id="form_restore_course"
+          action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_RESTORE%>" style="display: inline">
+      <button class="btn btn-primary" value="Delete All Students"
+              name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>" style="display: none">
+        <span class="glyphicon glyphicon-upload"></span>
+        Restore course from JSON
+      </button>
+      <input type="hidden" id="course_json_text" name="<%=Const.ParamsNames.STUDENTS_ENROLLMENT_RESTORE%>" value="">
+      <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
+      <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
+    </form>
+
     <div>
       <span class="help-block">
         Non-English characters not displayed properly in the downloaded file?
@@ -63,7 +83,6 @@
       <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
       <input type="hidden" name="<%=Const.ParamsNames.CSV_TO_HTML_TABLE_NEEDED%>" value="true">
     </form>
-
     <course:studentTableModal />
   </div>
 </div>
