@@ -6,6 +6,7 @@ import java.util.*;
 
 import be.quodlibet.boxable.BaseTable;
 import be.quodlibet.boxable.datatable.DataTable;
+import com.google.gson.Gson;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -687,6 +688,14 @@ public final class CoursesLogic {
             }
         }
         return export.toString();
+    }
+
+    public String getCourseStudentBackupAsJson(String courseId, String googleId) throws EntityDoesNotExistException {
+
+        Gson gson = new Gson();
+        List<SectionDetailsBundle> sectionBundles = getCourseSummariesForInstructor(googleId, false).get(courseId).sections;
+
+        return gson.toJson(sectionBundles);
     }
 
     public PDDocument getCourseStudentListAsPdf(String courseId, String googleId)

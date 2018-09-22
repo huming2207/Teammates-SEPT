@@ -975,6 +975,15 @@ public class Logic {
 
     }
 
+    public CourseEnrollmentResult restoreStudents(String sectionBundleJson, String courseId)
+            throws InvalidParametersException, EnrollException, EntityDoesNotExistException, EntityAlreadyExistsException {
+
+        Assumption.assertNotNull(courseId);
+        Assumption.assertNotNull(sectionBundleJson);
+
+        return studentsLogic.restoreStudents(sectionBundleJson, courseId);
+    }
+
     public List<StudentAttributes> getUnregisteredStudentsForCourse(String courseId) {
         Assumption.assertNotNull(courseId);
         return studentsLogic.getUnregisteredStudentsForCourse(courseId);
@@ -1087,6 +1096,20 @@ public class Logic {
         Assumption.assertNotNull(googleId);
 
         return coursesLogic.getCourseStudentListAsCsv(courseId, googleId);
+    }
+
+    /**
+     * Generates student list of a serialized course object in JSON
+     * @param courseId Course ID
+     * @param googleId Account ID
+     * @return Serialized string in JSON
+     */
+    public String getCourseStudentBackupAsJson(String courseId, String googleId) throws EntityDoesNotExistException {
+
+        Assumption.assertNotNull(courseId);
+        Assumption.assertNotNull(googleId);
+
+        return coursesLogic.getCourseStudentBackupAsJson(courseId, googleId);
     }
 
     public PDDocument getCourseStudentListAsPdf(String courseId, String googleId)

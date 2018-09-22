@@ -20,21 +20,51 @@
     </button>
 
     <form method="post" action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_LIST_DOWNLOAD%>" style="display:inline;">
-      <button id="button_download" type="submit" class="btn btn-primary" value="Delete All Students"
+      <button id="button_download" type="submit" class="btn btn-primary" value="Download Information as CSV"
               name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
         <span class="glyphicon glyphicon-download-alt"></span>
-        Download Information as csv
+        Download Information as CSV
       </button>
       <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
       <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
     </form>
 
     <form method="post" action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_LIST_PDF_DOWNLOAD%>" style="display: inline">
-      <button id="button_download_pdf" type="submit" class="btn btn-primary" value="Delete All Students"
+      <button id="button_download_pdf" type="submit" class="btn btn-primary" value="Download Information as PDF"
               name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
         <span class="glyphicon glyphicon-download-alt"></span>
         Download Information as PDF
       </button>
+      <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
+      <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
+    </form>
+
+    <form method="post" action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_BACKUP%>" style="display: inline">
+      <button id="button_backup_json" type="submit" class="btn btn-primary" value="Backup as JSON"
+              name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
+        <span class="glyphicon glyphicon-download-alt"></span>
+        Backup course as JSON
+      </button>
+      <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
+      <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
+    </form>
+
+    <form method="post" action="#" id="form_restore_course_dummy" style="display: inline">
+      <button id="button_restore_json" class="btn btn-primary" value="Restore from JSON"
+              name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
+        <span class="glyphicon glyphicon-upload"></span>
+        Restore from JSON
+      </button>
+    </form>
+
+    <form method="post" id="form_restore_course"
+          action="<%=Const.ActionURIs.INSTRUCTOR_COURSE_STUDENT_RESTORE%>" style="display: inline">
+      <button class="btn btn-primary" value="Delete All Students"
+              name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>" style="display: none">
+        <span class="glyphicon glyphicon-upload"></span>
+        Restore course from JSON
+      </button>
+      <input type="hidden" id="course_json_text" name="<%=Const.ParamsNames.STUDENTS_ENROLLMENT_RESTORE%>" value="">
       <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
       <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
     </form>
@@ -53,7 +83,6 @@
       <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
       <input type="hidden" name="<%=Const.ParamsNames.CSV_TO_HTML_TABLE_NEEDED%>" value="true">
     </form>
-
     <course:studentTableModal />
   </div>
 </div>

@@ -22,13 +22,8 @@ import teammates.common.util.StringHelper;
 import teammates.logic.core.StudentsLogic;
 import teammates.test.cases.BaseComponentTestCase;
 import teammates.test.driver.AssertHelper;
-import teammates.ui.controller.Action;
-import teammates.ui.controller.ActionResult;
-import teammates.ui.controller.AjaxResult;
-import teammates.ui.controller.FileDownloadResult;
-import teammates.ui.controller.ImageResult;
-import teammates.ui.controller.RedirectResult;
-import teammates.ui.controller.ShowPageResult;
+import teammates.ui.controller.*;
+import teammates.ui.controller.CsvDownloadResult;
 
 /**
  * Base class for action tests.
@@ -79,6 +74,20 @@ public abstract class BaseActionTest extends BaseComponentTestCase {
     }
 
     /** Executes the action and returns the result.
+     * Assumption: The action returns a JsonDownloadResult.
+     */
+    protected JsonDownloadResult getJsonDownloadResult(Action a) {
+        return (JsonDownloadResult) a.executeAndPostProcess();
+    }
+
+    /** Executes the action and returns the result.
+     * Assumption: The action returns a PdfDownloadResult.
+     */
+    protected PdfDownloadResult getPdfDownloadResult(Action a) {
+        return (PdfDownloadResult) a.executeAndPostProcess();
+    }
+
+    /** Executes the action and returns the result.
      * Assumption: The action returns an AjaxResult.
      */
     protected AjaxResult getAjaxResult(Action a) {
@@ -86,10 +95,10 @@ public abstract class BaseActionTest extends BaseComponentTestCase {
     }
 
     /** Executes the action and returns the result.
-     * Assumption: The action returns a FileDownloadResult.
+     * Assumption: The action returns a CsvDownloadResult.
      */
-    protected FileDownloadResult getFileDownloadResult(Action a) {
-        return (FileDownloadResult) a.executeAndPostProcess();
+    protected CsvDownloadResult getFileDownloadResult(Action a) {
+        return (CsvDownloadResult) a.executeAndPostProcess();
     }
 
     /** Executes the action and returns the result.
