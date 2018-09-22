@@ -693,9 +693,9 @@ public final class CoursesLogic {
     public String getCourseStudentBackupAsJson(String courseId, String googleId) throws EntityDoesNotExistException {
 
         Gson gson = new Gson();
-        CourseDetailsBundle course = getCourseSummariesForInstructor(googleId, false).get(courseId);
+        List<SectionDetailsBundle> sectionBundles = getCourseSummariesForInstructor(googleId, false).get(courseId).sections;
 
-        return gson.toJson(course);
+        return gson.toJson(sectionBundles);
     }
 
     public PDDocument getCourseStudentListAsPdf(String courseId, String googleId)
