@@ -1,43 +1,22 @@
 /* global tinymce:false */
 
-import {
-    showModalAlert,
-} from '../common/bootboxWrapper';
+import {showModalAlert,} from '../common/bootboxWrapper';
 
-import {
-    BootstrapContextualColors,
-    ParamsNames,
-} from '../common/const';
+import {BootstrapContextualColors, ParamsNames,} from '../common/const';
 
-import {
-    isNumber,
-} from '../common/helper';
+import {isNumber,} from '../common/helper';
 
-import {
-    richTextEditorBuilder,
-} from '../common/richTextEditor';
+import {richTextEditorBuilder,} from '../common/richTextEditor';
 
-import {
-    sanitizeForJs,
-} from '../common/sanitizer';
+import {sanitizeForJs,} from '../common/sanitizer';
 
-import {
-    scrollToElement,
-} from '../common/scrollTo';
+import {scrollToElement,} from '../common/scrollTo';
 
-import {
-    setStatusMessage,
-} from '../common/statusMessage';
+import {setStatusMessage,} from '../common/statusMessage';
 
-import {
-    bindLinksInUnregisteredPage,
-} from '../common/student';
+import {bindLinksInUnregisteredPage,} from '../common/student';
 
-import {
-    addLoadingIndicator,
-    disallowNonNumericEntries,
-} from '../common/ui';
-import {makeCsrfTokenParam} from "../common/crypto";
+import {addLoadingIndicator, disallowNonNumericEntries,} from '../common/ui';
 
 const FEEDBACK_RESPONSE_RECIPIENT = 'responserecipient';
 const FEEDBACK_RESPONSE_TEXT = 'responsetext';
@@ -1296,15 +1275,19 @@ function updateTextQuestionWordsCount(textAreaId, wordsCountId, recommendedLengt
     }
 }
 
+function showUploadingGif() {
+    setStatusMessage("Uploading...<span><img src='/images/ajax-loader.gif'/></span>", BootstrapContextualColors.WARNING);
+}
+
 function submitDocToCloud() {
-    let formData = new FormData(fileForm);
+    const formData = new FormData(fileForm);
     console.log(fileDialog.files);
-    console.log(fileForm.getAttribute("action"));
+    console.log(fileForm.getAttribute('action'));
 
     $.ajax({
         type: 'POST',
         enctype: 'multipart/form-data',
-        url: fileForm.getAttribute("action"),
+        url: fileForm.getAttribute('action'),
         data: formData,
         // Options to tell jQuery not to process data or worry about content-type.
         cache: false,
@@ -1317,15 +1300,14 @@ function submitDocToCloud() {
         error() {
             alert('Image upload failed, please try again.');
         },
-        success(data) {
+        success: (data) => {
             setTimeout(() => {
                 if (data.isError) {
                     alert(data.ajaxStatus);
                 } else if (data.isFileUploaded) {
-                    const url = window.location.protocol + "//"
-                        + window.location.hostname + ":"
-                        + window.location.port + data.fileSrcUrl;
-                    callbackFunction(url, { alt: "Please enter an alt text for the document" });
+                    const url =
+                        `${window.location.protocol}//${window.location.hostname}:${window.location.port}${data.fileSrcUrl}`;
+                    callbackFunction(url, { alt: 'Please enter an alt text for the document' });
                     setStatusMessage(data.ajaxStatus, BootstrapContextualColors.SUCCESS);
                 } else {
                     alert(data.ajaxStatus);
@@ -1339,7 +1321,7 @@ function submitDocToCloud() {
 function createPdfDocUploadUrl() {
     $.ajax({
         type: 'POST',
-        url: `/page/createDocUploadUrl`,
+        url: '/page/createDocUploadUrl',
         beforeSend() {
             showUploadingGif();
         },
@@ -1349,14 +1331,14 @@ function createPdfDocUploadUrl() {
         success(data) {
             setTimeout(() => {
                 if (data.isError) {
-                    console.log("createImageUploadUrl: remote failed!");
+                    console.log('createImageUploadUrl: remote failed!');
                     alert(data.ajaxStatus);
                 } else {
-                    fileForm = document.createElement("form");
-                    fileForm.setAttribute("action", data.nextUploadUrl);
-                    fileForm.setAttribute("method", "POST");
+                    fileForm = document.createElement('form');
+                    fileForm.setAttribute('action', data.nextUploadUrl);
+                    fileForm.setAttribute('method', 'POST');
                     fileForm.appendChild(fileDialog);
-                    console.log("Document upload URL: " + data.nextUploadUrl);
+                    console.log(`Document upload URL: ${data.nextUploadUrl}`);
                     setStatusMessage(data.ajaxStatus);
                     submitDocToCloud();
                 }
@@ -1364,10 +1346,6 @@ function createPdfDocUploadUrl() {
         },
 
     });
-}
-
-function showUploadingGif() {
-    setStatusMessage("Uploading...<span><img src='/images/ajax-loader.gif'/></span>", BootstrapContextualColors.WARNING);
 }
 
 $(document).ready(() => {
@@ -1397,13 +1375,15 @@ $(document).ready(() => {
                         updateTextQuestionWordsCount(id, $(textField).data('lengthTextId'), $(this).data('recommendedText'));
                     });
                 },
+
+                /* eslint-disable no-unused-vars */
                 file_picker_callback(callback, value, meta) {
                     // Provide image and alt text for the image dialog
                     fileDialog = document.createElement('input');
-                    fileDialog.setAttribute("type", "file");
-                    fileDialog.setAttribute("name", "doctoupload");
+                    fileDialog.setAttribute('type', 'file');
+                    fileDialog.setAttribute('name', 'doctoupload');
                     fileDialog.click();
-                    fileDialog.onchange = function() {
+                    fileDialog.onchange = () => {
                         console.log(fileDialog.files);
                         createPdfDocUploadUrl();
                     };
@@ -1459,7 +1439,7 @@ $(document).ready(() => {
         }
     });
 
-    $("input[id^='otherOptionText']").keyup(function () {
+    $('input[id^="otherOptionText"]').keyup(function () {
         const idOfOtherOptionRadioButton = $(this).attr('id').replace('Text', '');
         $(`#${idOfOtherOptionRadioButton}`).val($(this).val());
     });
