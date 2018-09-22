@@ -1,5 +1,10 @@
 <?xml version="1.0"?>
 <macker>
+    <property name="macker.report.dir" location="${build.dir}/report" />
+    <property name="macker.report.xml" location="${macker.report.dir}/macker-report.xml" />
+    <property name="macker.report.html" location="${macker.report.dir}/macker-report.html" />
+
+    <macker xmlReportFile="${macker.report.xml}" failOnError="false">
     <ruleset name="Architectural rules for TEAMMATES">
         <var name="ui" value="teammates.ui" />
         <var name="logic" value="teammates.logic" />

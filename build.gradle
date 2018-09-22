@@ -425,7 +425,7 @@ macker.shouldRunAfter lintMain, lintTest
 task lint {
     description "Runs the entire static analysis tasks for back-end."
     group "Static analysis"
-    dependsOn lintMain, lintTest, macker
+    dependsOn lintMain, lintTest
 }
 
 // TEST TASKS
