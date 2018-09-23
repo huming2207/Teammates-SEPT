@@ -92,6 +92,7 @@ public final class HtmlHelper {
             assertEquals("<expected>" + System.lineSeparator() + processedExpected + "</expected>",
                          "<actual>" + System.lineSeparator() + processedActual + "</actual>");
         }
+
         return false;
     }
 
