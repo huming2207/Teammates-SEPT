@@ -1,20 +1,16 @@
 package teammates.test.cases.browsertests;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.FeedbackParticipantType;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.questions.FeedbackMsqQuestionDetails;
-import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
 import teammates.test.driver.BackDoor;
 import teammates.test.pageobjects.InstructorFeedbackEditPage;
-import teammates.test.pageobjects.InstructorFeedbackResultsPage;
+
+import java.util.List;
 
 /**
  * SUT: {@link Const.ActionURIs#INSTRUCTOR_FEEDBACK_EDIT_PAGE},
@@ -828,40 +824,5 @@ public class FeedbackMsqQuestionUiTest extends FeedbackQuestionUiTest {
         feedbackEditPage.waitForConfirmationModalAndClickOk();
         feedbackEditPage.waitForTextsForAllStatusMessagesToUserEquals(Const.StatusMessages.FEEDBACK_QUESTION_DELETED);
         assertNull(BackDoor.getFeedbackQuestion(courseId, feedbackSessionName, 1));
-    }
-
-    @Test(priority = 1)
-    public void testMcqWeightsFeature_instructorResultsPageQuestionView_showStatistics() throws Exception {
-
-        DataBundle msqWeightsTestData = loadDataBundle("/FeedbackSessionQuestionTypeTest.json");
-        removeAndRestoreDataBundle(msqWeightsTestData);
-        // Create the Action URI for 'MCQ Weights Session' to show the result page.
-        AppUrl editUrl = createUrl(Const.ActionURIs.INSTRUCTOR_FEEDBACK_RESULTS_PAGE)
-                .withUserId("FSQTT.idOfInstructor1OfCourse1")
-                .withCourseId("FSQTT.idOfTypicalCourse1")
-                .withSessionName(msqWeightsTestData.feedbackSessions.get("msqSession").getFeedbackSessionName())
-                .withParam(Const.ParamsNames.FEEDBACK_RESULTS_SORTTYPE, "question");
-
-        InstructorFeedbackResultsPage instructorResultsPage =
-                loginAdminToPage(editUrl, InstructorFeedbackResultsPage.class);
-
-        ______TS("Show statistics for mcq question without weights enabled");
-
-        instructorResultsPage.clickShowStats();
-        instructorResultsPage.loadResultQuestionPanel(1);
-        assertEquals(instructorResultsPage.showStatsCheckbox.getAttribute("checked"), "true");
-        assertTrue(instructorResultsPage.verifyAllStatsVisibility());
-        instructorResultsPage.verifyHtmlMainContent(
-                "/instructorFeedbackResultsPageMsqQuestionViewWithoutWeightsAttached.html");
-        instructorResultsPage.clickShowStats(); // This will collapse the particular question 1 panel
-
-        ______TS("Show statistics for MCQ question with weights attached");
-
-        instructorResultsPage.clickShowStats();
-        instructorResultsPage.loadResultQuestionPanel(3);
-        assertEquals(instructorResultsPage.showStatsCheckbox.getAttribute("checked"), "true");
-        assertTrue(instructorResultsPage.verifyAllStatsVisibility());
-        instructorResultsPage.verifyHtmlMainContent(
-                "/instructorFeedbackResultsPageMsqQuestionViewWithWeightsAttached.html");
     }
 }

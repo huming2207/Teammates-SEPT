@@ -2,7 +2,6 @@ package teammates.test.cases.action;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.util.Config;
 import teammates.common.util.Const;

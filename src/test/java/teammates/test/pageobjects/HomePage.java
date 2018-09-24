@@ -1,18 +1,11 @@
 package teammates.test.pageobjects;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import teammates.test.driver.TestProperties;
 
 /**
  * Represents the home page of the website (i.e., index.jsp).
  */
 public class HomePage extends AppPage {
-
-    @FindBy(id = "btnInstructorLogin")
-    private WebElement instructorLoginLink;
-
-    @FindBy(id = "btnStudentLogin")
-    private WebElement studentLoginLink;
 
     public HomePage(Browser browser) {
         super(browser);
@@ -24,15 +17,15 @@ public class HomePage extends AppPage {
     }
 
     public LoginPage clickInstructorLogin() {
-
-        click(instructorLoginLink);
+        browser.driver.get(TestProperties.TEAMMATES_URL + "/login?instructor");
         waitForPageToLoad();
+
         String pageSource = getPageSource();
         if (InstructorHomePage.containsExpectedPageContents(pageSource)) {
             //already logged in. We need to logout because the return type of
             //  this method is a LoginPage
             logout();
-            click(instructorLoginLink);
+            browser.driver.get(TestProperties.TEAMMATES_URL + "/login?instructor");
             waitForPageToLoad();
         }
         return createCorrectLoginPageType(browser);
@@ -40,14 +33,15 @@ public class HomePage extends AppPage {
     }
 
     public LoginPage clickStudentLogin() {
-        click(studentLoginLink);
+        browser.driver.get(TestProperties.TEAMMATES_URL + "/login?student");
         waitForPageToLoad();
+
         String pageSource = getPageSource();
         if (StudentHomePage.containsExpectedPageContents(pageSource)) {
             //already logged in. We need to logout because the return type of
             //  this method is a LoginPage
             logout();
-            click(studentLoginLink);
+            browser.driver.get(TestProperties.TEAMMATES_URL + "/login?student");
             waitForPageToLoad();
         }
         return createCorrectLoginPageType(browser);

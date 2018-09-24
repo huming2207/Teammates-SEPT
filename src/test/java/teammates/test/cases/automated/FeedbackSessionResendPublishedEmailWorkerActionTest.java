@@ -1,10 +1,6 @@
 package teammates.test.cases.automated;
 
-import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
@@ -14,6 +10,9 @@ import teammates.common.util.EmailType;
 import teammates.common.util.TaskWrapper;
 import teammates.logic.core.CoursesLogic;
 import teammates.ui.automated.FeedbackSessionResendPublishedEmailWorkerAction;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * SUT: {@link FeedbackSessionResendPublishedEmailWorkerAction}.

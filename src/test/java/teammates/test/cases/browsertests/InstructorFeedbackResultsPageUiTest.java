@@ -1,11 +1,8 @@
 package teammates.test.cases.browsertests;
 
-import java.io.File;
-
 import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
@@ -14,9 +11,10 @@ import teammates.common.util.SanitizationHelper;
 import teammates.test.driver.BackDoor;
 import teammates.test.driver.FileHelper;
 import teammates.test.driver.Priority;
-import teammates.test.driver.TestProperties;
 import teammates.test.pageobjects.InstructorFeedbackEditPage;
 import teammates.test.pageobjects.InstructorFeedbackResultsPage;
+
+import java.io.File;
 
 /**
  * SUT: {@link Const.ActionURIs#INSTRUCTOR_FEEDBACK_RESULTS_PAGE}.
@@ -347,118 +345,6 @@ public class InstructorFeedbackResultsPageUiTest extends BaseUiTestCase {
         resultsPage.filterResponsesForSection("Section A");
         resultsPage.clickCollapseExpandButtonAndWaitForPanelsToExpand();
         resultsPage.verifyHtmlMainContent("/instructorFeedbackResultsSortSecondSessionFilteredBySectionATeam.html");
-    }
-
-    @Test
-    public void testViewPhotoAndAjaxForLargeScaledSession() throws Exception {
-
-        // Mouseover actions do not work on Selenium-Chrome
-        if ("chrome".equals(TestProperties.BROWSER)) {
-            return;
-        }
-
-        uploadPhotoForStudent(testData.students.get("Alice").googleId);
-
-        ______TS("Typical case: ajax for view by questions");
-
-        resultsPage = loginToInstructorFeedbackResultsPageWithViewType("CFResultsUiT.instr",
-                                                                       "Open Session", true, "question");
-
-        resultsPage.loadResultLargeScalePanel(1);
-        resultsPage.verifyHtmlMainContent("/instructorFeedbackResultsAjaxByQuestion.html");
-
-        ______TS("Failure case: Ajax error");
-
-        // Change fs name so that the ajax request will fail
-        resultsPage.changeFsNameInAjaxLoadResponsesForm(1, "invalidFsName");
-        resultsPage.clickElementById("panelHeading-3");
-        resultsPage.waitForAjaxError(1);
-
-        resultsPage.changeFsNameInNoResponsePanelForm("InvalidFsName");
-        resultsPage.clickElementById("panelHeading-12");
-        resultsPage.waitForAjaxErrorOnNoResponsePanel();
-
-        ______TS("Typical case: test view photo for view by questions");
-
-        resultsPage.removeNavBar();
-        resultsPage.hoverClickAndViewGiverPhotoOnTableCell(
-                0, 0, "studentProfilePic?studentemail={*}&courseid={*}&user=CFResultsUiT.instr");
-        resultsPage.hoverClickAndViewRecipientPhotoOnTableCell(0, 0, Const.SystemParams.DEFAULT_PROFILE_PICTURE_PATH);
-
-        ______TS("Typical case: ajax for view by question for helper 1");
-
-        resultsPage = loginToInstructorFeedbackResultsPageWithViewType("CFResultsUiT.helper1",
-                                                                       "Open Session", true, "question");
-
-        resultsPage.loadResultLargeScalePanel(1);
-        resultsPage.verifyHtmlMainContent("/instructorFeedbackResultsAjaxByQuestionViewForHelperOne.html");
-
-        ______TS("Typical case: ajax for view by question for helper2");
-        resultsPage = loginToInstructorFeedbackResultsPageWithViewType("CFResultsUiT.helper2",
-                                        "Open Session", true, "question");
-
-        resultsPage.loadResultLargeScalePanel(1);
-        resultsPage.verifyHtmlMainContent("/instructorFeedbackResultsAjaxByQuestionViewForHelperTwo.html");
-
-        ______TS("Typical case: ajax for view by giver > recipient > question");
-
-        resultsPage = loginToInstructorFeedbackResultsPageWithViewType("CFResultsUiT.instr", "Open Session", true,
-                                                                       "giver-recipient-question");
-        resultsPage.loadResultSectionPanel(1, 2);
-        resultsPage.verifyHtmlMainContent("/instructorFeedbackResultsAjaxByGRQ.html");
-
-        ______TS("Typical case: test view photo for view by giver > recipient > question");
-
-        resultsPage.removeNavBar();
-        resultsPage.hoverClickAndViewStudentPhotoOnHeading("1-1",
-                "studentProfilePic?studentemail={*}&courseid={*}&user=CFResultsUiT.instr");
-        resultsPage.hoverAndViewStudentPhotoOnBody("1-1",
-                "studentProfilePic?studentemail={*}&courseid={*}&user=CFResultsUiT.instr");
-        resultsPage.hoverClickAndViewStudentPhotoOnHeading("1-2", Const.SystemParams.DEFAULT_PROFILE_PICTURE_PATH);
-
-        ______TS("Typical case: ajax for view by giver > question > recipient");
-
-        resultsPage = loginToInstructorFeedbackResultsPageWithViewType("CFResultsUiT.instr", "Open Session", true,
-                                                                       "giver-question-recipient");
-        resultsPage.loadResultSectionPanel(1, 2);
-        resultsPage.verifyHtmlMainContent("/instructorFeedbackResultsAjaxByGQR.html");
-
-        ______TS("Typical case: test view photo for view by giver > question > recipient");
-
-        resultsPage.removeNavBar();
-        resultsPage.hoverClickAndViewStudentPhotoOnHeading("1-1",
-                "studentProfilePic?studentemail={*}&courseid={*}&user=CFResultsUiT.instr");
-        resultsPage.clickViewPhotoLink("1-2", Const.SystemParams.DEFAULT_PROFILE_PICTURE_PATH);
-
-        ______TS("Typical case: ajax for view by recipient > question > giver");
-
-        resultsPage = loginToInstructorFeedbackResultsPageWithViewType("CFResultsUiT.instr", "Open Session", true,
-                                                                       "recipient-question-giver");
-        resultsPage.loadResultSectionPanel(1, 2);
-        resultsPage.verifyHtmlMainContent("/instructorFeedbackResultsAjaxByRQG.html");
-
-        ______TS("Typical case: test view photo for view by recipient > question > giver");
-
-        resultsPage.removeNavBar();
-        resultsPage.hoverClickAndViewStudentPhotoOnHeading("1-1",
-                "studentProfilePic?studentemail={*}&courseid={*}&user=CFResultsUiT.instr");
-        resultsPage.clickViewPhotoLink("1-2", "studentProfilePic?studentemail={*}&courseid={*}&user=CFResultsUiT.instr");
-
-        ______TS("Typical case: ajax for view by recipient > giver > question");
-
-        resultsPage = loginToInstructorFeedbackResultsPageWithViewType("CFResultsUiT.instr", "Open Session", true,
-                                                                       "recipient-giver-question");
-        resultsPage.loadResultSectionPanel(1, 2);
-        resultsPage.verifyHtmlMainContent("/instructorFeedbackResultsAjaxByRGQ.html");
-
-        ______TS("Typical case: test view photo for view by recipient > giver > question");
-
-        resultsPage.removeNavBar();
-        resultsPage.hoverClickAndViewStudentPhotoOnHeading("1-1",
-                "studentProfilePic?studentemail={*}&courseid={*}&user=CFResultsUiT.instr");
-        resultsPage.hoverAndViewStudentPhotoOnBody("1-1",
-                "studentProfilePic?studentemail={*}&courseid={*}&user=CFResultsUiT.instr");
-        resultsPage.hoverClickAndViewStudentPhotoOnHeading("1-2", Const.SystemParams.DEFAULT_PROFILE_PICTURE_PATH);
     }
 
     @Test

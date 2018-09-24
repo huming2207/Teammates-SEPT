@@ -1,7 +1,6 @@
 package teammates.test.cases.logic;
 
 import org.testng.annotations.BeforeClass;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.test.cases.BaseComponentTestCase;
 

@@ -1,10 +1,6 @@
 package teammates.test.cases.action;
 
-import java.time.Instant;
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.exception.NullPostParameterException;
 import teammates.common.util.Const;
@@ -14,6 +10,9 @@ import teammates.common.util.TimeHelper;
 import teammates.storage.api.FeedbackSessionsDb;
 import teammates.ui.controller.InstructorFeedbackUnpublishAction;
 import teammates.ui.controller.RedirectResult;
+
+import java.time.Instant;
+import java.util.Map;
 
 /**
  * SUT: {@link InstructorFeedbackUnpublishAction}.

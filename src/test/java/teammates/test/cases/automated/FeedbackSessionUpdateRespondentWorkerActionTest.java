@@ -1,7 +1,6 @@
 package teammates.test.cases.automated;
 
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.FeedbackSessionResponseStatus;
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;

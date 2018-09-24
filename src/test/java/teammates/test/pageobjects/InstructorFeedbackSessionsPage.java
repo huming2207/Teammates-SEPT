@@ -1,21 +1,19 @@
 package teammates.test.pageobjects;
 
-import static org.testng.AssertJUnit.fail;
+import com.google.appengine.api.datastore.Text;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import teammates.common.util.Const;
+import teammates.common.util.TimeHelper;
+import teammates.test.driver.TimeHelperExtension;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
-import com.google.appengine.api.datastore.Text;
-
-import teammates.common.util.Const;
-import teammates.common.util.TimeHelper;
-import teammates.test.driver.TimeHelperExtension;
+import static org.testng.AssertJUnit.fail;
 
 public class InstructorFeedbackSessionsPage extends AppPage {
 

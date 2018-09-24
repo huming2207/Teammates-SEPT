@@ -1,11 +1,6 @@
 package teammates.test.cases.automated;
 
-import java.time.ZoneId;
-import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.util.Const;
 import teammates.common.util.Const.ParamsNames;
@@ -16,6 +11,10 @@ import teammates.logic.core.CoursesLogic;
 import teammates.logic.core.FeedbackSessionsLogic;
 import teammates.test.driver.TimeHelperExtension;
 import teammates.ui.automated.FeedbackSessionClosingRemindersAction;
+
+import java.time.ZoneId;
+import java.util.List;
+import java.util.Map;
 
 /**
  * SUT: {@link FeedbackSessionClosingRemindersAction}.

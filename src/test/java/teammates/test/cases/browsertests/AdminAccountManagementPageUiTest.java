@@ -1,16 +1,15 @@
 package teammates.test.cases.browsertests;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
 import teammates.test.driver.BackDoor;
 import teammates.test.pageobjects.AdminAccountDetailsPage;
 import teammates.test.pageobjects.AdminAccountManagementPage;
 import teammates.test.pageobjects.AdminActivityLogPage;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * SUT: {@link Const.ActionURIs#ADMIN_ACCOUNT_MANAGEMENT_PAGE}.

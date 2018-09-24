@@ -1,15 +1,10 @@
 package teammates.test.cases.action;
 
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.exception.NullPostParameterException;
-import teammates.common.util.Const;
-import teammates.common.util.EmailType;
-import teammates.common.util.EmailWrapper;
-import teammates.common.util.FieldValidator;
-import teammates.common.util.Url;
+import teammates.common.util.*;
 import teammates.logic.core.AccountsLogic;
 import teammates.logic.core.CoursesLogic;
 import teammates.test.driver.AssertHelper;

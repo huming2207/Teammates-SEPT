@@ -1,15 +1,12 @@
 package teammates.test.cases.datatransfer;
 
-import static teammates.common.datatransfer.TeamEvalResult.NA;
-import static teammates.common.datatransfer.TeamEvalResult.NSB;
-import static teammates.common.datatransfer.TeamEvalResult.NSU;
+import org.testng.annotations.Test;
+import teammates.common.datatransfer.TeamEvalResult;
+import teammates.test.cases.BaseTestCase;
 
 import java.util.Arrays;
 
-import org.testng.annotations.Test;
-
-import teammates.common.datatransfer.TeamEvalResult;
-import teammates.test.cases.BaseTestCase;
+import static teammates.common.datatransfer.TeamEvalResult.*;
 
 /**
  * SUT: {@link TeamEvalResult}.

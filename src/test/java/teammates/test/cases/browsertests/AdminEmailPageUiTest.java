@@ -1,17 +1,16 @@
 package teammates.test.cases.browsertests;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
 import teammates.common.util.Const;
 import teammates.common.util.FieldValidator;
 import teammates.test.driver.BackDoor;
 import teammates.test.pageobjects.AdminEmailPage;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * SUT: {@link Const.ActionURIs#ADMIN_EMAIL_COMPOSE_PAGE},

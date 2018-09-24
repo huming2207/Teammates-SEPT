@@ -1,7 +1,6 @@
 package teammates.test.cases.action;
 
 import org.testng.annotations.Test;
-
 import teammates.common.util.Const;
 import teammates.ui.controller.AdminSearchPageAction;
 

@@ -1,10 +1,6 @@
 package teammates.test.cases.automated;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.FeedbackParticipantType;
 import teammates.common.datatransfer.StudentEnrollDetails;
 import teammates.common.datatransfer.StudentUpdateStatus;
@@ -19,6 +15,9 @@ import teammates.logic.core.FeedbackQuestionsLogic;
 import teammates.logic.core.FeedbackResponsesLogic;
 import teammates.logic.core.StudentsLogic;
 import teammates.ui.automated.FeedbackResponseAdjustmentWorkerAction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link FeedbackResponseAdjustmentWorkerAction}.

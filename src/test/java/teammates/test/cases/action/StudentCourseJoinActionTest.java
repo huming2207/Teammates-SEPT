@@ -1,11 +1,8 @@
 package teammates.test.cases.action;
 
-import static teammates.ui.controller.StudentCourseJoinAction.getPageTypeOfUrl;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.Const;
 import teammates.common.util.StringHelper;
@@ -15,6 +12,8 @@ import teammates.ui.controller.RedirectResult;
 import teammates.ui.controller.ShowPageResult;
 import teammates.ui.controller.StudentCourseJoinAction;
 import teammates.ui.pagedata.StudentCourseJoinConfirmationPageData;
+
+import static teammates.ui.controller.StudentCourseJoinAction.getPageTypeOfUrl;
 
 /**
  * SUT: {@link StudentCourseJoinAction}.

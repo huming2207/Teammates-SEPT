@@ -1,17 +1,15 @@
 package teammates.test.cases;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import com.google.appengine.api.utils.SystemProperty;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-
-import com.google.appengine.api.utils.SystemProperty;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
-
 import teammates.test.driver.GaeSimulation;
 import teammates.test.driver.TestProperties;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Base class for all test cases which require a minimal GAE API environment registered.

@@ -1,10 +1,8 @@
 package teammates.test.cases.browsertests;
 
+import com.google.apphosting.api.DeadlineExceededException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import com.google.apphosting.api.DeadlineExceededException;
-
 import teammates.common.exception.EntityDoesNotExistException;
 import teammates.common.exception.NullPostParameterException;
 import teammates.common.exception.UnauthorizedAccessException;

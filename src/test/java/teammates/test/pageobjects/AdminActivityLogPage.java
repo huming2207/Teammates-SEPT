@@ -1,15 +1,14 @@
 package teammates.test.pageobjects;
 
-import static org.testng.AssertJUnit.assertTrue;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import teammates.common.util.Const;
+import teammates.common.util.TimeHelper;
 
 import java.time.Instant;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import teammates.common.util.Const;
-import teammates.common.util.TimeHelper;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class AdminActivityLogPage extends AppPage {
 

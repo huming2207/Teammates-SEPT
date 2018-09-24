@@ -1,12 +1,12 @@
 package teammates.test.driver;
 
+import teammates.common.util.TaskWrapper;
+import teammates.logic.api.TaskQueuer;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import teammates.common.util.TaskWrapper;
-import teammates.logic.api.TaskQueuer;
 
 /**
  * Allows mocking of the {@link TaskQueuer} API used in production.

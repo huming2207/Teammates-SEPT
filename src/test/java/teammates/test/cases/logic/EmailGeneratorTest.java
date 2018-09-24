@@ -1,30 +1,11 @@
 package teammates.test.cases.logic;
 
-import java.io.IOException;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.List;
-
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.Test;
-
 import com.google.appengine.api.log.AppLogLine;
 import com.google.appengine.api.log.LogService.LogLevel;
-
-import teammates.common.datatransfer.attributes.AccountAttributes;
-import teammates.common.datatransfer.attributes.CourseAttributes;
-import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
-import teammates.common.datatransfer.attributes.InstructorAttributes;
-import teammates.common.datatransfer.attributes.StudentAttributes;
-import teammates.common.util.Config;
-import teammates.common.util.Const;
-import teammates.common.util.EmailType;
-import teammates.common.util.EmailWrapper;
-import teammates.common.util.SanitizationHelper;
-import teammates.common.util.StringHelper;
-import teammates.common.util.TimeHelper;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.Test;
+import teammates.common.datatransfer.attributes.*;
+import teammates.common.util.*;
 import teammates.logic.api.EmailGenerator;
 import teammates.logic.core.CoursesLogic;
 import teammates.logic.core.FeedbackSessionsLogic;
@@ -32,6 +13,13 @@ import teammates.logic.core.InstructorsLogic;
 import teammates.logic.core.StudentsLogic;
 import teammates.test.driver.EmailChecker;
 import teammates.test.driver.TestProperties;
+
+import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * SUT: {@link EmailGenerator}.

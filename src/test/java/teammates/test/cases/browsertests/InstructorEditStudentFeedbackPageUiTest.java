@@ -1,7 +1,6 @@
 package teammates.test.cases.browsertests;
 
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
 import teammates.common.util.AppUrl;

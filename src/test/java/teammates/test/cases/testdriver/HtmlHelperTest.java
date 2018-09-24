@@ -1,13 +1,12 @@
 package teammates.test.cases.testdriver;
 
-import java.io.IOException;
-
 import org.testng.annotations.Test;
-
 import teammates.test.cases.BaseTestCase;
 import teammates.test.driver.FileHelper;
 import teammates.test.driver.HtmlHelper;
 import teammates.test.driver.TestProperties;
+
+import java.io.IOException;
 
 /**
  * SUT: {@link HtmlHelper}.

@@ -1,12 +1,11 @@
 package teammates.test.pageobjects;
 
-import static org.testng.AssertJUnit.assertEquals;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import teammates.common.util.Const;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 public class InstructorCourseDetailsPage extends AppPage {
 

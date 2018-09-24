@@ -1,16 +1,15 @@
 package teammates.test.cases.util;
 
+import org.testng.annotations.Test;
+import teammates.common.util.AdminLogQuery;
+import teammates.test.cases.BaseTestCase;
+
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.testng.annotations.Test;
-
-import teammates.common.util.AdminLogQuery;
-import teammates.test.cases.BaseTestCase;
 
 /**
  * SUT: {@link AdminLogQuery}.

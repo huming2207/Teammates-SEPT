@@ -1,10 +1,9 @@
 package teammates.test.pageobjects;
 
-import static org.testng.AssertJUnit.assertEquals;
-
 import org.openqa.selenium.By;
-
 import teammates.common.util.SanitizationHelper;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 public class StudentProfilePicturePage extends AppPage {
 

@@ -1,17 +1,11 @@
 package teammates.test.cases.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import org.testng.annotations.Test;
-
 import com.google.appengine.api.datastore.Text;
-
+import org.testng.annotations.Test;
 import teammates.common.util.SanitizationHelper;
 import teammates.test.cases.BaseTestCase;
+
+import java.util.*;
 
 /**
  * SUT: {@link SanitizationHelper}.

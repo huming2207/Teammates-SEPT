@@ -1,14 +1,13 @@
 package teammates.test.cases.automated;
 
-import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.BeforeClass;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.util.EmailWrapper;
 import teammates.test.cases.BaseComponentTestCase;
 import teammates.ui.automated.AutomatedAction;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Base class for all automated actions tests.

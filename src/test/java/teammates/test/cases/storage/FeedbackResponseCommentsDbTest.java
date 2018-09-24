@@ -1,14 +1,8 @@
 package teammates.test.cases.storage;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.appengine.api.datastore.Text;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import com.google.appengine.api.datastore.Text;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.attributes.FeedbackResponseCommentAttributes;
 import teammates.common.exception.EntityAlreadyExistsException;
@@ -20,6 +14,10 @@ import teammates.storage.api.EntitiesDb;
 import teammates.storage.api.FeedbackResponseCommentsDb;
 import teammates.test.cases.BaseComponentTestCase;
 import teammates.test.driver.AssertHelper;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link FeedbackResponseCommentsDb}.

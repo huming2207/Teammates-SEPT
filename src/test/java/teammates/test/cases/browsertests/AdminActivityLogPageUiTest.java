@@ -1,16 +1,15 @@
 package teammates.test.cases.browsertests;
 
-import java.time.Instant;
-
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.annotations.Test;
-
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
 import teammates.common.util.TimeHelper;
 import teammates.test.pageobjects.AdminActivityLogPage;
 import teammates.test.pageobjects.AdminSearchPage;
+
+import java.time.Instant;
 
 /**
  * SUT: {@link Const.ActionURIs#ADMIN_ACTIVITY_LOG_PAGE}.

@@ -1,12 +1,12 @@
 package teammates.test.pageobjects;
 
-import static org.testng.AssertJUnit.assertTrue;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import static org.testng.AssertJUnit.assertTrue;
 
 public class AdminAccountManagementPage extends AppPage {
 

@@ -1,13 +1,6 @@
 package teammates.test.cases.pagedata;
 
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.CourseDetailsBundle;
 import teammates.common.datatransfer.FeedbackSessionDetailsBundle;
 import teammates.common.datatransfer.attributes.AccountAttributes;
@@ -18,11 +11,13 @@ import teammates.common.util.TimeHelper;
 import teammates.test.cases.BaseTestCase;
 import teammates.test.driver.TimeHelperExtension;
 import teammates.ui.pagedata.StudentHomePageData;
-import teammates.ui.template.CourseTable;
-import teammates.ui.template.ElementTag;
-import teammates.ui.template.HomeFeedbackSessionRow;
-import teammates.ui.template.StudentFeedbackSessionActions;
-import teammates.ui.template.StudentHomeFeedbackSessionRow;
+import teammates.ui.template.*;
+
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * SUT: {@link StudentHomePageData}.

@@ -1,10 +1,7 @@
 package teammates.test.cases.action;
 
-import java.net.URL;
-
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.exception.NullPostParameterException;
@@ -15,6 +12,8 @@ import teammates.logic.core.StudentsLogic;
 import teammates.ui.controller.CsvDownloadResult;
 import teammates.ui.controller.InstructorFeedbackResultsDownloadAction;
 import teammates.ui.controller.RedirectResult;
+
+import java.net.URL;
 
 /**
  * SUT: {@link InstructorFeedbackResultsDownloadAction}.

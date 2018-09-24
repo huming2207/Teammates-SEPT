@@ -1,12 +1,12 @@
 package teammates.test.driver;
 
+import teammates.common.util.Const;
+import teammates.common.util.TimeHelper;
+
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
-import teammates.common.util.Const;
-import teammates.common.util.TimeHelper;
 
 /**
  * Holds additional methods for {@link teammates.common.util.TimeHelper} used only in tests.

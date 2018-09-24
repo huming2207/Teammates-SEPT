@@ -3,7 +3,6 @@ package teammates.test.cases.browsertests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.FeedbackParticipantType;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.questions.FeedbackRankOptionsQuestionDetails;
@@ -210,95 +209,6 @@ public class FeedbackRankQuestionUiTest extends FeedbackQuestionUiTest {
                 loginToStudentFeedbackResultsPage("alice.tmms@FRankUiT.CS4221", "student");
         studentResultsPage.verifyHtmlMainContent("/studentFeedbackResultsPageRank.html");
 
-    }
-
-    @Test
-    public void testInstructorSubmitAndResultsPage() throws Exception {
-
-        ______TS("Rank submission: input disabled for closed session");
-
-        FeedbackSubmitPage submitPage = loginToInstructorFeedbackSubmitPage("instructor1", "closed");
-        int qnNumber = 1;
-        int responseNumber = 0;
-        int rowNumber = 0;
-        assertFalse(submitPage.isNamedElementEnabled(Const.ParamsNames.FEEDBACK_QUESTION_RANKOPTION + "-"
-                                                     + qnNumber + "-" + responseNumber + "-" + rowNumber));
-
-        ______TS("Rank submission: test submission page if some students are not visible to the instructor");
-        submitPage = loginToInstructorFeedbackSubmitPage("instructorhelper", "instructor");
-        submitPage.verifyHtmlMainContent("/instructorFeedbackSubmitPageRankHelper.html");
-
-        ______TS("Rank standard submission");
-
-        submitPage = loginToInstructorFeedbackSubmitPage("instructor1", "instructor");
-        submitPage.verifyHtmlMainContent("/instructorFeedbackResultsPageRankSubmission.html");
-
-        submitPage.selectResponseTextDropdown(1, 0, 2, "2");
-        submitPage.selectResponseTextDropdown(1, 0, 1, "1");
-        submitPage.selectResponseTextDropdown(1, 0, 0, "3");
-        assertTrue(submitPage.getRankMessage(1, 0).isEmpty());
-
-        submitPage.selectRecipient(2, 0, "Emily F.");
-        submitPage.selectResponseTextDropdown(2, 0, 13, "1");
-        submitPage.selectResponseTextDropdown(2, 0, 1, "2");
-
-        submitPage.selectRecipient(2, 1, "Alice Betsy</option></td></div>'\"");
-        submitPage.selectResponseTextDropdown(2, 1, 11, "1");
-        submitPage.selectResponseTextDropdown(2, 1, 1, "1");
-        assertEquals("Testing duplicate rank for rank options",
-                     "The same rank should not be given multiple times.", submitPage.getRankMessage(2, 1));
-        submitPage.selectResponseTextDropdown(2, 1, 1, "2");
-
-        submitPage.selectResponseTextDropdown(3, 0, 0, "1");
-        submitPage.selectResponseTextDropdown(3, 3, 0, "2");
-
-        submitPage.clickSubmitButton();
-
-        ______TS("Rank instructor results : question");
-
-        InstructorFeedbackResultsPage instructorResultsPage =
-                loginToInstructorFeedbackResultsPageWithViewType("instructor1", "instructor", false, "question");
-        instructorResultsPage.loadResultQuestionPanel(1);
-        instructorResultsPage.verifyHtmlMainContent("/instructorFeedbackResultsPageRankQuestionView.html");
-
-        ______TS("Rank instructor results : Giver > Recipient > Question");
-        instructorResultsPage =
-                loginToInstructorFeedbackResultsPageWithViewType("instructor1", "instructor", false,
-                                                                 "giver-recipient-question");
-        instructorResultsPage.loadResultSectionPanel(1, 2);
-        instructorResultsPage.verifyHtmlMainContent("/instructorFeedbackResultsPageRankGRQView.html");
-
-        ______TS("Rank instructor results : Giver > Question > Recipient");
-        instructorResultsPage =
-                loginToInstructorFeedbackResultsPageWithViewType("instructor1", "instructor", false,
-                                                                 "giver-question-recipient");
-        instructorResultsPage.loadResultSectionPanel(1, 2);
-        instructorResultsPage.verifyHtmlMainContent("/instructorFeedbackResultsPageRankGQRView.html");
-
-        ______TS("Rank instructor results : Recipient > Question > Giver ");
-        instructorResultsPage =
-                loginToInstructorFeedbackResultsPageWithViewType("instructor1", "instructor", false,
-                                                                 "recipient-question-giver");
-        instructorResultsPage.loadResultSectionPanel(0, 1);
-        instructorResultsPage.verifyHtmlMainContent("/instructorFeedbackResultsPageRankRQGView.html");
-
-        ______TS("Rank instructor results : Recipient > Giver > Question");
-        instructorResultsPage =
-                loginToInstructorFeedbackResultsPageWithViewType("instructor1", "instructor", false,
-                                                                 "recipient-giver-question");
-        instructorResultsPage.loadResultSectionPanel(0, 1);
-        instructorResultsPage.verifyHtmlMainContent("/instructorFeedbackResultsPageRankRGQView.html");
-    }
-
-    @Test
-    public void testInstructorResultsPageForRankRecipientQuestion() throws Exception {
-        ______TS("Rank recipient instructor results : question");
-
-        InstructorFeedbackResultsPage instructorResultsPage =
-                loginToInstructorFeedbackResultsPageWithViewType("instructor1", "student", false, null);
-        instructorResultsPage.loadResultQuestionPanel(3);
-        instructorResultsPage.loadResultQuestionPanel(9);
-        instructorResultsPage.verifyHtmlMainContent("/instructorFeedbackResultsPageRankRecipient.html");
     }
 
     @Test

@@ -1,25 +1,19 @@
 package teammates.test.cases.browsertests;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
 import teammates.common.util.Url;
 import teammates.test.cases.BaseTestCaseWithBackDoorApiAccess;
 import teammates.test.driver.TestProperties;
-import teammates.test.pageobjects.AdminHomePage;
-import teammates.test.pageobjects.AppPage;
-import teammates.test.pageobjects.Browser;
-import teammates.test.pageobjects.BrowserPool;
-import teammates.test.pageobjects.HomePage;
-import teammates.test.pageobjects.LoginPage;
+import teammates.test.pageobjects.*;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Base class for all browser tests.

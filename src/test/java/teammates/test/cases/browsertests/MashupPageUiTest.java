@@ -1,14 +1,13 @@
 package teammates.test.cases.browsertests;
 
-import java.io.File;
-
 import org.testng.annotations.Test;
-
 import teammates.common.util.Const;
 import teammates.common.util.JsonUtils;
 import teammates.test.driver.BackDoor;
 import teammates.test.driver.FileHelper;
 import teammates.test.pageobjects.AppPage;
+
+import java.io.File;
 
 /**
  * Loads the Mashup page for the tester to do a visual inspection.

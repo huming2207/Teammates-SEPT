@@ -1,7 +1,7 @@
 package teammates.test.driver;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
+import com.google.common.base.Joiner;
+import teammates.common.util.Const;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -9,9 +9,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import com.google.common.base.Joiner;
-
-import teammates.common.util.Const;
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Provides additional assertion methods that are often used during testing.

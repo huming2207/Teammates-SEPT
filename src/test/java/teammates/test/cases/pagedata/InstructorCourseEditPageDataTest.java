@@ -1,10 +1,6 @@
 package teammates.test.cases.pagedata;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.CourseAttributes;
@@ -14,6 +10,9 @@ import teammates.test.cases.BaseTestCase;
 import teammates.ui.pagedata.InstructorCourseEditPageData;
 import teammates.ui.template.CourseEditInstructorPanel;
 import teammates.ui.template.CourseEditSectionRow;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link InstructorCourseEditPageData}.

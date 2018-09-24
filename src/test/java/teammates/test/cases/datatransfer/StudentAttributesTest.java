@@ -1,10 +1,6 @@
 package teammates.test.cases.datatransfer;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.StudentUpdateStatus;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.Config;
@@ -14,6 +10,9 @@ import teammates.common.util.StringHelper;
 import teammates.storage.entity.CourseStudent;
 import teammates.test.cases.BaseTestCaseWithMinimalGaeEnvironment;
 import teammates.test.driver.StringHelperExtension;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * SUT: {@link StudentAttributes}.

@@ -2,7 +2,6 @@ package teammates.test.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.ui.pagedata.AdminSearchPageData;

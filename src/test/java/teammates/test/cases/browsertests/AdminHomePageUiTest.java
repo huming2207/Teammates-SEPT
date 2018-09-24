@@ -1,10 +1,7 @@
 package teammates.test.cases.browsertests;
 
-import java.net.URL;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.exception.EntityDoesNotExistException;
 import teammates.common.exception.InvalidParametersException;
@@ -15,20 +12,9 @@ import teammates.common.util.FieldValidator;
 import teammates.test.driver.BackDoor;
 import teammates.test.driver.Priority;
 import teammates.test.driver.TestProperties;
-import teammates.test.pageobjects.AdminHomePage;
-import teammates.test.pageobjects.AppPage;
-import teammates.test.pageobjects.FeedbackSubmitPage;
-import teammates.test.pageobjects.InstructorCourseDetailsPage;
-import teammates.test.pageobjects.InstructorCourseEditPage;
-import teammates.test.pageobjects.InstructorCourseEnrollPage;
-import teammates.test.pageobjects.InstructorCourseJoinConfirmationPage;
-import teammates.test.pageobjects.InstructorCoursesPage;
-import teammates.test.pageobjects.InstructorFeedbackResultsPage;
-import teammates.test.pageobjects.InstructorHomePage;
-import teammates.test.pageobjects.StudentCourseDetailsPage;
-import teammates.test.pageobjects.StudentFeedbackResultsPage;
-import teammates.test.pageobjects.StudentHomePage;
-import teammates.test.pageobjects.StudentProfilePage;
+import teammates.test.pageobjects.*;
+
+import java.net.URL;
 
 /**
  * SUT: {@link Const.ActionURIs#ADMIN_HOME_PAGE}.

@@ -1,10 +1,7 @@
 package teammates.test.cases.browsertests;
 
-import java.time.ZoneId;
-
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.CourseAttributes;
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
@@ -13,12 +10,9 @@ import teammates.common.util.Const;
 import teammates.common.util.FieldValidator;
 import teammates.common.util.Url;
 import teammates.test.driver.BackDoor;
-import teammates.test.pageobjects.InstructorCourseDetailsPage;
-import teammates.test.pageobjects.InstructorCourseEditPage;
-import teammates.test.pageobjects.InstructorCourseEnrollPage;
-import teammates.test.pageobjects.InstructorFeedbackSessionsPage;
-import teammates.test.pageobjects.InstructorHelpPage;
-import teammates.test.pageobjects.InstructorHomePage;
+import teammates.test.pageobjects.*;
+
+import java.time.ZoneId;
 
 /**
  * SUT: {@link Const.ActionURIs#INSTRUCTOR_HOME_PAGE}.

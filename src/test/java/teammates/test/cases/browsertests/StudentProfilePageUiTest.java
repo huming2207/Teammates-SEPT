@@ -2,7 +2,6 @@ package teammates.test.cases.browsertests;
 
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.StudentProfileAttributes;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
@@ -10,14 +9,7 @@ import teammates.common.util.StringHelper;
 import teammates.test.driver.BackDoor;
 import teammates.test.driver.Priority;
 import teammates.test.driver.TestProperties;
-import teammates.test.pageobjects.AppPage;
-import teammates.test.pageobjects.EntityNotFoundPage;
-import teammates.test.pageobjects.GenericAppPage;
-import teammates.test.pageobjects.NotAuthorizedPage;
-import teammates.test.pageobjects.NotFoundPage;
-import teammates.test.pageobjects.StudentHomePage;
-import teammates.test.pageobjects.StudentProfilePage;
-import teammates.test.pageobjects.StudentProfilePicturePage;
+import teammates.test.pageobjects.*;
 
 /**
  * SUT: {@link Const.ActionURIs#STUDENT_PROFILE_PAGE}.
@@ -115,22 +107,6 @@ public class StudentProfilePageUiTest extends BaseUiTestCase {
         profilePage = getProfilePageForStudent("student1InTestingSanitizationCourse");
         profilePage.verifyHtmlPart(
                 By.id("editProfileDiv"), "/studentProfilePageWithAttemptedScriptInjection.html");
-
-        ______TS("Typical case: edit profile picture modal (without existing picture)");
-        profilePage = getProfilePageForStudent("studentWithExistingProfile");
-        profilePage.showPictureEditor();
-        profilePage.verifyHtmlPart(By.id("studentPhotoUploader"), "/studentProfilePictureModalDefault.html");
-
-        ______TS("Typical case: edit profile picture modal (with existing picture)");
-        profilePage = getProfilePageForStudent("studentWithExistingProfile");
-        profilePage.fillProfilePic("src/test/resources/images/profile_pic.png");
-        profilePage.uploadPicture();
-
-        profilePage.waitForTextsForAllStatusMessagesToUserEquals(Const.StatusMessages.STUDENT_PROFILE_PICTURE_SAVED);
-        profilePage.waitForUploadEditModalVisible();
-        profilePage.verifyHtmlMainContent("/studentProfilePageFilled.html");
-
-        profilePage.closeEditPictureModal();
     }
 
     private void testActions() {

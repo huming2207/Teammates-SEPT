@@ -1,9 +1,7 @@
 package teammates.test.cases.util;
 
-import org.testng.annotations.Test;
-
 import com.google.appengine.api.log.AppLogLine;
-
+import org.testng.annotations.Test;
 import teammates.common.util.ActivityLogEntry;
 import teammates.common.util.ActivityLogEntry.Builder;
 import teammates.common.util.Const;

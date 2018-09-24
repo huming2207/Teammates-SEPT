@@ -1,13 +1,12 @@
 package teammates.test.cases.datatransfer;
 
-import java.time.Instant;
-import java.util.ArrayList;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.SessionAttributes;
 import teammates.common.util.TimeHelper;
 import teammates.test.cases.BaseTestCase;
+
+import java.time.Instant;
+import java.util.ArrayList;
 
 /**
  * SUT: {@link SessionAttributes}.

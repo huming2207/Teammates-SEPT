@@ -1,7 +1,6 @@
 package teammates.test.cases.browsertests;
 
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;

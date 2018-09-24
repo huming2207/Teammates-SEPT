@@ -1,11 +1,10 @@
 package teammates.test.pageobjects;
 
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import teammates.common.util.Const;
+
+import java.util.List;
 
 public class InstructorSearchPage extends AppPage {
 

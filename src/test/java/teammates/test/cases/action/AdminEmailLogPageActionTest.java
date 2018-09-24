@@ -1,17 +1,8 @@
 package teammates.test.cases.action;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.google.gson.reflect.TypeToken;
 import org.testng.annotations.BeforeGroups;
 import org.testng.annotations.Test;
-
-import com.google.gson.reflect.TypeToken;
-
 import teammates.common.util.Const;
 import teammates.common.util.EmailLogEntry;
 import teammates.common.util.JsonUtils;
@@ -24,6 +15,13 @@ import teammates.ui.controller.ShowPageResult;
 import teammates.ui.pagedata.AdminEmailLogPageData;
 import teammates.ui.pagedata.PageData;
 import teammates.ui.template.AdminEmailTableRow;
+
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link AdminEmailLogPageAction}.

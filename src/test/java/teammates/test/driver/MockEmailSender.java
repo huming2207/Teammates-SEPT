@@ -1,10 +1,10 @@
 package teammates.test.driver;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import teammates.common.util.EmailWrapper;
 import teammates.logic.api.EmailSender;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Allows mocking of the {@link EmailSender} API used in production.

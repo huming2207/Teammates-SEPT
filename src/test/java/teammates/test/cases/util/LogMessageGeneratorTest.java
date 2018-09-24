@@ -1,10 +1,6 @@
 package teammates.test.cases.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.UserType;
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
@@ -14,6 +10,9 @@ import teammates.common.util.Const;
 import teammates.common.util.LogMessageGenerator;
 import teammates.test.cases.BaseTestCase;
 import teammates.test.driver.AssertHelper;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * SUT: {@link LogMessageGenerator}.

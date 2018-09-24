@@ -1,9 +1,7 @@
 package teammates.test.cases.action;
 
-import org.testng.annotations.Test;
-
 import com.google.apphosting.api.DeadlineExceededException;
-
+import org.testng.annotations.Test;
 import teammates.common.exception.EntityDoesNotExistException;
 import teammates.common.exception.EntityNotFoundException;
 import teammates.common.exception.NullPostParameterException;

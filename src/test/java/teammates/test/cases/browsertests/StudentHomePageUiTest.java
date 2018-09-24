@@ -1,9 +1,6 @@
 package teammates.test.cases.browsertests;
 
-import java.time.Instant;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
@@ -11,6 +8,8 @@ import teammates.test.driver.BackDoor;
 import teammates.test.driver.TestProperties;
 import teammates.test.pageobjects.StudentHelpPage;
 import teammates.test.pageobjects.StudentHomePage;
+
+import java.time.Instant;
 
 /**
  * SUT: {@link Const.ActionURIs#STUDENT_HOME_PAGE}.
@@ -79,27 +78,6 @@ public class StudentHomePageUiTest extends BaseUiTestCase {
         studentHome = getHomePage().clickStudentLogin()
                                    .loginAsStudent(TestProperties.TEST_STUDENT1_ACCOUNT,
                                                    TestProperties.TEST_STUDENT1_PASSWORD);
-
-        ______TS("content: multiple courses");
-
-        // this test uses the accounts from test.properties
-        studentHome.verifyHtmlMainContent("/studentHomeHTML.html");
-
-        AppUrl detailsPageUrl = createUrl(Const.ActionURIs.STUDENT_HOME_PAGE)
-                             .withUserId(testData.students.get("SHomeUiT.charlie.d@SHomeUiT.CS2104").googleId);
-
-        StudentHomePage studentHomePage = loginAdminToPage(detailsPageUrl, StudentHomePage.class);
-
-        studentHomePage.verifyHtmlMainContent("/studentHomeTypicalHTML.html");
-
-        ______TS("content: requires sanitization");
-
-        detailsPageUrl = createUrl(Const.ActionURIs.STUDENT_HOME_PAGE)
-                            .withUserId(testData.students.get("SHomeUiT.student1InTestingSanitizationCourse").googleId);
-
-        studentHomePage = loginAdminToPage(detailsPageUrl, StudentHomePage.class);
-
-        studentHomePage.verifyHtmlMainContent("/studentHomeTypicalTestingSanitization.html");
     }
 
     private void testLinks() {

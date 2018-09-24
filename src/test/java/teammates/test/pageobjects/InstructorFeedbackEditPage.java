@@ -1,8 +1,21 @@
 package teammates.test.pageobjects;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.AssertJUnit.assertTrue;
+import com.google.appengine.api.datastore.Text;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import teammates.common.datatransfer.FeedbackParticipantType;
+import teammates.common.util.Assumption;
+import teammates.common.util.Const;
+import teammates.common.util.StringHelper;
+import teammates.common.util.TimeHelper;
+import teammates.test.driver.TestProperties;
+import teammates.test.driver.TimeHelperExtension;
 
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -12,24 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.google.appengine.api.datastore.Text;
-
-import teammates.common.datatransfer.FeedbackParticipantType;
-import teammates.common.util.Assumption;
-import teammates.common.util.Const;
-import teammates.common.util.StringHelper;
-import teammates.common.util.TimeHelper;
-import teammates.test.driver.TestProperties;
-import teammates.test.driver.TimeHelperExtension;
+import static org.testng.AssertJUnit.*;
 
 public class InstructorFeedbackEditPage extends AppPage {
 

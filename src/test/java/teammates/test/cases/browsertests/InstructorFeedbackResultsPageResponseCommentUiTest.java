@@ -2,7 +2,6 @@ package teammates.test.cases.browsertests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
 import teammates.test.pageobjects.InstructorFeedbackResultsPage;

@@ -1,19 +1,18 @@
 package teammates.test.cases;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.Arrays;
-
 import org.junit.Assert;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.util.FieldValidator;
 import teammates.common.util.JsonUtils;
 import teammates.test.driver.FileHelper;
 import teammates.test.driver.TestProperties;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.Arrays;
 
 /**
  * Base class for all test cases.

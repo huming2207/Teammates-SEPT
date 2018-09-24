@@ -1,10 +1,6 @@
 package teammates.test.cases.action;
 
-import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.StudentAttributesFactory;
 import teammates.common.datatransfer.StudentUpdateStatus;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
@@ -22,6 +18,9 @@ import teammates.ui.controller.ShowPageResult;
 import teammates.ui.pagedata.InstructorCourseEnrollPageData;
 import teammates.ui.pagedata.InstructorCourseEnrollResultPageData;
 import teammates.ui.template.EnrollResultPanel;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * SUT: {@link InstructorCourseEnrollSaveAction}.

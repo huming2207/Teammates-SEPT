@@ -1,14 +1,13 @@
 package teammates.test.cases.datatransfer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.CourseRoster;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.test.cases.BaseTestCase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link CourseRoster}.
