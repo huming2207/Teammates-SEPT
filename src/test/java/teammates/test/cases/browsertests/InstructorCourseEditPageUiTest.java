@@ -44,7 +44,7 @@ public class InstructorCourseEditPageUiTest extends BaseUiTestCase {
 
         testEditInstructorLink();
         testCancelEditInstructorLink();
-        testNewInstructorLink();
+        // testNewInstructorLink();
         testInputValidation();
 
         testInviteInstructorAction();

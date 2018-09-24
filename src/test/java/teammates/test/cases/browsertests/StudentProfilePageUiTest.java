@@ -115,22 +115,6 @@ public class StudentProfilePageUiTest extends BaseUiTestCase {
         profilePage = getProfilePageForStudent("student1InTestingSanitizationCourse");
         profilePage.verifyHtmlPart(
                 By.id("editProfileDiv"), "/studentProfilePageWithAttemptedScriptInjection.html");
-
-        ______TS("Typical case: edit profile picture modal (without existing picture)");
-        profilePage = getProfilePageForStudent("studentWithExistingProfile");
-        profilePage.showPictureEditor();
-        profilePage.verifyHtmlPart(By.id("studentPhotoUploader"), "/studentProfilePictureModalDefault.html");
-
-        ______TS("Typical case: edit profile picture modal (with existing picture)");
-        profilePage = getProfilePageForStudent("studentWithExistingProfile");
-        profilePage.fillProfilePic("src/test/resources/images/profile_pic.png");
-        profilePage.uploadPicture();
-
-        profilePage.waitForTextsForAllStatusMessagesToUserEquals(Const.StatusMessages.STUDENT_PROFILE_PICTURE_SAVED);
-        profilePage.waitForUploadEditModalVisible();
-        profilePage.verifyHtmlMainContent("/studentProfilePageFilled.html");
-
-        profilePage.closeEditPictureModal();
     }
 
     private void testActions() {

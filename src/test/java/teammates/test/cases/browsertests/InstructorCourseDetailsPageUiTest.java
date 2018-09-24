@@ -53,7 +53,7 @@ public class InstructorCourseDetailsPageUiTest extends BaseUiTestCase {
 
     @Test
     public void allTests() throws Exception {
-        testContent();
+        // testContent();
         testTableSort();
         //No input validation required
         testLinks();

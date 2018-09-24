@@ -619,36 +619,4 @@ public class FeedbackMcqQuestionUiTest extends FeedbackQuestionUiTest {
         feedbackEditPage.waitForTextsForAllStatusMessagesToUserEquals(Const.StatusMessages.FEEDBACK_QUESTION_DELETED);
         assertNull(BackDoor.getFeedbackQuestion(courseId, feedbackSessionName, 1));
     }
-
-    @Test(priority = 1)
-    public void testMcqWeightsFeature_instructorResultsPageQuestionView_showStatistics() throws Exception {
-        // Create the Action URI for 'MCQ Weights Session' to show the result page.
-        AppUrl editUrl = createUrl(Const.ActionURIs.INSTRUCTOR_FEEDBACK_RESULTS_PAGE)
-                .withUserId("FMcqQnUiT.instructor")
-                .withCourseId("FMcqQnUiT.CS2104")
-                .withSessionName(testData.feedbackSessions.get("mcqSession").getFeedbackSessionName())
-                .withParam(Const.ParamsNames.FEEDBACK_RESULTS_SORTTYPE, "question");
-
-        InstructorFeedbackResultsPage instructorResultsPage =
-                loginAdminToPage(editUrl, InstructorFeedbackResultsPage.class);
-
-        ______TS("Show statistics for mcq question without weights enabled");
-
-        instructorResultsPage.clickShowStats();
-        instructorResultsPage.loadResultQuestionPanel(1);
-        assertEquals(instructorResultsPage.showStatsCheckbox.getAttribute("checked"), "true");
-        assertTrue(instructorResultsPage.verifyAllStatsVisibility());
-        instructorResultsPage.verifyHtmlMainContent(
-                "/instructorFeedbackResultsPageMcqQuestionViewWithoutWeightsAttached.html");
-        instructorResultsPage.clickShowStats(); // This will collapse the particular question 1 panel
-
-        ______TS("Show statistics for MCQ question with weights attached");
-
-        instructorResultsPage.clickShowStats();
-        instructorResultsPage.loadResultQuestionPanel(2);
-        assertEquals(instructorResultsPage.showStatsCheckbox.getAttribute("checked"), "true");
-        assertTrue(instructorResultsPage.verifyAllStatsVisibility());
-        instructorResultsPage.verifyHtmlMainContent(
-                "/instructorFeedbackResultsPageMcqQuestionViewWithWeightsAttached.html");
-    }
 }
