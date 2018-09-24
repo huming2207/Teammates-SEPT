@@ -1,13 +1,13 @@
 package teammates.test.driver;
 
-import static org.testng.AssertJUnit.fail;
+import teammates.common.util.Config;
+import teammates.common.util.Url;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import teammates.common.util.Config;
-import teammates.common.util.Url;
+import static org.testng.AssertJUnit.fail;
 
 /**
  * Represents properties in test.properties file.

@@ -1,22 +1,17 @@
 package teammates.test.driver;
 
-import static org.testng.AssertJUnit.assertEquals;
-
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import org.jsoup.Jsoup;
 import org.jsoup.helper.W3CDom;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import teammates.common.util.*;
 
-import teammates.common.util.Config;
-import teammates.common.util.Const;
-import teammates.common.util.SanitizationHelper;
-import teammates.common.util.StringHelper;
-import teammates.common.util.TimeHelper;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * Provides mechanism for HTML comparison during testing.

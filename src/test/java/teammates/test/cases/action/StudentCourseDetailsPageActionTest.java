@@ -1,9 +1,6 @@
 package teammates.test.cases.action;
 
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
@@ -19,6 +16,8 @@ import teammates.ui.controller.ShowPageResult;
 import teammates.ui.controller.StudentCourseDetailsPageAction;
 import teammates.ui.controller.StudentProfileEditSaveAction;
 import teammates.ui.pagedata.StudentCourseDetailsPageData;
+
+import java.util.List;
 
 /**
  * SUT: {@link StudentCourseDetailsPageAction}.

@@ -1,9 +1,6 @@
 package teammates.test.cases.action;
 
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.CourseAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.util.Const;
@@ -14,6 +11,8 @@ import teammates.ui.controller.InstructorCourseAddAction;
 import teammates.ui.controller.RedirectResult;
 import teammates.ui.controller.ShowPageResult;
 import teammates.ui.pagedata.InstructorCoursesPageData;
+
+import java.util.List;
 
 /**
  * SUT: {@link InstructorCourseAddAction}.

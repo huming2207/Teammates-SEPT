@@ -1,15 +1,14 @@
 package teammates.test.cases.datatransfer;
 
-import java.time.Instant;
-import java.time.ZoneId;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.CourseAttributes;
 import teammates.common.util.FieldValidator;
 import teammates.common.util.StringHelper;
 import teammates.test.cases.BaseTestCase;
 import teammates.test.driver.StringHelperExtension;
+
+import java.time.Instant;
+import java.time.ZoneId;
 
 /**
  * SUT: {@link CourseAttributes}.

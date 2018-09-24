@@ -1,14 +1,6 @@
 package teammates.test.cases.pagedata;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.CourseAttributes;
@@ -21,6 +13,8 @@ import teammates.ui.template.FeedbackSessionsCopyFromModal;
 import teammates.ui.template.FeedbackSessionsForm;
 import teammates.ui.template.FeedbackSessionsTable;
 import teammates.ui.template.FeedbackSessionsTableRow;
+
+import java.util.*;
 
 /**
  * SUT: {@link InstructorFeedbackSessionsPageData}.

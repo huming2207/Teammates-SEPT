@@ -1,28 +1,12 @@
 package teammates.test.cases.datatransfer;
 
+import org.testng.annotations.Test;
+import teammates.common.datatransfer.questions.*;
+import teammates.test.cases.BaseTestCase;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.testng.annotations.Test;
-
-import teammates.common.datatransfer.questions.FeedbackConstantSumQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackConstantSumResponseDetails;
-import teammates.common.datatransfer.questions.FeedbackContributionQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackContributionResponseDetails;
-import teammates.common.datatransfer.questions.FeedbackMcqQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackMcqResponseDetails;
-import teammates.common.datatransfer.questions.FeedbackMsqQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackMsqResponseDetails;
-import teammates.common.datatransfer.questions.FeedbackNumericalScaleQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackNumericalScaleResponseDetails;
-import teammates.common.datatransfer.questions.FeedbackQuestionType;
-import teammates.common.datatransfer.questions.FeedbackResponseDetails;
-import teammates.common.datatransfer.questions.FeedbackRubricQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackRubricResponseDetails;
-import teammates.common.datatransfer.questions.FeedbackTextQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackTextResponseDetails;
-import teammates.test.cases.BaseTestCase;
 
 /**
  * SUT: {@link FeedbackResponseDetails},

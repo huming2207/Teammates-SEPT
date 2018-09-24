@@ -1,15 +1,13 @@
 package teammates.test.cases.datatransfer;
 
-import java.time.Instant;
-import java.util.ArrayList;
-
-import org.testng.annotations.Test;
-
 import com.google.appengine.api.datastore.Text;
-
+import org.testng.annotations.Test;
 import teammates.common.datatransfer.attributes.FeedbackResponseCommentAttributes;
 import teammates.storage.entity.FeedbackResponseComment;
 import teammates.test.cases.BaseTestCase;
+
+import java.time.Instant;
+import java.util.ArrayList;
 
 /**
  * SUT: {@link teammates.common.datatransfer.attributes.FeedbackResponseCommentAttributes}.

@@ -1,24 +1,22 @@
 package teammates.test.cases.logic;
 
-import javax.mail.Message;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.testng.annotations.Test;
-
 import com.mailjet.client.MailjetRequest;
 import com.mailjet.client.resource.Email;
 import com.sendgrid.Mail;
 import com.sun.jersey.multipart.FormDataMultiPart;
-
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.testng.annotations.Test;
 import teammates.common.util.EmailWrapper;
 import teammates.logic.core.JavamailService;
 import teammates.logic.core.MailgunService;
 import teammates.logic.core.MailjetService;
 import teammates.logic.core.SendgridService;
+
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  * SUT: {@link JavamailService},

@@ -1,14 +1,13 @@
 package teammates.test.cases.logic;
 
-import java.time.ZoneId;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.attributes.CourseAttributes;
 import teammates.common.exception.InvalidParametersException;
 import teammates.common.util.Const;
 import teammates.common.util.FieldValidator;
+
+import java.time.ZoneId;
 
 /**
  * SUT: {@link teammates.logic.backdoor.BackDoorLogic}.

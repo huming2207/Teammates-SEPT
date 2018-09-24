@@ -1,9 +1,7 @@
 package teammates.test.cases.logic;
 
-import org.testng.annotations.Test;
-
 import com.google.appengine.api.blobstore.BlobKey;
-
+import org.testng.annotations.Test;
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.StudentProfileAttributes;
 import teammates.logic.core.AccountsLogic;

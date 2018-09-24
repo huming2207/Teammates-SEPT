@@ -2,7 +2,6 @@ package teammates.test.cases.browsertests;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import teammates.common.util.Const;
 import teammates.test.driver.BackDoor;
 import teammates.test.pageobjects.InstructorFeedbackEditPage;

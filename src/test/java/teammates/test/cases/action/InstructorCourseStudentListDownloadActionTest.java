@@ -2,7 +2,6 @@ package teammates.test.cases.action;
 
 import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.CourseAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.Const;

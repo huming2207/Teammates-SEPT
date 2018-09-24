@@ -1,14 +1,9 @@
 package teammates.test.cases.datatransfer;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.datastore.Text;
-
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import teammates.common.datatransfer.attributes.StudentProfileAttributes;
 import teammates.common.util.FieldValidator;
 import teammates.common.util.SanitizationHelper;
@@ -16,6 +11,9 @@ import teammates.common.util.TimeHelper;
 import teammates.storage.entity.StudentProfile;
 import teammates.test.driver.AssertHelper;
 import teammates.test.driver.StringHelperExtension;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link StudentProfileAttributes}.

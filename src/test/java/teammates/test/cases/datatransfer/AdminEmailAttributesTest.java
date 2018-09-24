@@ -1,14 +1,7 @@
 package teammates.test.cases.datatransfer;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
-
-import org.testng.annotations.Test;
-
 import com.google.appengine.api.datastore.Text;
-
+import org.testng.annotations.Test;
 import teammates.common.datatransfer.attributes.AdminEmailAttributes;
 import teammates.common.util.Const;
 import teammates.common.util.FieldValidator;
@@ -16,6 +9,11 @@ import teammates.common.util.StringHelper;
 import teammates.common.util.TimeHelper;
 import teammates.storage.entity.AdminEmail;
 import teammates.test.driver.StringHelperExtension;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * SUT: {@link AdminEmailAttributes}.

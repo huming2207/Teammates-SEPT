@@ -1,27 +1,17 @@
 package teammates.test.cases.browsertests;
 
-import java.io.File;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
-import teammates.common.util.AppUrl;
-import teammates.common.util.Const;
-import teammates.common.util.JsonUtils;
-import teammates.common.util.StringHelper;
-import teammates.common.util.ThreadHelper;
+import teammates.common.util.*;
 import teammates.test.driver.BackDoor;
 import teammates.test.driver.FileHelper;
 import teammates.test.driver.Priority;
 import teammates.test.driver.TestProperties;
-import teammates.test.pageobjects.InstructorCourseDetailsPage;
-import teammates.test.pageobjects.InstructorCourseEnrollPage;
-import teammates.test.pageobjects.InstructorCourseStudentDetailsEditPage;
-import teammates.test.pageobjects.InstructorCourseStudentDetailsViewPage;
-import teammates.test.pageobjects.InstructorStudentListPage;
-import teammates.test.pageobjects.InstructorStudentRecordsPage;
+import teammates.test.pageobjects.*;
+
+import java.io.File;
 
 /**
  * SUT: {@link Const.ActionURIs#INSTRUCTOR_STUDENT_LIST_PAGE}.

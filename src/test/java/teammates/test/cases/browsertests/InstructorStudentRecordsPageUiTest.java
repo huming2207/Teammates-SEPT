@@ -1,15 +1,14 @@
 package teammates.test.cases.browsertests;
 
-import java.io.IOException;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
 import teammates.test.pageobjects.InstructorStudentRecordsPage;
+
+import java.io.IOException;
 
 /**
  * SUT: {@link Const.ActionURIs#INSTRUCTOR_STUDENT_RECORDS_PAGE}.

@@ -1,17 +1,14 @@
 package teammates.test.pageobjects;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
-import static org.testng.AssertJUnit.fail;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-
 import teammates.common.util.Const;
 import teammates.common.util.NationalityHelper;
+
+import static org.testng.AssertJUnit.*;
 
 public class StudentProfilePage extends AppPage {
 

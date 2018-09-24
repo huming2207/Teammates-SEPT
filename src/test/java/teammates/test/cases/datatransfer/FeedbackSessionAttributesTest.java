@@ -1,19 +1,17 @@
 package teammates.test.cases.datatransfer;
 
-import java.time.Instant;
-import java.time.ZoneId;
-import java.util.Arrays;
-import java.util.List;
-
+import com.google.appengine.api.datastore.Text;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import com.google.appengine.api.datastore.Text;
-
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.util.TimeHelper;
 import teammates.test.cases.BaseTestCase;
 import teammates.test.driver.TimeHelperExtension;
+
+import java.time.Instant;
+import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * SUT: {@link FeedbackSessionAttributes}.

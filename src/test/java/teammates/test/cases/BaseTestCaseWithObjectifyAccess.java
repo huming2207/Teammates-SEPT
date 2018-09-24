@@ -1,11 +1,9 @@
 package teammates.test.cases;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.Closeable;
-
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import teammates.storage.api.OfyHelper;
 
 /**

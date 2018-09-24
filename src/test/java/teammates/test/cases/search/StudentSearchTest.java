@@ -1,15 +1,14 @@
 package teammates.test.cases.search;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.StudentSearchResultBundle;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.storage.api.StudentsDb;
 import teammates.test.driver.AssertHelper;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * SUT: {@link StudentsDb},

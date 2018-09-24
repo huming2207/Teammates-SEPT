@@ -1,10 +1,6 @@
 package teammates.test.cases.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.datatransfer.attributes.StudentProfileAttributes;
@@ -20,6 +16,9 @@ import teammates.ui.controller.InstructorStudentRecordsPageAction;
 import teammates.ui.controller.RedirectResult;
 import teammates.ui.controller.ShowPageResult;
 import teammates.ui.pagedata.InstructorStudentRecordsPageData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link InstructorStudentRecordsPageAction}.

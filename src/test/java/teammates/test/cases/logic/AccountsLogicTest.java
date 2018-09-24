@@ -1,9 +1,6 @@
 package teammates.test.cases.logic;
 
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
@@ -22,6 +19,8 @@ import teammates.logic.core.StudentsLogic;
 import teammates.storage.api.AccountsDb;
 import teammates.test.driver.AssertHelper;
 import teammates.test.driver.Priority;
+
+import java.util.List;
 
 /**
  * SUT: {@link AccountsLogic}.

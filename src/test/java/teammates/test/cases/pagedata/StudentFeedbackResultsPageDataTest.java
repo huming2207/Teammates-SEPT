@@ -1,13 +1,7 @@
 package teammates.test.cases.pagedata;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
@@ -19,6 +13,11 @@ import teammates.logic.api.Logic;
 import teammates.test.cases.BaseComponentTestCase;
 import teammates.ui.pagedata.StudentFeedbackResultsPageData;
 import teammates.ui.template.StudentFeedbackResultsQuestionWithResponses;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * SUT: {@link StudentFeedbackResultsPageData}.

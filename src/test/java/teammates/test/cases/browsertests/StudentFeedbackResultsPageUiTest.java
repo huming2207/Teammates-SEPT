@@ -1,17 +1,12 @@
 package teammates.test.cases.browsertests;
 
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
 import teammates.test.driver.BackDoor;
 import teammates.test.driver.TestProperties;
-import teammates.test.pageobjects.AppPage;
-import teammates.test.pageobjects.HomePage;
-import teammates.test.pageobjects.LoginPage;
-import teammates.test.pageobjects.StudentCourseJoinConfirmationPage;
-import teammates.test.pageobjects.StudentFeedbackResultsPage;
+import teammates.test.pageobjects.*;
 
 /**
  * SUT: {@link Const.ActionURIs#STUDENT_FEEDBACK_RESULTS_PAGE}.

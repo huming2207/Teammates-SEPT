@@ -1,9 +1,6 @@
 package teammates.test.cases.action;
 
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.exception.UnauthorizedAccessException;
 import teammates.common.util.Const;
@@ -14,6 +11,8 @@ import teammates.ui.controller.InstructorCourseEditPageAction;
 import teammates.ui.controller.ShowPageResult;
 import teammates.ui.pagedata.InstructorCourseEditPageData;
 import teammates.ui.template.CourseEditInstructorPanel;
+
+import java.util.List;
 
 /**
  * SUT: {@link InstructorCourseEditPageAction}.

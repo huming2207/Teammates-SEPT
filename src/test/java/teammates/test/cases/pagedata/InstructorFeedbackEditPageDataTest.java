@@ -1,15 +1,6 @@
 package teammates.test.cases.pagedata;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.CourseDetailsBundle;
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.FeedbackParticipantType;
@@ -23,12 +14,9 @@ import teammates.common.util.SanitizationHelper;
 import teammates.common.util.TimeHelper;
 import teammates.test.cases.BaseTestCaseWithMinimalGaeEnvironment;
 import teammates.ui.pagedata.InstructorFeedbackEditPageData;
-import teammates.ui.template.FeedbackQuestionEditForm;
-import teammates.ui.template.FeedbackQuestionFeedbackPathSettings;
-import teammates.ui.template.FeedbackQuestionVisibilitySettings;
-import teammates.ui.template.FeedbackSessionPreviewForm;
-import teammates.ui.template.FeedbackSessionsAdditionalSettingsFormSegment;
-import teammates.ui.template.FeedbackSessionsForm;
+import teammates.ui.template.*;
+
+import java.util.*;
 
 /**
  * SUT: {@link InstructorFeedbackEditPageData}.

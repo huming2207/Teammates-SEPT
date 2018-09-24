@@ -1,10 +1,6 @@
 package teammates.test.cases.action;
 
-import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.exception.EntityNotFoundException;
@@ -16,6 +12,9 @@ import teammates.logic.core.StudentsLogic;
 import teammates.test.driver.AssertHelper;
 import teammates.ui.controller.InstructorCourseRemindAction;
 import teammates.ui.controller.RedirectResult;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * SUT: {@link InstructorCourseRemindAction}.

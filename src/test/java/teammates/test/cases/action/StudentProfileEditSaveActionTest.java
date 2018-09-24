@@ -1,10 +1,6 @@
 package teammates.test.cases.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.StudentProfileAttributes;
 import teammates.common.util.Const;
@@ -14,6 +10,9 @@ import teammates.common.util.StringHelper;
 import teammates.test.driver.AssertHelper;
 import teammates.ui.controller.RedirectResult;
 import teammates.ui.controller.StudentProfileEditSaveAction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link StudentProfileEditSaveAction}.

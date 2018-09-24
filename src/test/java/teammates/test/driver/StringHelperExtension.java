@@ -1,8 +1,8 @@
 package teammates.test.driver;
 
-import java.util.Random;
-
 import teammates.common.util.StringHelper;
+
+import java.util.Random;
 
 /**
  * Holds additional methods for {@link StringHelper} used only in tests.

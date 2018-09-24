@@ -1,32 +1,12 @@
 package teammates.test.driver;
 
-import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.AssertJUnit.assertTrue;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.google.appengine.api.log.dev.LocalLogService;
-import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalLogServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalMailServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalModulesServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalSearchServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
-import com.google.appengine.tools.development.testing.LocalTaskQueueTestConfig;
-import com.google.appengine.tools.development.testing.LocalUserServiceTestConfig;
+import com.google.appengine.tools.development.testing.*;
 import com.meterware.httpunit.PostMethodWebRequest;
 import com.meterware.httpunit.WebRequest;
 import com.meterware.servletunit.InvocationContext;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletUnitClient;
-
 import teammates.common.util.Const;
 import teammates.common.util.CryptoHelper;
 import teammates.logic.api.GateKeeper;
@@ -34,6 +14,17 @@ import teammates.ui.automated.AutomatedAction;
 import teammates.ui.automated.AutomatedActionFactory;
 import teammates.ui.controller.Action;
 import teammates.ui.controller.ActionFactory;
+
+import javax.servlet.http.HttpServletRequest;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static org.testng.AssertJUnit.assertFalse;
+import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Provides a Singleton in-memory simulation of the GAE for unit testing.

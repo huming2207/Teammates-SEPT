@@ -1,13 +1,7 @@
 package teammates.test.cases.storage;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.testng.annotations.Test;
-
 import com.google.appengine.api.blobstore.BlobKey;
-
+import org.testng.annotations.Test;
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.StudentProfileAttributes;
 import teammates.common.exception.EntityDoesNotExistException;
@@ -20,6 +14,10 @@ import teammates.storage.api.ProfilesDb;
 import teammates.test.cases.BaseComponentTestCase;
 import teammates.test.driver.AssertHelper;
 import teammates.test.driver.StringHelperExtension;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link AccountsDb}.

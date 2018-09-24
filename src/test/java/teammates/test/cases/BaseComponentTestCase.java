@@ -1,28 +1,19 @@
 package teammates.test.cases;
 
-import java.io.IOException;
-
+import com.google.appengine.api.blobstore.BlobKey;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import com.google.appengine.api.blobstore.BlobKey;
-
 import teammates.common.datatransfer.DataBundle;
-import teammates.common.datatransfer.attributes.AccountAttributes;
-import teammates.common.datatransfer.attributes.CourseAttributes;
-import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
-import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
-import teammates.common.datatransfer.attributes.FeedbackResponseCommentAttributes;
-import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
-import teammates.common.datatransfer.attributes.InstructorAttributes;
-import teammates.common.datatransfer.attributes.StudentAttributes;
+import teammates.common.datatransfer.attributes.*;
 import teammates.common.exception.TeammatesException;
 import teammates.common.util.Const;
 import teammates.common.util.GoogleCloudStorageHelper;
 import teammates.logic.backdoor.BackDoorLogic;
 import teammates.test.driver.FileHelper;
 import teammates.test.driver.GaeSimulation;
+
+import java.io.IOException;
 
 /**
  * Base class for all component tests.

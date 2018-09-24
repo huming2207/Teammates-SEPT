@@ -1,14 +1,13 @@
 package teammates.test.cases.search;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.FeedbackResponseCommentSearchResultBundle;
 import teammates.common.datatransfer.attributes.FeedbackResponseCommentAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.storage.api.FeedbackResponseCommentsDb;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * SUT: {@link FeedbackResponseCommentsDb},

@@ -1,15 +1,9 @@
 package teammates.test.cases.util;
 
 // CHECKSTYLE.OFF:AvoidStarImport as we want to perform tests on everything from FieldValidator
-import static teammates.common.util.FieldValidator.*;
-//CHECKSTYLE.ON:AvoidStarImport
-
-import java.time.Instant;
-
-import org.testng.annotations.Test;
 
 import com.google.appengine.api.datastore.Text;
-
+import org.testng.annotations.Test;
 import teammates.common.util.Const;
 import teammates.common.util.FieldValidator;
 import teammates.common.util.SanitizationHelper;
@@ -18,6 +12,12 @@ import teammates.test.cases.BaseTestCase;
 import teammates.test.driver.FieldValidatorExtension;
 import teammates.test.driver.StringHelperExtension;
 import teammates.test.driver.TimeHelperExtension;
+
+import java.time.Instant;
+
+import static teammates.common.util.FieldValidator.*;
+
+//CHECKSTYLE.ON:AvoidStarImport
 
 /**
  * SUT: {@link FieldValidator}.

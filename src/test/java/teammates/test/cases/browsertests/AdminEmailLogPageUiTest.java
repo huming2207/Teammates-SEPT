@@ -1,15 +1,14 @@
 package teammates.test.cases.browsertests;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
 import teammates.test.pageobjects.AdminEmailLogPage;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * SUT: {@link Const.ActionURIs#ADMIN_EMAIL_LOG_PAGE}.

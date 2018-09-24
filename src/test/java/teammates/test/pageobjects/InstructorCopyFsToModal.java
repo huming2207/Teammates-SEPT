@@ -1,13 +1,12 @@
 package teammates.test.pageobjects;
 
-import static org.testng.AssertJUnit.assertEquals;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import teammates.common.util.Const;
 
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import teammates.common.util.Const;
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * Page Object class for handling the modal for copying a feedback session to multiple courses.

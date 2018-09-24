@@ -1,12 +1,7 @@
 package teammates.test.cases.logic;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.InstructorPrivileges;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.exception.EntityAlreadyExistsException;
@@ -18,6 +13,10 @@ import teammates.logic.core.CoursesLogic;
 import teammates.logic.core.InstructorsLogic;
 import teammates.storage.api.InstructorsDb;
 import teammates.test.driver.AssertHelper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * SUT: {@link InstructorsLogic}.

@@ -1,9 +1,9 @@
 package teammates.test.pageobjects;
 
-import static org.testng.AssertJUnit.assertTrue;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import static org.testng.AssertJUnit.assertTrue;
 
 public class AdminEmailLogPage extends AppPage {
 

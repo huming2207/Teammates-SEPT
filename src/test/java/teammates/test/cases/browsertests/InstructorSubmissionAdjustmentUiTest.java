@@ -1,10 +1,6 @@
 package teammates.test.cases.browsertests;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.FeedbackParticipantType;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
@@ -19,6 +15,9 @@ import teammates.test.driver.BackDoor;
 import teammates.test.driver.Priority;
 import teammates.test.driver.TestProperties;
 import teammates.test.pageobjects.InstructorCourseEnrollPage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Covers Ui aspect of submission adjustment for evaluations and feedbacks.

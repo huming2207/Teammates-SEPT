@@ -1,10 +1,7 @@
 package teammates.test.cases.browsertests;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.InstructorPrivileges;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.util.AppUrl;
@@ -16,6 +13,8 @@ import teammates.test.pageobjects.AppPage;
 import teammates.test.pageobjects.InstructorCourseDetailsPage;
 import teammates.test.pageobjects.InstructorCourseEditPage;
 import teammates.test.pageobjects.InstructorCoursesPage;
+
+import java.io.IOException;
 
 /**
  * SUT: {@link Const.ActionURIs#INSTRUCTOR_COURSE_EDIT_PAGE}.

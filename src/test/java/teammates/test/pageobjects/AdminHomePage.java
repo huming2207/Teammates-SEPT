@@ -3,7 +3,6 @@ package teammates.test.pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.util.Const;
 

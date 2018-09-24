@@ -1,7 +1,6 @@
 package teammates.test.cases.action;
 
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.FeedbackParticipantType;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;

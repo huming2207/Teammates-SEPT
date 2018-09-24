@@ -1,11 +1,11 @@
 package teammates.test.driver;
 
-import static org.testng.AssertJUnit.assertEquals;
+import teammates.common.util.Config;
+import teammates.common.util.Const;
 
 import java.io.IOException;
 
-import teammates.common.util.Config;
-import teammates.common.util.Const;
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * Checks email content and accounts for unpredictable values such as encrypted values,

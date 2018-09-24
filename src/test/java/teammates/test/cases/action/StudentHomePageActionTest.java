@@ -1,7 +1,6 @@
 package teammates.test.cases.action;
 
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.Const;

@@ -1,12 +1,7 @@
 package teammates.test.cases.browsertests;
 
-import java.io.IOException;
-
-import javax.mail.MessagingException;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
@@ -19,6 +14,9 @@ import teammates.test.pageobjects.InstructorCourseDetailsPage;
 import teammates.test.pageobjects.InstructorCourseStudentDetailsEditPage;
 import teammates.test.pageobjects.InstructorCourseStudentDetailsViewPage;
 import teammates.test.pageobjects.InstructorStudentRecordsPage;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
 
 /**
  * SUT: {@link Const.ActionURIs#INSTRUCTOR_COURSE_DETAILS_PAGE}.

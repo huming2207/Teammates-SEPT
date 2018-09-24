@@ -1,29 +1,22 @@
 package teammates.test.cases.action;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.BeforeClass;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.FeedbackParticipantType;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.exception.InvalidPostParametersException;
 import teammates.common.exception.UnauthorizedAccessException;
-import teammates.common.util.Assumption;
-import teammates.common.util.Const;
-import teammates.common.util.EmailWrapper;
-import teammates.common.util.StatusMessage;
-import teammates.common.util.StatusMessageColor;
-import teammates.common.util.StringHelper;
+import teammates.common.util.*;
 import teammates.logic.core.StudentsLogic;
 import teammates.test.cases.BaseComponentTestCase;
 import teammates.test.driver.AssertHelper;
 import teammates.ui.controller.*;
-import teammates.ui.controller.CsvDownloadResult;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Base class for action tests.

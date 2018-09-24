@@ -1,12 +1,10 @@
 package teammates.test.pageobjects;
 
+import com.google.common.base.Preconditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import com.google.common.base.Preconditions;
-
 import teammates.test.driver.TestProperties;
 
 public class GoogleLoginPage extends LoginPage {

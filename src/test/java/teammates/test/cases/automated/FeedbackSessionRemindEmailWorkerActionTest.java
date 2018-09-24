@@ -1,11 +1,6 @@
 package teammates.test.cases.automated;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
@@ -18,6 +13,10 @@ import teammates.logic.core.FeedbackSessionsLogic;
 import teammates.logic.core.InstructorsLogic;
 import teammates.logic.core.StudentsLogic;
 import teammates.ui.automated.FeedbackSessionRemindEmailWorkerAction;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * SUT: {@link FeedbackSessionRemindEmailWorkerAction}.

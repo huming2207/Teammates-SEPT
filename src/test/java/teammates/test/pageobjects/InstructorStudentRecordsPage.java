@@ -1,17 +1,14 @@
 package teammates.test.pageobjects;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
-import static org.testng.AssertJUnit.fail;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import teammates.common.util.ThreadHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-
-import teammates.common.util.ThreadHelper;
+import static org.testng.AssertJUnit.*;
 
 public class InstructorStudentRecordsPage extends AppPage {
 

@@ -3,7 +3,6 @@ package teammates.test.cases.browsertests;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Config;
@@ -12,12 +11,7 @@ import teammates.test.driver.AssertHelper;
 import teammates.test.driver.BackDoor;
 import teammates.test.driver.Priority;
 import teammates.test.driver.TestProperties;
-import teammates.test.pageobjects.AppPage;
-import teammates.test.pageobjects.HomePage;
-import teammates.test.pageobjects.LoginPage;
-import teammates.test.pageobjects.NotAuthorizedPage;
-import teammates.test.pageobjects.NotFoundPage;
-import teammates.test.pageobjects.UserErrorReportPage;
+import teammates.test.pageobjects.*;
 
 /**
  * We do not test all access control at UI level. This class contains a few

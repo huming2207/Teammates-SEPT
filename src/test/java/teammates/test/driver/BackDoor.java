@@ -1,5 +1,14 @@
 package teammates.test.driver;
 
+import com.google.gson.reflect.TypeToken;
+import teammates.common.datatransfer.DataBundle;
+import teammates.common.datatransfer.attributes.*;
+import teammates.common.exception.TeammatesException;
+import teammates.common.util.Const;
+import teammates.common.util.JsonUtils;
+import teammates.common.util.SanitizationHelper;
+import teammates.logic.backdoor.BackDoorOperation;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,23 +18,6 @@ import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.google.gson.reflect.TypeToken;
-
-import teammates.common.datatransfer.DataBundle;
-import teammates.common.datatransfer.attributes.AccountAttributes;
-import teammates.common.datatransfer.attributes.CourseAttributes;
-import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
-import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
-import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
-import teammates.common.datatransfer.attributes.InstructorAttributes;
-import teammates.common.datatransfer.attributes.StudentAttributes;
-import teammates.common.datatransfer.attributes.StudentProfileAttributes;
-import teammates.common.exception.TeammatesException;
-import teammates.common.util.Const;
-import teammates.common.util.JsonUtils;
-import teammates.common.util.SanitizationHelper;
-import teammates.logic.backdoor.BackDoorOperation;
 
 /**
  * Used to access the datastore without going through the UI.

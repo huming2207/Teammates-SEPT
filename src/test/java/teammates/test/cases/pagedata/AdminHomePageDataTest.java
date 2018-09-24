@@ -1,7 +1,6 @@
 package teammates.test.cases.pagedata;
 
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.test.cases.BaseTestCase;

@@ -1,13 +1,13 @@
 package teammates.test.driver;
 
+import org.testng.IMethodInstance;
+import org.testng.IMethodInterceptor;
+import org.testng.ITestContext;
+
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Comparator;
 import java.util.List;
-
-import org.testng.IMethodInstance;
-import org.testng.IMethodInterceptor;
-import org.testng.ITestContext;
 
 /**
  * Allows TestNG to run tests in a specified order, based on the {@code Priority(n)} annotation.

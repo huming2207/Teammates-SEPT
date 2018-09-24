@@ -1,13 +1,8 @@
 package teammates.test.cases.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.InstructorPrivileges;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
@@ -22,6 +17,10 @@ import teammates.storage.api.EntitiesDb;
 import teammates.storage.api.InstructorsDb;
 import teammates.test.cases.BaseComponentTestCase;
 import teammates.test.driver.AssertHelper;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * SUT: {@link InstructorsDb}.

@@ -1,10 +1,6 @@
 package teammates.test.cases.storage;
 
-import static teammates.common.util.FieldValidator.COURSE_ID_ERROR_MESSAGE;
-import static teammates.common.util.FieldValidator.REASON_INCORRECT_FORMAT;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.exception.EntityAlreadyExistsException;
 import teammates.common.exception.EntityDoesNotExistException;
@@ -15,6 +11,9 @@ import teammates.common.util.StringHelper;
 import teammates.storage.api.StudentsDb;
 import teammates.test.cases.BaseComponentTestCase;
 import teammates.test.driver.AssertHelper;
+
+import static teammates.common.util.FieldValidator.COURSE_ID_ERROR_MESSAGE;
+import static teammates.common.util.FieldValidator.REASON_INCORRECT_FORMAT;
 
 /**
  * SUT: {@link StudentsDb}.

@@ -1,12 +1,6 @@
 package teammates.test.cases.pagedata;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.SectionDetailsBundle;
 import teammates.common.datatransfer.TeamDetailsBundle;
 import teammates.common.datatransfer.attributes.AccountAttributes;
@@ -19,6 +13,11 @@ import teammates.ui.pagedata.InstructorStudentListAjaxPageData;
 import teammates.ui.template.StudentListSectionData;
 import teammates.ui.template.StudentListStudentData;
 import teammates.ui.template.StudentListTeamData;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * SUT: {@link InstructorStudentListAjaxPageData}.

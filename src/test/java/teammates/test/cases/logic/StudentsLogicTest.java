@@ -1,47 +1,25 @@
 package teammates.test.cases.logic;
 
+import com.google.appengine.api.datastore.Text;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+import teammates.common.datatransfer.*;
+import teammates.common.datatransfer.attributes.*;
+import teammates.common.exception.EnrollException;
+import teammates.common.exception.EntityDoesNotExistException;
+import teammates.common.exception.InvalidParametersException;
+import teammates.common.util.*;
+import teammates.logic.core.*;
+import teammates.storage.api.StudentsDb;
+import teammates.test.driver.AssertHelper;
+import teammates.test.driver.StringHelperExtension;
+import teammates.test.driver.TimeHelperExtension;
+
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Test;
-
-import com.google.appengine.api.datastore.Text;
-
-import teammates.common.datatransfer.CourseDetailsBundle;
-import teammates.common.datatransfer.CourseEnrollmentResult;
-import teammates.common.datatransfer.StudentAttributesFactory;
-import teammates.common.datatransfer.StudentEnrollDetails;
-import teammates.common.datatransfer.StudentUpdateStatus;
-import teammates.common.datatransfer.TeamDetailsBundle;
-import teammates.common.datatransfer.attributes.AccountAttributes;
-import teammates.common.datatransfer.attributes.CourseAttributes;
-import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
-import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
-import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
-import teammates.common.datatransfer.attributes.StudentAttributes;
-import teammates.common.datatransfer.attributes.StudentProfileAttributes;
-import teammates.common.exception.EnrollException;
-import teammates.common.exception.EntityDoesNotExistException;
-import teammates.common.exception.InvalidParametersException;
-import teammates.common.util.Const;
-import teammates.common.util.FieldValidator;
-import teammates.common.util.JsonUtils;
-import teammates.common.util.SanitizationHelper;
-import teammates.common.util.StringHelper;
-import teammates.logic.core.AccountsLogic;
-import teammates.logic.core.CoursesLogic;
-import teammates.logic.core.FeedbackQuestionsLogic;
-import teammates.logic.core.FeedbackResponsesLogic;
-import teammates.logic.core.FeedbackSessionsLogic;
-import teammates.logic.core.StudentsLogic;
-import teammates.storage.api.StudentsDb;
-import teammates.test.driver.AssertHelper;
-import teammates.test.driver.StringHelperExtension;
-import teammates.test.driver.TimeHelperExtension;
 
 /**
  * SUT: {@link StudentsLogic}.

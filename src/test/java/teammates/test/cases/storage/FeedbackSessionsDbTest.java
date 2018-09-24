@@ -1,20 +1,9 @@
 package teammates.test.cases.storage;
 
-import static teammates.common.util.FieldValidator.SESSION_END_TIME_FIELD_NAME;
-import static teammates.common.util.FieldValidator.SESSION_START_TIME_FIELD_NAME;
-import static teammates.common.util.FieldValidator.TIME_FRAME_ERROR_MESSAGE;
-
-import java.time.Duration;
-import java.time.Instant;
-import java.util.List;
-import java.util.Set;
-
+import com.google.appengine.api.datastore.Text;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import com.google.appengine.api.datastore.Text;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.exception.EntityAlreadyExistsException;
@@ -24,6 +13,13 @@ import teammates.common.util.Const;
 import teammates.storage.api.FeedbackSessionsDb;
 import teammates.test.cases.BaseComponentTestCase;
 import teammates.test.driver.AssertHelper;
+
+import java.time.Duration;
+import java.time.Instant;
+import java.util.List;
+import java.util.Set;
+
+import static teammates.common.util.FieldValidator.*;
 
 /**
  * SUT: {@link FeedbackSessionsDb}.

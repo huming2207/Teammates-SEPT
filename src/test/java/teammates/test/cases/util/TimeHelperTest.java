@@ -1,17 +1,12 @@
 package teammates.test.cases.util;
 
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.ZoneId;
-import java.util.Date;
-
 import org.testng.annotations.Test;
-
 import teammates.common.util.Const;
 import teammates.common.util.TimeHelper;
 import teammates.test.cases.BaseTestCase;
+
+import java.time.*;
+import java.util.Date;
 
 /**
  * SUT: {@link TimeHelper}.

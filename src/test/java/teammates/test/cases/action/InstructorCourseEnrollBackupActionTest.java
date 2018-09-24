@@ -7,7 +7,9 @@ import teammates.common.datatransfer.TeamDetailsBundle;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.datatransfer.attributes.StudentAttributes;
 import teammates.common.util.Const;
-import teammates.ui.controller.*;
+import teammates.ui.controller.Action;
+import teammates.ui.controller.InstructorCourseEnrollBackupAction;
+import teammates.ui.controller.JsonDownloadResult;
 
 import java.util.List;
 

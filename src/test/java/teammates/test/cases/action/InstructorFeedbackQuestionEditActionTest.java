@@ -1,24 +1,13 @@
 package teammates.test.cases.action;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.DataBundle;
 import teammates.common.datatransfer.FeedbackParticipantType;
 import teammates.common.datatransfer.FeedbackSessionDetailsBundle;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
-import teammates.common.datatransfer.questions.FeedbackConstantSumQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackContributionQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackMcqQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackMsqQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackNumericalScaleQuestionDetails;
-import teammates.common.datatransfer.questions.FeedbackRubricQuestionDetails;
+import teammates.common.datatransfer.questions.*;
 import teammates.common.exception.NullPostParameterException;
 import teammates.common.util.Const;
 import teammates.common.util.FieldValidator;
@@ -29,6 +18,11 @@ import teammates.storage.api.FeedbackResponsesDb;
 import teammates.test.driver.AssertHelper;
 import teammates.ui.controller.InstructorFeedbackQuestionEditAction;
 import teammates.ui.controller.RedirectResult;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * SUT: {@link InstructorFeedbackQuestionEditAction}.

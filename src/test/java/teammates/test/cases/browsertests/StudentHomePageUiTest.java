@@ -1,9 +1,6 @@
 package teammates.test.cases.browsertests;
 
-import java.time.Instant;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Const;
@@ -11,6 +8,8 @@ import teammates.test.driver.BackDoor;
 import teammates.test.driver.TestProperties;
 import teammates.test.pageobjects.StudentHelpPage;
 import teammates.test.pageobjects.StudentHomePage;
+
+import java.time.Instant;
 
 /**
  * SUT: {@link Const.ActionURIs#STUDENT_HOME_PAGE}.

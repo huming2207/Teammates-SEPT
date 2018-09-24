@@ -1,27 +1,19 @@
 package teammates.test.pageobjects;
 
-import static com.google.common.base.Preconditions.checkState;
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.AssertJUnit.assertTrue;
-import static org.testng.AssertJUnit.fail;
-
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-
 import teammates.common.util.Const;
 import teammates.common.util.ThreadHelper;
 import teammates.common.util.retry.MaximumRetriesExceededException;
 import teammates.common.util.retry.RetryableTask;
+
+import java.util.List;
+
+import static com.google.common.base.Preconditions.checkState;
+import static org.testng.AssertJUnit.*;
 
 public class InstructorFeedbackResultsPage extends AppPage {
 

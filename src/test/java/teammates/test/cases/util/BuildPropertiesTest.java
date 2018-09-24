@@ -1,7 +1,6 @@
 package teammates.test.cases.util;
 
 import org.testng.annotations.Test;
-
 import teammates.common.util.Config;
 import teammates.test.cases.BaseTestCase;
 

@@ -1,9 +1,6 @@
 package teammates.test.cases.action;
 
-import java.util.Map;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.util.Const;
 import teammates.common.util.Const.ParamsNames;
@@ -13,6 +10,8 @@ import teammates.logic.core.InstructorsLogic;
 import teammates.test.driver.AssertHelper;
 import teammates.ui.controller.InstructorCourseInstructorAddAction;
 import teammates.ui.controller.RedirectResult;
+
+import java.util.Map;
 
 /**
  * SUT: {@link InstructorCourseInstructorAddAction}.

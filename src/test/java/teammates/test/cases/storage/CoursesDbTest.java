@@ -1,9 +1,6 @@
 package teammates.test.cases.storage;
 
-import java.time.ZoneId;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.CourseAttributes;
 import teammates.common.exception.EntityAlreadyExistsException;
 import teammates.common.exception.EntityDoesNotExistException;
@@ -15,6 +12,8 @@ import teammates.storage.api.EntitiesDb;
 import teammates.test.cases.BaseComponentTestCase;
 import teammates.test.driver.AssertHelper;
 import teammates.test.driver.StringHelperExtension;
+
+import java.time.ZoneId;
 
 /**
  * SUT: {@link CoursesDb}.

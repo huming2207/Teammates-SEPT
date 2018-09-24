@@ -1,14 +1,13 @@
 package teammates.test.pageobjects;
 
-import java.util.Stack;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
-
 import teammates.test.driver.TestProperties;
+
+import java.util.Stack;
 
 /**
  * A programmatic interface to the Browser used to test the app.

@@ -1,11 +1,6 @@
 package teammates.test.cases.pagedata;
 
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.AccountAttributes;
 import teammates.common.datatransfer.attributes.CourseAttributes;
 import teammates.common.util.SanitizationHelper;
@@ -16,6 +11,10 @@ import teammates.ui.template.InstructorStudentListFilterBox;
 import teammates.ui.template.InstructorStudentListFilterCourse;
 import teammates.ui.template.InstructorStudentListSearchBox;
 import teammates.ui.template.InstructorStudentListStudentsTableCourse;
+
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link InstructorStudentListPageData}.

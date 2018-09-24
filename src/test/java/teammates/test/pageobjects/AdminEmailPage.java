@@ -1,13 +1,12 @@
 package teammates.test.pageobjects;
 
-import java.io.File;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import teammates.common.util.Const;
 import teammates.test.driver.TestProperties;
+
+import java.io.File;
 
 public class AdminEmailPage extends AppPage {
     @FindBy (id = "adminEmailGroupReceiverListUploadBox")

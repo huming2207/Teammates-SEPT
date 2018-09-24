@@ -1,9 +1,6 @@
 package teammates.test.cases.action;
 
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.common.datatransfer.attributes.FeedbackSessionAttributes;
 import teammates.common.datatransfer.attributes.InstructorAttributes;
 import teammates.common.util.Const;
@@ -12,6 +9,8 @@ import teammates.logic.core.CoursesLogic;
 import teammates.logic.core.FeedbackSessionsLogic;
 import teammates.ui.controller.InstructorCourseEditSaveAction;
 import teammates.ui.controller.RedirectResult;
+
+import java.util.List;
 
 /**
  * SUT: {@link InstructorCourseEditSaveAction}.

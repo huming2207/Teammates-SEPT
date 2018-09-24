@@ -1,12 +1,11 @@
 package teammates.test.cases.datatransfer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.testng.annotations.Test;
-
 import teammates.test.cases.BaseTestCase;
 import teammates.ui.template.InstructorFeedbackResultsResponseRow;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * SUT: {@link InstructorFeedbackResultsResponseRow}.
