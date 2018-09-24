@@ -2,6 +2,8 @@
 
 <img src="src/main/webapp/images/teammateslogo-black.png" width="600">
 
+![travis](https://travis-ci.com/RMIT-SEPT/H.A.K.Y.svg?token=YLLqGqPBkry5WrFqv4tp&branch=master)
+
 This is a TEAMMATES' fork for a RMIT University's course, Software Engineering Process & Tool in Semester 2, 2018.
 
 The maintainers are:
