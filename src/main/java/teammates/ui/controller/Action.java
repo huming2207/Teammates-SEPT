@@ -240,7 +240,8 @@ public abstract class Action {
         }
 
         // Ignore CI tests
-        if (System.getenv("CI").equalsIgnoreCase("true")) {
+        String ciEnv = System.getenv("CI");
+        if (ciEnv != null && ciEnv.equalsIgnoreCase("true")) {
             return;
         }
 
