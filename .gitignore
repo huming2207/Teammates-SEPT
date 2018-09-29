@@ -3,6 +3,7 @@ secrets.tar.xz
 
 gae.json
 !gae.json.enc
+firefox/
 
 .classpath
 .project
