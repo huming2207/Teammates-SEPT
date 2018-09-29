@@ -70,5 +70,6 @@ deploy:
   keyfile: "./gae.json"
   project: teammates-haky
   verbosity: debug
+  skip_cleanup: true
   on:
     all_branches: true
