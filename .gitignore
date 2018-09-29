@@ -1,5 +1,9 @@
 secrets.tar.xz
 !secrets.tar.xz.enc
+
+gae.json
+!gae.json.enc
+
 .classpath
 .project
 .DS_Store
