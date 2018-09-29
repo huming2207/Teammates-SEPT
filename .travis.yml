@@ -61,15 +61,6 @@ after_failure:
 
 after_success:
 - "./gradlew jacocoReport"
-- rm -rf "`gcloud info --format='value(installation.sdk_root)'`"
-- rm -rf "`gcloud info --format='value(config.paths.global_config_dir)'`"
-- sudo rm -rf /usr/lib/google-cloud-sdk
+- gcloud auth activate-service-account teammates-haky@appspot.gserviceaccount.com --key-file=gae.json --project=teammates-haky
+- "./gradlew appengineDeployAll"
 
-deploy:
-  provider: gae
-  keyfile: "./gae.json"
-  project: teammates-haky
-  verbosity: debug
-  skip_cleanup: true
-  on:
-    all_branches: true
