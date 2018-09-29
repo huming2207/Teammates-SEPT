@@ -1,3 +1,10 @@
+secrets.tar.xz
+!secrets.tar.xz.enc
+
+gae.json
+!gae.json.enc
+firefox/
+
 .classpath
 .project
 .DS_Store

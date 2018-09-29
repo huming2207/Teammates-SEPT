@@ -1,12 +1,20 @@
 /* global tinymce:false */
 
-import {extractIdSuffixFromId,} from './helper';
+import {
+    extractIdSuffixFromId,
+} from './helper';
 
-import {showModalConfirmation,} from './bootboxWrapper';
+import {
+    showModalConfirmation,
+} from './bootboxWrapper';
 
-import {BootstrapContextualColors,} from './const';
+import {
+    BootstrapContextualColors,
+} from './const';
 
-import {destroyEditor, richTextEditorBuilder,} from './richTextEditor';
+import {
+    destroyEditor, richTextEditorBuilder,
+} from './richTextEditor';
 
 const initialVisibilityOptions = new Map();
 
