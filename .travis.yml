@@ -61,6 +61,8 @@ after_failure:
 
 after_success:
 - "./gradlew jacocoReport"
+- rm -rf "`gcloud info --format='value(installation.sdk_root)'`"
+- rm -rf "`gcloud info --format='value(config.paths.global_config_dir)'`"
 
 deploy:
   provider: gae
