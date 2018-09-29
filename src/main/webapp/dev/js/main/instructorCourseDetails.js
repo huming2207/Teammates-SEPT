@@ -1,6 +1,10 @@
-import {showModalConfirmation,} from '../common/bootboxWrapper';
+import {
+    showModalConfirmation,
+} from '../common/bootboxWrapper';
 
-import {BootstrapContextualColors,} from '../common/const';
+import {
+    BootstrapContextualColors,
+} from '../common/const';
 
 import {
     attachEventToDeleteAllStudentLink,
@@ -10,9 +14,13 @@ import {
     selectElementContents,
 } from '../common/instructor';
 
-import {toggleSort,} from '../common/sortBy';
+import {
+    toggleSort,
+} from '../common/sortBy';
 
-import {setStatusMessage,} from '../common/statusMessage';
+import {
+    setStatusMessage,
+} from '../common/statusMessage';
 
 function submitFormAjax() {
     const formObject = $('#csvToHtmlForm');

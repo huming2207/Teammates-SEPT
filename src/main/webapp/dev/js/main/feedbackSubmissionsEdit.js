@@ -1,22 +1,40 @@
 /* global tinymce:false */
 
-import {showModalAlert,} from '../common/bootboxWrapper';
+import {
+    showModalAlert,
+} from '../common/bootboxWrapper';
 
-import {BootstrapContextualColors, ParamsNames,} from '../common/const';
+import {
+    BootstrapContextualColors, ParamsNames,
+} from '../common/const';
 
-import {isNumber,} from '../common/helper';
+import {
+    isNumber,
+} from '../common/helper';
 
-import {richTextEditorBuilder,} from '../common/richTextEditor';
+import {
+    richTextEditorBuilder,
+} from '../common/richTextEditor';
 
-import {sanitizeForJs,} from '../common/sanitizer';
+import {
+    sanitizeForJs,
+} from '../common/sanitizer';
 
-import {scrollToElement,} from '../common/scrollTo';
+import {
+    scrollToElement,
+} from '../common/scrollTo';
 
-import {setStatusMessage,} from '../common/statusMessage';
+import {
+    setStatusMessage,
+} from '../common/statusMessage';
 
-import {bindLinksInUnregisteredPage,} from '../common/student';
+import {
+    bindLinksInUnregisteredPage,
+} from '../common/student';
 
-import {addLoadingIndicator, disallowNonNumericEntries,} from '../common/ui';
+import {
+    addLoadingIndicator, disallowNonNumericEntries,
+} from '../common/ui';
 
 const FEEDBACK_RESPONSE_RECIPIENT = 'responserecipient';
 const FEEDBACK_RESPONSE_TEXT = 'responsetext';
