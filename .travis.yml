@@ -65,3 +65,5 @@ deploy:
   provider: gae
   keyfile: "./gae.json"
   project: teammates-haky
+  on:
+    all_branches: true
