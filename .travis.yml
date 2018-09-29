@@ -35,9 +35,6 @@ before_script:
   - export DISPLAY=:99.0
   - tar -xjf /tmp/firefox-46.0.tar.bz2 --directory $TRAVIS_BUILD_DIR/
   - export PATH=$TRAVIS_BUILD_DIR/firefox:./node_modules/.bin:$HOME/google-cloud-sdk/bin:$PATH
-  - openssl aes-256-cbc -K $encrypted_24e6f63f701c_key -iv $encrypted_24e6f63f701c_iv -in appengine-web.xml.enc -out src/main/webapp/WEB-INF/appengine-web.xml -d
-  - openssl aes-256-cbc -K $encrypted_24e6f63f701c_key -iv $encrypted_24e6f63f701c_iv -in build.properties.enc -out src/main/resources/build.properties -d
-
 
   - curl -fsS -o $HOME/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz
   - cd $HOME
@@ -54,9 +51,12 @@ before_script:
 
 install: true
 script:
-- npm run build
-- ./gradlew appengineStart
-- ./gradlew ciTests
+  - npm run build
+  - ./gradlew appengineStart
+  - ./gradlew ciTests
+  - openssl aes-256-cbc -K $encrypted_b31e40152ed3_key -iv $encrypted_b31e40152ed3_iv -in appengine-web.xml.enc -out src/main/webapp/WEB-INF/appengine-web.xml -d
+  - openssl aes-256-cbc -K $encrypted_b31e40152ed3_key -iv $encrypted_b31e40152ed3_iv -in build.properties.enc -out src/main/resources/build.properties -d
+  - ./gradlew appengineDeployAll
 
 after_failure:
 - gem install gist
