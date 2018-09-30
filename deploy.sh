@@ -11,4 +11,4 @@ rm -rf firefox/
 gcloud auth activate-service-account teammates-haky@appspot.gserviceaccount.com --key-file=gae.json --project=teammates-haky
 
 # Run Gradle deployment task
-"./gradlew appengineDeployAll"
+./gradlew appengineDeployAll
