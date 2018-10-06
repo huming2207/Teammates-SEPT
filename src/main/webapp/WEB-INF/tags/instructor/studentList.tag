@@ -215,7 +215,7 @@
   int startIndex = Integer.parseInt(startIndexString);
   if(request.getParameter("numeric")==null)
   {
-    numRecord = 5;
+    numRecord = 20;
   }
   else
   {
@@ -248,8 +248,6 @@
   /*for(int count=startIndex; count < increment; count++){
     showObj = (Obj)Arraylist.get(count);
 }*/%>
-<div align="left"><%=numRows%> Data found</div>
-</div>
 <table width = "100%" border = "0">
 <tr>
  <td width = "40%" scope="col">
