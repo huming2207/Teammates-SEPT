@@ -1,6 +1,9 @@
 package teammates.test.cases.logic;
 
+import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.testng.annotations.Test;
 import teammates.common.datatransfer.CourseDetailsBundle;
 import teammates.common.datatransfer.CourseSummaryBundle;
@@ -50,6 +53,7 @@ public class CoursesLogicTest extends BaseLogicTest {
         testGetCourseSummariesForInstructor();
         testGetCoursesSummaryWithoutStatsForInstructor();
         testGetCourseStudentListAsCsv();
+        testGetCourseStudentListAsPdf();
         testHasIndicatedSections();
         testCreateCourse();
         testCreateCourseAndInstructor();
@@ -742,6 +746,31 @@ public class CoursesLogicTest extends BaseLogicTest {
         } catch (AssertionError e) {
             assertEquals(Const.StatusCodes.DBLEVEL_NULL_INPUT, e.getMessage());
         }
+    }
+
+    private void testGetCourseStudentListAsPdf() throws  Exception {
+
+        ______TS("Typical case: get a non-empty PDF export");
+
+        InstructorAttributes instructor1OfCourse1 = dataBundle.instructors.get("instructor1OfCourse1");
+
+        String instructorId = instructor1OfCourse1.googleId;
+        String courseId = instructor1OfCourse1.courseId;
+
+        PDDocument documentNonEmpty = coursesLogic.getCourseStudentListAsPdf(courseId, instructorId);
+        assertTrue(documentNonEmpty.getNumberOfPages() > 0);
+        assertTrue(documentNonEmpty.getPage(1).hasContents());
+
+        ______TS("Typical case: test PDF content - headers");
+
+        PDDocument documentWithContent = coursesLogic.getCourseStudentListAsPdf(courseId, instructorId);
+        String documentStr = new PDFTextStripper().getText(documentWithContent);
+
+        assertTrue(documentStr.contains("Team"));
+        assertTrue(documentStr.contains("First name"));
+        assertTrue(documentStr.contains("Last Name"));
+        assertTrue(documentStr.contains("Status"));
+        assertTrue(documentStr.contains("Email"));
     }
 
     private void testHasIndicatedSections() throws Exception {
