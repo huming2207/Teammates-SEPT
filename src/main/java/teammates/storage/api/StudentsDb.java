@@ -240,7 +240,7 @@ public class StudentsDb extends EntitiesDb<CourseStudent, StudentAttributes> {
      * @return the list of all students in the database.
      */
     // TODO remove this method once all Students have been migrated to CourseStudents
-    @Deprecated
+
     public List<StudentAttributes> getAllStudents() {
         Map<String, StudentAttributes> result = new LinkedHashMap<>();
 
@@ -254,7 +254,7 @@ public class StudentsDb extends EntitiesDb<CourseStudent, StudentAttributes> {
      * This method is not scalable. Not to be used unless for admin features.
      * @return the list of all students in the database.
      */
-    @Deprecated
+
     public List<StudentAttributes> getAllCourseStudents() {
         return makeAttributes(getCourseStudentEntities());
     }
@@ -548,7 +548,7 @@ public class StudentsDb extends EntitiesDb<CourseStudent, StudentAttributes> {
                 .list();
     }
 
-    @Deprecated
+
     /**
      * Retrieves all course student entities. This function is not scalable.
      */

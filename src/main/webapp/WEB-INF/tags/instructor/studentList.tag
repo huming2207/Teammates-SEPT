@@ -2,12 +2,17 @@
 <%@ tag description="instructorSearch / instructorStudentList - Student List" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ tag import="teammates.common.util.Const" %>
+<%@ tag import="teammates.common.datatransfer.attributes.StudentAttributes" %>
+<%@ tag import="java.util.List" %>
+<%@ tag import="java.util.ArrayList" %>
+<%@ tag import="teammates.storage.api.StudentsDb" %>
 <%@ attribute name="courseId" required="true" %>
 <%@ attribute name="courseIndex" required="true" %>
 <%@ attribute name="hasSection" required="true" %>
 <%@ attribute name="sections" type="java.util.Collection" required="true" %>
 <%@ attribute name="fromStudentListPage" %>
 <%@ attribute name="fromCourseDetailsPage" %>
+
 <c:choose>
   <c:when test="${fromCourseDetailsPage}">
     <c:set var="tableHeaderClass" value="fill-primary" />
@@ -194,34 +199,68 @@
     </c:otherwise>
   </c:choose>
 </table>
-<style>
-  .paging{
-    display: inline-block;
-  }
-  .paging a{
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    transtion: backgroung-color .5s;
-    position: relative;
-    left: 500px;
-  }
-  .paging a:hover:not(.active)
-  {
-    background-color: #00FF00;
-    border-radius: 5px;
-  }
 
-  .paging a.active
+<%! int numPages = 0;%>
+<% int numRows;
+  int numRecord;
+  int increment;
+  String startIndexString;
+  startIndexString= request.getParameter("startIndex");
+  StudentsDb students = new StudentsDb();
+  numRows=students.getCourseStudentEntitiesForCourse(courseId).size();
+%>
+<% if((startIndexString == null)||(startIndexString.length()==0)) {
+  startIndexString = "0";
+}
+  int startIndex = Integer.parseInt(startIndexString);
+  if(request.getParameter("numeric")==null)
   {
-    background-color: #E46D0B;
-    color: whitesmoke;
+    numRecord = 20;
   }
+  else
+  {
+    numRecord = Integer.parseInt(request.getParameter("numeric"));
+  }
+  numPages= numRows/numRecord;
+  int remain = numRows % numRecord;
+  if(remain != 0 )
+    numPages += 1;
+  int startPoint = 0;
+  String temp=" ";
+  for(int i = 1; i<= numPages; i++)
+  {
+     temp = temp+ "<a href=\"/page/instructorStudentListPage?startIndex=" + startPoint+"&numeric="+numRecord+"\" >" +i+"</a>";
+    startPoint = startPoint+numRecord;
+  }
+  if((startIndex+numRecord) <= numRows){
+    increment = startIndex + numRecord;
+  }
+  else {
+    if(remain == 0){
+      increment = startIndex + numRecord;
+    }
+    else{
+      increment = startIndex + remain;
+    }
+  }
+%>
+<% String showObj;
+  /*for(int count=startIndex; count < increment; count++){
+    showObj = (Obj)Arraylist.get(count);
+}*/%>
+<table width = "100%" border = "0">
+<tr>
+ <td width = "40%" scope="col">
+   <% if (startIndex != 0){%>
+   <a href = "studentList.tag?startIndex=<%=startIndex - numRecord%>&numeric=<%=numRecord%>">Previous</a>
+ <%}%></td>
+  <td><%=temp%></td>
+  <td>
+    <%if(startIndex + numRecord <numRows){%>
+    <a href="/page/instructorStudentListPage?startIndex=<%=startIndex+numRecord%>&numeric=<%=numRecord%>">Next</a>
+  <%}%></td>
+</tr>
+</table>
 
-</style>
-<div class="paging">
-<a href="">&laquo;</a>
-<a class="active" href="">1</a>
-<a href="">2</a>
-<a href="">&raquo;</a>
-</div>
+
+
