@@ -4,7 +4,6 @@ import com.google.apphosting.api.DeadlineExceededException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import teammates.common.exception.EntityDoesNotExistException;
-import teammates.common.exception.NullPostParameterException;
 import teammates.common.exception.UnauthorizedAccessException;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Config;
