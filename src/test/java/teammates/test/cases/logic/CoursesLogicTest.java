@@ -747,7 +747,7 @@ public class CoursesLogicTest extends BaseLogicTest {
         }
     }
 
-    private void testGetCourseStudentListAsPdf() throws  Exception {
+    private void testGetCourseStudentListAsPdf() throws Exception {
 
         ______TS("Typical case: get a non-empty PDF export");
 
@@ -758,7 +758,7 @@ public class CoursesLogicTest extends BaseLogicTest {
 
         PDDocument documentNonEmpty = coursesLogic.getCourseStudentListAsPdf(courseId, instructorId);
         assertTrue(documentNonEmpty.getNumberOfPages() > 0);
-        assertTrue(documentNonEmpty.getPage(1).hasContents());
+        assertTrue(documentNonEmpty.getPage(0).hasContents());
 
         ______TS("Typical case: test PDF content - headers");
 
@@ -766,7 +766,7 @@ public class CoursesLogicTest extends BaseLogicTest {
         String documentStr = new PDFTextStripper().getText(documentWithContent);
 
         assertTrue(documentStr.contains("Team"));
-        assertTrue(documentStr.contains("First name"));
+        assertTrue(documentStr.contains("Full Name"));
         assertTrue(documentStr.contains("Last Name"));
         assertTrue(documentStr.contains("Status"));
         assertTrue(documentStr.contains("Email"));

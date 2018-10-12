@@ -4,7 +4,6 @@ import com.google.apphosting.api.DeadlineExceededException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import teammates.common.exception.EntityDoesNotExistException;
-import teammates.common.exception.NullPostParameterException;
 import teammates.common.exception.UnauthorizedAccessException;
 import teammates.common.util.AppUrl;
 import teammates.common.util.Config;
@@ -34,7 +33,6 @@ public class SystemErrorEmailReportTest extends BaseUiTestCase {
         testNullPointerException();
         testDeadlineExceededException();
         testUnauthorizedAccessException();
-        testNullPostParamException();
     }
 
     private void testAssertionError() {
@@ -89,16 +87,4 @@ public class SystemErrorEmailReportTest extends BaseUiTestCase {
         page.navigateTo(url);
         print("This exception is handled by system, make sure you don't receive any emails. ");
     }
-
-    private void testNullPostParamException() {
-        ______TS("NullPostParamException testing");
-
-        AppUrl url = createUrl(Const.ActionURIs.ADMIN_EXCEPTION_TEST)
-                .withParam(Const.ParamsNames.ERROR, NullPostParameterException.class.getSimpleName());
-        page.navigateTo(url);
-        page.waitForTextsForAllStatusMessagesToUserEquals(
-                Const.StatusMessages.NULL_POST_PARAMETER_MESSAGE.replace("<br>", "\n"));
-        print("This exception is handled by system, make sure you don't receive any emails. ");
-    }
-
 }

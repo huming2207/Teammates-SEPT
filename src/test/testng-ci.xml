@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="ci-tests" parallel="tests" thread-count="2">
+<suite name="ci-tests" time-out="30000">
     <listeners>
         <listener class-name="teammates.test.driver.PriorityInterceptor" />
     </listeners>
 
-    <test name="component-tests">
+    <test name="component-tests" time-out="30000">
         <!--These can be run without starting the server. Should be run often. -->
         <packages>
             <package name="teammates.test.cases.storage" />
@@ -26,18 +26,18 @@
         </classes>
     </test>
 
-    <test name="sequential-ui-tests">
-        <!--Theses cases need to be run sequentially to avoid state leaks between tests -->
+    <!-- <test name="sequential-ui-tests" time-out="30000">
+        doesn't work for durianmate
         <classes>
             <class name="teammates.test.cases.browsertests.InstructorCourseJoinConfirmationPageUiTest" />
             <class name="teammates.test.cases.browsertests.StudentCourseJoinConfirmationPageUiTest" />
             <class name="teammates.test.cases.browsertests.StudentHomePageUiTest" />
-           <!-- <class name="teammates.test.cases.browsertests.AdminHomePageUiTest" /> doesn't work for durianmate -->
+            <class name="teammates.test.cases.browsertests.AdminHomePageUiTest" />
             <class name="teammates.test.cases.browsertests.AllAccessControlUiTests" />
         </classes>
-    </test>
+    </test>  -->
 
-    <test name="occasional-tests" parallel="classes">
+    <test name="occasional-tests" time-out="30000">
      <!-- These need not to run often unless the modification relates to them
     directly. But they should be run before pushing new code to the repo. -->
         <classes>
@@ -94,7 +94,7 @@
         </classes>
     </test>-->
 
-    <test name="rare-tests" parallel="classes">
+    <test name="rare-tests" time-out="30000">
      <!-- These need not be run during staging. -->
         <classes>
             <class name="teammates.test.cases.testdriver.BackDoorTest" />
