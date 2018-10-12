@@ -249,22 +249,23 @@ public final class FeedbackSessionsLogic {
         return getFeedbackSessionsListForInstructor(instructorList);
     }
 
-    public PDDocument getCourseStudentFeedbackAsPdf(String feedbackSessionName, String googleId)
+    /*public PDDocument getCourseStudentFeedbackAsPdf(String feedbackSessionName, String googleId)
             throws IOException, EntityDoesNotExistException {
         PDDocument pdDocument = new PDDocument();
         PDPage page = new PDPage(PDRectangle.A4);
         List<List> feedbackList = new ArrayList<>();
 
-        Map<String, FeedbackSessionDetailsBundle> feedbackSessions = getFeedbackSession(googleId, false);
+        Map<String, FeedbackSessionDetailsBundle> feedbackSessions = getFeedbackSession(googleId,false);
         FeedbackSessionDetailsBundle feedback = feedbackSessions.get(feedbackSessionName);
-        boolean hasSection = hasIndicatedSections(feedbackSessionName);
+        boolean hasSection = isFeedbackSessionExists();
+
 
         // Generate a title
         PDPageContentStream contentStream = new PDPageContentStream(pdDocument, page);
         contentStream.beginText();
         contentStream.setFont(PDType1Font.HELVETICA_BOLD, 22);
         contentStream.newLineAtOffset(50, 200);
-        contentStream.showText("Instructor Report of" + course.course.getName());
+        contentStream.showText("Instructor's Report");
         contentStream.endText();
         contentStream.close();
 
@@ -296,44 +297,7 @@ public final class FeedbackSessionsLogic {
             }
         }
 
-
-        // These positioning code comes from: https://github.com/dhorions/boxable/wiki
-        //Dummy Table
-        float margin = 50;
-        // starting y position is whole page height subtracted by top and bottom margin
-        float yStartNewPage = page.getMediaBox().getHeight() - (2 * margin);
-        // we want table across whole page width (subtracted by left and right margin ofcourse)
-        float tableWidth = page.getMediaBox().getWidth() - (2 * margin);
-
-        boolean drawContent = true;
-        float bottomMargin = 70;
-        // y position is your coordinate of top left corner of the table
-        float yPosition = 550;
-
-        // Use the existing CSV to generate PDF for now
-        BaseTable baseTable = new BaseTable(yPosition, yStartNewPage, bottomMargin, tableWidth, margin,
-                pdDocument, page, true, drawContent);
-        DataTable dataTable = new DataTable(baseTable, page);
-
-        // Add the data list into the table
-        dataTable.addListToTable(feedbackList, DataTable.HASHEADER);
-        baseTable.draw();
-
-        pdDocument.addPage(page);
-        return pdDocument;
-    }
-
-    public boolean hasIndicatedSections(String feedbackSessionName) throws EntityDoesNotExistException {
-        verifyFeedbackIsPresent(feedbackSessionName);
-
-        List<FeedbackSessionAttributes> feedbackList = getFeedbackSessionDetailsForCourse(feedbackSessionName);
-        for (FeedbackSessionAttributes feedback : feedbackList) {
-            if (!feedback.section.equals(Const.DEFAULT_SECTION)) {
-                return true;
-            }
-        }
-        return false;
-    }
+}*/
 
     public List<FeedbackSessionAttributes> getFeedbackSessionsListForInstructor(
             List<InstructorAttributes> instructorList) {
