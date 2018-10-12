@@ -747,7 +747,7 @@ public class CoursesLogicTest extends BaseLogicTest {
         }
     }
 
-    private void testGetCourseStudentListAsPdf() throws  Exception {
+    private void testGetCourseStudentListAsPdf() throws Exception {
 
         ______TS("Typical case: get a non-empty PDF export");
 
