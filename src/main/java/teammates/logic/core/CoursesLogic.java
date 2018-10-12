@@ -22,6 +22,8 @@ import teammates.common.exception.TeammatesException;
 import teammates.common.util.*;
 import teammates.storage.api.CoursesDb;
 
+import javax.mail.Session;
+
 /**
  * Handles operations related to courses.
  *

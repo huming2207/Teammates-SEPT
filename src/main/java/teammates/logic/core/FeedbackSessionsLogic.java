@@ -1,23 +1,19 @@
 package teammates.logic.core;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
-import teammates.common.datatransfer.CourseRoster;
-import teammates.common.datatransfer.FeedbackParticipantType;
-import teammates.common.datatransfer.FeedbackSessionDetailsBundle;
-import teammates.common.datatransfer.FeedbackSessionQuestionsBundle;
-import teammates.common.datatransfer.FeedbackSessionResponseStatus;
-import teammates.common.datatransfer.FeedbackSessionResultsBundle;
-import teammates.common.datatransfer.UserRole;
+import be.quodlibet.boxable.BaseTable;
+import be.quodlibet.boxable.datatable.DataTable;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import teammates.common.datatransfer.*;
 import teammates.common.datatransfer.attributes.FeedbackQuestionAttributes;
 import teammates.common.datatransfer.attributes.FeedbackResponseAttributes;
 import teammates.common.datatransfer.attributes.FeedbackResponseCommentAttributes;
@@ -251,6 +247,92 @@ public final class FeedbackSessionsLogic {
                 instructorsLogic.getInstructorsForGoogleId(googleId, omitArchived);
 
         return getFeedbackSessionsListForInstructor(instructorList);
+    }
+
+    public PDDocument getCourseStudentFeedbackAsPdf(String feedbackSessionName, String googleId)
+            throws IOException, EntityDoesNotExistException {
+        PDDocument pdDocument = new PDDocument();
+        PDPage page = new PDPage(PDRectangle.A4);
+        List<List> feedbackList = new ArrayList<>();
+
+        Map<String, FeedbackSessionDetailsBundle> feedbackSessions = getFeedbackSession(googleId, false);
+        FeedbackSessionDetailsBundle feedback = feedbackSessions.get(feedbackSessionName);
+        boolean hasSection = hasIndicatedSections(feedbackSessionName);
+
+        // Generate a title
+        PDPageContentStream contentStream = new PDPageContentStream(pdDocument, page);
+        contentStream.beginText();
+        contentStream.setFont(PDType1Font.HELVETICA_BOLD, 22);
+        contentStream.newLineAtOffset(50, 200);
+        contentStream.showText("Instructor Report of" + course.course.getName());
+        contentStream.endText();
+        contentStream.close();
+
+        // Create a table header
+        feedbackList.add(hasSection
+                ? new ArrayList<>(Arrays.asList("Section Name", "Start date", "End date", "Submission", "Responses"))
+                : new ArrayList<>(Arrays.asList("Start date", "End date", "Submission", "Responses")));
+
+        for (SectionDetailsBundle section : feedback.sections) {
+            for (TeamDetailsBundle team : section.teams) {
+                for (StudentAttributes student : team.students) {
+                    List<String> rowElements = new ArrayList<>();
+                    String studentStatus = null;
+                    if (student.googleId == null || student.googleId.isEmpty()) {
+                        studentStatus = Const.STUDENT_COURSE_STATUS_YET_TO_JOIN;
+                    } else {
+                        studentStatus = Const.STUDENT_COURSE_STATUS_JOINED;
+                    }
+
+                    if (hasSection) {
+                        rowElements.add(section.name);
+                    }
+
+                    rowElements.addAll(
+                            Arrays.asList(section.name, student.name, student.lastName, studentStatus, student.email));
+
+                    feedbackList.add(rowElements);
+                }
+            }
+        }
+
+
+        // These positioning code comes from: https://github.com/dhorions/boxable/wiki
+        //Dummy Table
+        float margin = 50;
+        // starting y position is whole page height subtracted by top and bottom margin
+        float yStartNewPage = page.getMediaBox().getHeight() - (2 * margin);
+        // we want table across whole page width (subtracted by left and right margin ofcourse)
+        float tableWidth = page.getMediaBox().getWidth() - (2 * margin);
+
+        boolean drawContent = true;
+        float bottomMargin = 70;
+        // y position is your coordinate of top left corner of the table
+        float yPosition = 550;
+
+        // Use the existing CSV to generate PDF for now
+        BaseTable baseTable = new BaseTable(yPosition, yStartNewPage, bottomMargin, tableWidth, margin,
+                pdDocument, page, true, drawContent);
+        DataTable dataTable = new DataTable(baseTable, page);
+
+        // Add the data list into the table
+        dataTable.addListToTable(feedbackList, DataTable.HASHEADER);
+        baseTable.draw();
+
+        pdDocument.addPage(page);
+        return pdDocument;
+    }
+
+    public boolean hasIndicatedSections(String feedbackSessionName) throws EntityDoesNotExistException {
+        verifyFeedbackIsPresent(feedbackSessionName);
+
+        List<FeedbackSessionAttributes> feedbackList = getFeedbackSessionDetailsForCourse(feedbackSessionName);
+        for (FeedbackSessionAttributes feedback : feedbackList) {
+            if (!feedback.section.equals(Const.DEFAULT_SECTION)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<FeedbackSessionAttributes> getFeedbackSessionsListForInstructor(

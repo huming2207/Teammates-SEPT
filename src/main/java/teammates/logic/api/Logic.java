@@ -1149,6 +1149,15 @@ public class Logic {
                 feedbackSessionName, courseId, instructorEmail);
     }
 
+    public PDDocument getCourseStudentFeedbackAsPdf(String feedbackSessionName, String googleId)
+            throws EntityDoesNotExistException, IOException {
+
+        Assumption.assertNotNull(feedbackSessionName);
+        Assumption.assertNotNull(googleId);
+
+        return feedbackSessionsLogic.getCourseStudentFeedbackAsPdf(feedbackSessionName, googleId);
+    }
+
     /**
      * Preconditions: <br>
      * * All parameters are non-null.

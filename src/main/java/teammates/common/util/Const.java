@@ -960,6 +960,8 @@ public final class Const {
         public static final String INSTRUCTOR_COURSE_STUDENT_LIST_DOWNLOAD = "/page/instructorCourseStudentListDownload";
         public static final String INSTRUCTOR_COURSE_STUDENT_LIST_PDF_DOWNLOAD =
                 "/page/instructorCourseStudentPdfListDownload";
+        public static final String INSTRUCTOR_REPORT_PDF_DOWNLOAD =
+                "/page/instructorReportPdfDownload";
         public static final String INSTRUCTOR_COURSE_STUDENT_BACKUP = "/page/instructorCourseStudentBackup";
         public static final String INSTRUCTOR_COURSE_STUDENT_RESTORE = "/page/instructorCourseStudentRestore";
         public static final String INSTRUCTOR_COURSE_ENROLL_PAGE = "/page/instructorCourseEnrollPage";

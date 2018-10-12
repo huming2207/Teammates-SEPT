@@ -11,6 +11,15 @@
     <a class="btn btn-primary btn-md" href="${data.instructorCoursesLink}"
         id="addNewCourse">Add New Course</a>
   </div>
+  <form method="post" action="<%=Const.ActionURIs.INSTRUCTOR_REPORT_PDF_DOWNLOAD%>" style="display: inline">
+    <button id="button_download_pdf" type="submit" class="btn btn-primary" value="Download Information as PDF"
+            name="<%=Const.ParamsNames.FEEDBACK_RESULTS_UPLOADDOWNLOADBUTTON%>">
+      <span class="glyphicon glyphicon-download-alt"></span>
+      Download Instructor Report
+    </button>
+    <input type="hidden" name="<%=Const.ParamsNames.USER_ID%>" value="${data.account.googleId}">
+    <input type="hidden" name="<%=Const.ParamsNames.COURSE_ID%>" value="${courseDetails.course.id}">
+  </form>
   <div class="col-xs-10">
     <div class="pull-right">
       <h5 class="inline-block"><strong> Sort By: </strong></h5>
