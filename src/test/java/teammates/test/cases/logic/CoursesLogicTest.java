@@ -766,7 +766,7 @@ public class CoursesLogicTest extends BaseLogicTest {
         String documentStr = new PDFTextStripper().getText(documentWithContent);
 
         assertTrue(documentStr.contains("Team"));
-        assertTrue(documentStr.contains("First name"));
+        assertTrue(documentStr.contains("Full Name"));
         assertTrue(documentStr.contains("Last Name"));
         assertTrue(documentStr.contains("Status"));
         assertTrue(documentStr.contains("Email"));
