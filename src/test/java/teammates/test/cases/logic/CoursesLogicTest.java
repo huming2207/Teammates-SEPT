@@ -758,7 +758,7 @@ public class CoursesLogicTest extends BaseLogicTest {
 
         PDDocument documentNonEmpty = coursesLogic.getCourseStudentListAsPdf(courseId, instructorId);
         assertTrue(documentNonEmpty.getNumberOfPages() > 0);
-        assertTrue(documentNonEmpty.getPage(1).hasContents());
+        assertTrue(documentNonEmpty.getPage(0).hasContents());
 
         ______TS("Typical case: test PDF content - headers");
 

@@ -26,16 +26,16 @@
         </classes>
     </test>
 
-    <test name="sequential-ui-tests" time-out="30000">
-        <!--Theses cases need to be run sequentially to avoid state leaks between tests -->
+    <!-- <test name="sequential-ui-tests" time-out="30000">
+        doesn't work for durianmate
         <classes>
             <class name="teammates.test.cases.browsertests.InstructorCourseJoinConfirmationPageUiTest" />
             <class name="teammates.test.cases.browsertests.StudentCourseJoinConfirmationPageUiTest" />
             <class name="teammates.test.cases.browsertests.StudentHomePageUiTest" />
-           <!-- <class name="teammates.test.cases.browsertests.AdminHomePageUiTest" /> doesn't work for durianmate
-            <class name="teammates.test.cases.browsertests.AllAccessControlUiTests" /> -->
+            <class name="teammates.test.cases.browsertests.AdminHomePageUiTest" />
+            <class name="teammates.test.cases.browsertests.AllAccessControlUiTests" />
         </classes>
-    </test>
+    </test>  -->
 
     <test name="occasional-tests" time-out="30000">
      <!-- These need not to run often unless the modification relates to them
